@@ -4,9 +4,9 @@
  */
 package adastra;
 
-import adastra.engine.Planet;
-import adastra.engine.PlanetSettings;
-import adastra.engine.Shipyard;
+import adastra.engine.planet.Planet;
+import adastra.engine.planet.PlanetSettings;
+import adastra.engine.planet.Shipyard;
 
 import java.awt.Dimension;
 

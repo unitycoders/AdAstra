@@ -4,8 +4,8 @@
  */
 package adastra;
 
-import adastra.engine.Planet;
-import adastra.engine.PlanetSettings;
+import adastra.engine.planet.Planet;
+import adastra.engine.planet.PlanetSettings;
 import javax.swing.JFrame;
 
 import java.awt.Dimension;
