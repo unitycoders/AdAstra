@@ -12,7 +12,22 @@ public class Planet extends Asset {
     //private PlanetClass
     private Building[] buildings;
     
+    /**
+     * Build a building
+     * 
+     * @param plot
+     * @param b 
+     */
     public void build(int plot, Building b){
         buildings[plot] = b;
+    }
+    
+    /**
+     * Do this once a tick
+     */
+    public void tick(){
+        for(Building b : buildings){
+            b.gameTick();
+        }
     }
 }

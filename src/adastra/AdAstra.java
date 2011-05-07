@@ -17,9 +17,7 @@ public class AdAstra {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Hull h = new Hull();
-        Vessel v = new Vessel(h);
+        GameWindow window = new GameWindow();
         
-        System.out.println(v);  
     }
 }
