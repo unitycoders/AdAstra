@@ -16,4 +16,7 @@ public class Hull {
         return 0; //TODO code hardpoints into hulls
     }
     
+    public int getMaxHp(){
+        return maxHp;
+    }
 }

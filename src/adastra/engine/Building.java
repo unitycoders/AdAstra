@@ -8,11 +8,12 @@ package adastra.engine;
  *
  * @author webpigeon
  */
-public class Building {
+public abstract class Building {
     private Planet builtOn;
         
     public void bindPlanet(Planet p){
         this.builtOn = p;
     }
     
+    public abstract void gameTick();
 }
