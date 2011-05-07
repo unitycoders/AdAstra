@@ -1,0 +1,35 @@
+Here is a list of the ideas (user facing) for AdAstra
+
+# Actions
+* Can build and customise ships
+	* Can be speicalised for diffrent needs
+* Can Trade with other players/AI
+* Can colonise planets
+* Can mine asteroids to produce resources
+* Can build and customise space stations (like planets, but in space)
+* Can attack other player's ships
+* Can raid other player's ships, stations and planets for recourses
+* Can capture ships, planets and stations
+* Can research new technologies for new buildings, ships components, station modules, etc...
+
+# Planets
+* Aquire resources from planet (mining)
+* Build, Repair and refit ships
+* Conduct research
+* Build buildings, Components and modules
+
+# Ships
+* Customisable hardware/components
+* Diffrent sizes and configurations
+* Limited line of sight
+* Player owned and controllable
+
+# Orginal (JGame) ideas - need to be integrated with above
+* A player has many resources, each can be used to construct assets
+* Each resource can be mined from asteroids
+* A resource can be traded between players
+* Tasks can constume rescoures, such as building
+* Objects which can be controlled by a player can be issued tasks to proform
+  * These tasks can be context senstive (attack, defend only apply to ships)
+* A player has a finite amount of time, avilable each tick
+* A tick occours every n secounds of game time. 'turns' happen at the same time.
