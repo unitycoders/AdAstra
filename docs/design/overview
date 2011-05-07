@@ -10,6 +10,9 @@ Each planet can be colonised by a player, and the player starts off with 1 plane
 starts. A colonised planet may have buildings built upon it. Each building provides one or more
 services to the planet and aids the player.
 
+Planets will be of diffrent qualities, effecting the number of building slots avilable on each planet.
+The type of planet may also have other effects on the planet, these effects are to be decided.
+
 ### Vessels/Ships
 The player can build ships, each ship consits of a hull (which cannot be changed once built)
 and a series of hardware. The hull provides a list of the avilable spaces in which hardware 
@@ -32,3 +35,35 @@ undirected cyclic graph. This graph forms the whole game play area (the galaxy).
 
 Each sector is unique and consisits of game assets. Each asset is at a location given by an x,y
 location and sector. This uniquely identifes the asset's location in the galaxy.
+
+### Viewpoints
+The game is viewable from two main viewpoints, the overall view of the galaxy, allowing the
+user to select a sector and a sector view. The sector view is where most of the user's interaction
+with the game will take place; issuing orders to vessels and selecting planets.
+
+## GamePlay
+The Game will be both multiplayer and Single player (with AI) playable.
+
+* Fleets/Vessel Groupings
+* Persistant Damage of ships, with hardware disabling
+* Hardware in certian types of slots, but with power requirements
+* Ship Templates
+ * Templates are persistant
+* Players could have like a wiki available, which when they have owned a ship it adds the intricate details (Basically what the screen looked like just before it was finished being designed)
+
+
+### Time Management
+Still undecided (see 7th may 2011 chat log), possiblies include
+ - Turn Based
+ - Tick Based
+ - Real Time
+ - Any combination of the above
+
+"so people could plan everything that will happen, when everyone is finished, the game will switch to real time but people can't influence their decisions anymore?" -- Piers
+
+Player interactions should be possible with battles, not automated resolution.
+
+### Muliplayer Features
+* if a player wanted to - could he allocate a build slot to an ally - Piers
+* perhaps allocating hardpoints on a ship to allies too - Piers
+
