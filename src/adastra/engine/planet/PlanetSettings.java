@@ -6,8 +6,10 @@ package adastra.engine.planet;
 
 import adastra.engine.planet.Planet;
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTabbedPane;
@@ -28,16 +30,27 @@ public class PlanetSettings extends JPanel {
     }
 
     private void buildUI() {
+        setLayout(new BorderLayout());
+        
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        panel.add(planet.getForm(), BorderLayout.NORTH);
         JPanel stats = new JPanel();
-        stats.setLayout(new BoxLayout(stats,BoxLayout.Y_AXIS));
+        stats.setLayout(new GridLayout(5,3));
+        stats.add(new JLabel("Population"));
         stats.add(new JProgressBar());
+        stats.add(new JLabel("10,000"));
+        stats.add(new JLabel("Class"));
         stats.add(new JProgressBar());
+        stats.add(new JLabel("14"));
+        stats.add(new JLabel("reserved"));
         stats.add(new JProgressBar());
+        stats.add(new JLabel("0"));
+        stats.add(new JLabel("reserved"));
         stats.add(new JProgressBar());
+        stats.add(new JLabel("0"));
+        stats.add(new JLabel("reserved"));
         stats.add(new JProgressBar());
+        stats.add(new JLabel("0"));
         panel.add(stats, BorderLayout.SOUTH);
         add(panel, BorderLayout.WEST);
 
