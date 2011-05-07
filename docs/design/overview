@@ -1,0 +1,34 @@
+# Ad Astra High Level Design
+
+## Game Asset
+A game asset is any object which can be represented in a sector. Each asset in the game is
+unique and may or may not be player controllable. Most player owned assets are exapandable
+in some way.
+
+### Planets
+Each planet can be colonised by a player, and the player starts off with 1 planet when the game
+starts. A colonised planet may have buildings built upon it. Each building provides one or more
+services to the planet and aids the player.
+
+### Vessels/Ships
+The player can build ships, each ship consits of a hull (which cannot be changed once built)
+and a series of hardware. The hull provides a list of the avilable spaces in which hardware 
+can be placed (hardpoints).
+
+Each vessel has a limited amount of health and can be owned by a single player, they can be
+ captured by other players. The vessels should somehow be limited in what can be attached to
+them (a vessel should not be able to consist 10 weapons and nothing else).
+
+### Stations
+TODO
+
+### Natueral resouces
+are minable TODO 
+
+## Map Layout
+The Ad Astra map layout consists of a series of sectors linked together by gateways. The only
+means of travel between sectors is via these gateways. The sectors and their links form an
+undirected cyclic graph. This graph forms the whole game play area (the galaxy).
+
+Each sector is unique and consisits of game assets. Each asset is at a location given by an x,y
+location and sector. This uniquely identifes the asset's location in the galaxy.
