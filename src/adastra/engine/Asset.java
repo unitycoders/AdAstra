@@ -5,6 +5,7 @@
 package adastra.engine;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 
 /**
  *
@@ -17,7 +18,7 @@ public class Asset {
      * @return 
      */
     public JComponent getForm(){
-        return null;
+        return new JLabel("<Insert form here>");
     }
     
 }

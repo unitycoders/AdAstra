@@ -4,6 +4,8 @@
  */
 package adastra.engine;
 
+import javax.swing.JComponent;
+
 /**
  *
  * @author webpigeon
@@ -11,6 +13,12 @@ package adastra.engine;
 public class Planet extends Asset {
     //private PlanetClass
     private Building[] buildings;
+    private PlanetSettings settings;
+    
+    public Planet(){
+        buildings = new Building[15];
+        settings = new PlanetSettings(this);
+    }
     
     /**
      * Build a building
@@ -20,6 +28,11 @@ public class Planet extends Asset {
      */
     public void build(int plot, Building b){
         buildings[plot] = b;
+        settings.addContent(b.getName(), b.getSettings());
+    }
+    
+    public JComponent getSettings(){
+        return settings;
     }
     
     /**

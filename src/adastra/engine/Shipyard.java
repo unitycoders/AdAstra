@@ -4,6 +4,11 @@
  */
 package adastra.engine;
 
+import java.awt.Dimension;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  * A shipyard builds new ships
  * 
@@ -15,6 +20,7 @@ public class Shipyard extends Building {
     private int completion; //progress needed for completion
     
     public Shipyard(){
+        super("shipyard");
         this.current = null;
         this.progress = 0;
     }
@@ -45,6 +51,14 @@ public class Shipyard extends Building {
             //todo implement build q
             current = null;
         }
+    }
+
+    @Override
+    public JComponent getSettings() {
+        JPanel panel = new JPanel();
+        panel.setPreferredSize(new Dimension(600,250));
+        
+        return panel;
     }
     
 }
