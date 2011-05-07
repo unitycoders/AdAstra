@@ -1,0 +1,235 @@
+#piers + joseph
+[Piers Williams]
+17:18
+let me guess, 2 main viewpoints - galaxy and then ability to zoom into an individual sector?
+[You]
+yep
+The idea being, it makes controlling areas of the map more feasable and allows for larger areas of play
+[Piers Williams]
+yup - fair enough
+will there be different sized slots on the planets that can be built on? will all planets be the same?
+[You]
+Not sure, Planets with verying numbers of slots is kinda the idea for diffrent planet classes
+as for what can go in those slots (ie diffrent sizes) i've not really thought about it
+[Piers Williams]
+ok, will the environment on the planet have an effect?
+[You]
+I've not really thought about it, would be cool if it did
+[Piers Williams]
+ok, i assume to avoid having to write an AI this is multiplayer?
+[You]
+I want to allow for both, because writing an AI for such a complex game could be a world of fun :P
+[Piers Williams]
+ok, but multiplayer would be cool - if a player wanted to - could he allocate a build slot to an ally?
+something missing from most games these days but happens in the real world
+[You]
+Hmm, haven't thought about that, but that could be rather intresting
+[Piers Williams]
+indeed - including perhaps allocating hardpoints on a ship to allies too
+exact same mechanic
+[You]
+hardpoints on a ship could be a bit difficault because then you've got ambigutiy over who can give orders to the ship
+players can trade/give hardware for hardpoints to other players though (trade)
+[Piers Williams]
+the owner of the hull - bit if Player A has technology researched but not the ability to build a ship of their own
+say weapon tech they could equip allies to help out
+[You]
+that could be cool
+[Piers Williams]
+indeed
+i'm good at poking holes in things lol
+[You]
+lol, ideas are never a bad thing
+[Piers Williams]
+Game Asset seems a bit confusing - you mean like fleets of ships?
+[You]
+the term is simply a blanket term for any item on the field of play
+Ships, planets, etc..
+[Piers Williams]
+ok, it'll get cluttered if too much is allowed with them - maybe only vital info about planets from that level - movement of ships only etc
+Turn based or real time?
+[You]
+Tick, so a cross between the two, turn based but turns happen simultaneously with perioidic updates
+you can think of it as a real time game with a turn based approch
+[Piers Williams]
+ok, that sounds like its gonna trip up a bit
+[You]
+yeah, i'm not sure how best to do it, i mean, real time could work but for multiplayer could trip up
+[Piers Williams]
+on the other hand - turn based is simple
+[You]
+I mean most of the code i've written doesn't care
+[Piers Williams]
+but you could switch to real time for battles?
+[You]
+hmm, could do, turn based where you each take it in terns you have to wait for the others to finish which is annoying if a player gives up or doesn't have time to play
+[Piers Williams]
+time out? agree a time limit for all turns?
+[You]
+yeah, that's pretty much what i had in mind, only with turns occouring at the same time
+[Piers Williams]
+so people could plan everything that will happen, when everyone is finished, the game will switch to real time but people can't influence their decisions anymore?
+trouble is if you go to attack something, which then moves ...
+
+# Barry + Joseph
+Joseph Walton-Rivers 13:30:33
+AdAstra planets, say I wanted to support diffrent types of planet, would DesertPlanet extends Planet or Planet which contains a PlanetClass object work better I wonder
+I've built ships using the secound method (ship has a hull and an array of hardware) 13:31:30
+ 
+Barry 'Canis' Attwater 13:32:54
+cool	
+
+Joseph Walton-Rivers 13:34:31
+the ships method works really well for ships, means i don't need 50 million subclasses and each ship can be diffrent (which is fantastic), Also means you can link to ships to the same hull, but i don't know why you would do that (although depending on where I store health could be more memory effeicent)
+I've also come up with a really simple. elegant way to deal with diffrent types of hardware which means i don't need crazy adaptor classes anymore \o/ 13:35:41
+ 
+Barry 'Canis' Attwater 13:37:11
+	
+
+Joseph Walton-Rivers 13:42:11
+still need a way for a ship to tell the game, "oh shit, i blew up"
+oh, something else you might be able to help with 13:42:49
+ids, the way I've basiclly made it so that hardware can do more than one thing is there is a use() method with an ID, and i need to make sure IDs don't conflict between modules (inless it's indended) 13:43:49
+I was thinking about something like hardwareArrayID+ActionID but then things like weapons, which all need to share the same action ID for Fire wouldn't work 13:44:46
+maybe give hardware the option of using some kind of offset but they don't have to? 13:47:17
+or maybe don't use IDs but rather some kind of class 13:48:03
+but then I'd have to share the class between all the Hardware 13:48:24
+what do you think? 13:48:29
+ 
+Barry 'Canis' Attwater 13:52:04
+i dont know, sorry, both seem a but of an odd say to do it
+
+## Piers, Barry + Joseph
+(sorry, facebook didn't copy names from the group chat)
+
+hey, just easier to talk with a group message than to you sepratly :)
+hehe
+magical sparkally group
+so people could plan everything that will happen, when everyone is finished, the game will switch to real time but people can't influence their decisions anymore?
+pretty much hit it on the head
+it's the group we created for AI
+indeed
+yay, seems like Heroes of Might And Magic almost
+never played
+ah ok lol
+i assume you are updating the design lol ...
+keeping a log of the chat so i can update the design :)
+cool
+so will there be the concept of fleets? containing multiple ships that can then engage in battles?
+obviously lonely ships will be in a fleet of their own i guess
+i take it this is currently for astra, right?
+yeah, i'm poking holes
+if anybody has played Star Wars Empire At War then space combat so far seems alot like that - with hardpoints etc
+I've created a folder on git called chats, i'll upload the log to converting into design docs at a later date :)
+cool
+I've not, but the idea was based off a very old game called XCOM
+lol, do some research into EAW - it was released in about 2006 but was fully real-time
+well, real-time galactically but that paused for a real time space/land fight
+As for combat, should the outcome be derimed automaticlly or via user input?
+user input - automated stuff rarely works well enough
+plus turns the game into who is the better economist rather than strategist
+agreed
+will damage to ships be persistant? will it cost anything to repair?
+the ships have HP so yes, damage should be persistant and repairable on planets using a building, I wasn't sure about wether to need recourses for repair
+hardpoints have individual hp? and be targettable/destructable?
+so take out the engines, reduce speed etc
+that's definatly do-able, just adding HP to hardware class would enable that
+and be much better for the game - adds good tactics
+that reminds me
+why does the ship has sepereate hardwere and hull
+17:44
+plus means redundancy might be worth it - the cost of having 2 shield generators may be good, even if shield strength isn't increased
+although you'd have to decide on the physics to implement shields etc
+modularity
+like a car today - you get to pick the engine, the number of doors and how the seats are
+anyways i have to go prepare dinner, cya later
+yeah, i wasn't sure how to limit the use of hardpoints, i could think of two ways:
+
+1) make hardware have requirements which other modules satify, like Power
+
+2) limit the categories of hardware which can be placed in hardpoints
+
+what do you mean by hardpoints btw?
+A place where a peice of hardware can be attached to the vessel
+ah
+
+which do you think would work better?
+it depends on how much hardware is not ship persiffic
+not ship specific?
+unless ya mean that x,y and z cant be placed in hardpoint 1
+yeah
+ah
+the i think opsion 2 may be better
+method 1) all hardware can be placed but you have to place things like generators to give you power (your ship needs 2 generators for a really big weapon and a sheild)
+
+method 2) only some hardware types can be placed in spesifc slots (weapons in a weapon slot, etc..)
+just to clairfy ^
+
+i think method 2 would be easyer to code latter on
+
+17:53
+because when u do attack, u know which hardpoints should have your weapons on it
+yeah, makes sense, the main reason for A was to prevent people overloading ships with too many powerful weapons (but a larger number of smaller weapons could be allowed)
+
+because when u do attack, u know which hardpoints should have your weapons on it
+yeah, makes sense, the main reason for A was to prevent people overloading ships with too many powerful weapons (but a larger number of smaller weapons could be allowed)
+17:57
+but with method 2 u have a set number of weapons anyway, so as long as u dont get ambushed by way too powerfull enermys
+I mean, it's not exactly either/or it's just if you think it would work
+wb peirs
+you could still place the power requirement idea into things - to make a believable reason for limiting how much weaponry they can have
+but i think let them - if they want it bristling with weapons then they won't have enough power for shields, and that will leave them at a disaddvantage
+yeah, it's just do we add the concept of 'power' to ships or not
+yeah - its realistic and simple enough
+people understand it and it provides the balance needed
+but is the power generator targetable or not?
+and if it is, when knocked out - what happens to the ship
+yeah, it's just do we add the concept of 'power' to ships or not
+yeah - its realistic and simple enough
+people understand it and it provides the balance needed
+but is the power generator targetable or not?
+and if it is, when knocked out - what happens to the ship
+hmm, exactly, we'd have to check the power level each action if it can be knocked out, but in the same token it could be used as part of a tactic, as long as their not too easy to knock out
+i reckon the hull should have a main power generator that never gets destroyed unless the ship is lost, but extra generators can be placed which are destructable
+so each hull would have a 'base power' attribute as it were
+yeah - and when you "design" a class of ship, you choose which weapons are wired to which generators
+and scout ships could examine dead ships to find out that info about enemies, so that the player can better choose which generator to knock out
+hmm, could be quite difficault to code, I was thinking of having a single 'pool' of power
+lovely tactics :p
+nah not difficult to code
+although as a tactic that would be quite intresting
+(have you seen the vessel class? :P)
+tactic is missing from most modern strategy games -
+someone needs to bring it back :p
+exactly
+if there is one thing AdAstra seems to have lots of it's tactics :P
+Battwa?
+18:03
+hmm, capturing would be good for gathering intel
+players could have like a wiki available, which when they have owned a ship it adds the intricate details (Basically what the screen looked like just before it was finished being designed)
+could work, but that would require classes of ships, the design at the moment is basiclly each ship is invidually refit-able
+
+18:06
+you can write the game to support that - but if the build menu simply allowed you to build something you defined earlier that would be much better
+like templates?
+you don't want to have to individually kit out 50 destroyers
+yeah, templates
+Galactic Civilisation II allowed you to "design" ships like that
+however, they're not customisable after creation
+and then build the templates
+any empty slots can be filled individually at any shipyard later?
+or the design can be updated and existing ships "refitted" at a cost to match
+indiviaul would be better
+considering that hardware is tradable as an individual component
+ie. 4 x engine type 1 and 3 x weapon type 2
+Write the game to be individual, but allow ships to be built to templates as well?
+yeah
+SupCom had templates for buildings which were awesome, but otherwise was a normal RTS for building
+and the templates only palced stuff there - once built, nothing was different about the individual parts
+exactly
+(also means templates can be almost entirely GUI/Client side)
+yeah - and templates should persist across different games
+i used to play on my own in SupCom so i could max my economy, build stuff in pretty patterns and save them as templates - without the hassle of combat to slow me down
+makes sense, allows players design their stragery and stick to it, one of the nicer parts about GalCiv2
+
+got to go - watching dr who with dani (my sister)
