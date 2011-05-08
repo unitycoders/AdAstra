@@ -32,27 +32,27 @@ public class PlanetSettings extends JPanel {
     private void buildUI() {
         setLayout(new BorderLayout());
         
-        panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-        JPanel stats = new JPanel();
-        stats.setLayout(new GridLayout(5,3));
-        stats.add(new JLabel("Population"));
-        stats.add(new JProgressBar());
-        stats.add(new JLabel("10,000"));
-        stats.add(new JLabel("Class"));
-        stats.add(new JProgressBar());
-        stats.add(new JLabel("14"));
-        stats.add(new JLabel("reserved"));
-        stats.add(new JProgressBar());
-        stats.add(new JLabel("0"));
-        stats.add(new JLabel("reserved"));
-        stats.add(new JProgressBar());
-        stats.add(new JLabel("0"));
-        stats.add(new JLabel("reserved"));
-        stats.add(new JProgressBar());
-        stats.add(new JLabel("0"));
-        panel.add(stats, BorderLayout.SOUTH);
-        add(panel, BorderLayout.WEST);
+        //panel = new JPanel();
+        //panel.setLayout(new BorderLayout());
+        //JPanel stats = new JPanel();
+        //stats.setLayout(new GridLayout(5,3));
+        //stats.add(new JLabel("Population"));
+        //stats.add(new JProgressBar());
+        //stats.add(new JLabel("10,000"));
+        //stats.add(new JLabel("Class"));
+        //stats.add(new JProgressBar());
+        //stats.add(new JLabel("14"));
+        //stats.add(new JLabel("reserved"));
+        //stats.add(new JProgressBar());
+        //stats.add(new JLabel("0"));
+        //stats.add(new JLabel("reserved"));
+        //stats.add(new JProgressBar());
+        //stats.add(new JLabel("0"));
+        //stats.add(new JLabel("reserved"));
+        //stats.add(new JProgressBar());
+        //stats.add(new JLabel("0"));
+        //panel.add(stats, BorderLayout.SOUTH);
+        //add(panel, BorderLayout.WEST);
 
         content = new JTabbedPane();
         add(content, BorderLayout.CENTER);
