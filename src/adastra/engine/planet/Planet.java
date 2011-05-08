@@ -41,7 +41,8 @@ public class Planet extends Asset {
      */
     public void tick(){
         for(Building b : buildings){
-            b.gameTick();
+            if(b != null)
+                b.gameTick();
         }
     }
 }

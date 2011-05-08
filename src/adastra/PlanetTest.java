@@ -4,6 +4,7 @@
  */
 package adastra;
 
+import adastra.engine.Hull;
 import adastra.engine.planet.Planet;
 import adastra.engine.planet.PlanetSettings;
 import adastra.engine.planet.Shipyard;
@@ -26,12 +27,23 @@ public class PlanetTest {
        
         //Planet tools
         Planet planet = new Planet();
-        planet.build(1, new Shipyard());
+        Shipyard sy = new Shipyard();
+        sy.build(new Hull());
+        planet.build(1, sy);
         frame.add(planet.getSettings());
         
         //Frame
         frame.pack();
         frame.setVisible(true);
+        
+        while(true){
+            planet.tick();
+            try{
+                Thread.sleep(500);
+            }catch(InterruptedException e){
+                //meh.
+            }
+        }
     }
     
 }

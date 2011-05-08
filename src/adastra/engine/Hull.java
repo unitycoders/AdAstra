@@ -9,8 +9,8 @@ package adastra.engine;
  * @author webpigeon
  */
 public class Hull {
-    private int hp;
-    private int maxHp;
+    private int hp = 0;
+    private int maxHp = 100;
     
     public int getHardpointCount(){
         return 0; //TODO code hardpoints into hulls
