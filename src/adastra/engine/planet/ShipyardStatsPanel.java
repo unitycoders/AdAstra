@@ -6,7 +6,9 @@ package adastra.engine.planet;
 
 import adastra.engine.Hull;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -16,27 +18,46 @@ import javax.swing.JPanel;
  */
 public class ShipyardStatsPanel extends JPanel {
     private Hull hull;
+    private JPanel preview;
+    private JLabel hpLabel;
+    private JLabel pointsLabel;
     
     public ShipyardStatsPanel(){
-        this.hull = null;
         buildUI();
+        setHull(null);
     }
     
     private void buildUI(){ 
-        setLayout(new BorderLayout());
-        
-        add(new JLabel("<image here>"), BorderLayout.WEST);
+        setLayout(new GridLayout(1, 2, 5, 5));
+
+        preview = new JPanel();
+        preview.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        add(preview, BorderLayout.WEST);
         
         JPanel build = new JPanel(new GridLayout(2, 5));
-        build.add(new JLabel("HitPoints"));
-        build.add(new JLabel("0"));
-        build.add(new JLabel("Hardpoints"));
-        build.add(new JLabel("0"));
+        hpLabel = new JLabel("");
+        build.add(hpLabel);
+
+        pointsLabel = new JLabel("");
+        build.add(pointsLabel);
         add(build, BorderLayout.EAST);
     }
     
     
     public void setHull(Hull h){
-        this.hull = hull;
+        this.hull = h;
+
+        String hitpointLbl = "HitPoints: ";
+        String hardpointLbl = "Point: ";
+
+        if(hull != null){
+            preview.add(h.getView());
+            hitpointLbl += h.getMaxHp();
+            hardpointLbl += h.getHardpointCount();
+        }
+
+        hpLabel.setText(hitpointLbl);
+        pointsLabel.setText(hardpointLbl);
     }
 }

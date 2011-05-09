@@ -6,6 +6,7 @@ package adastra.engine.planet;
 
 import java.awt.BorderLayout;
 import javax.swing.*;
+import adastra.engine.Hull;
 
 /**
  *
@@ -14,7 +15,10 @@ import javax.swing.*;
 public class ShipyardSettings extends JPanel{
     private JProgressBar status;
     private Shipyard shipyard;
-    
+    private ShipyardStatsPanel current;
+    private ShipyardStatsPanel selected;
+    private JLabel currentBuild;
+
     public ShipyardSettings(Shipyard yard){
         this.shipyard = yard;
         buildUI();
@@ -25,7 +29,8 @@ public class ShipyardSettings extends JPanel{
         
         JPanel topPanel = new JPanel();
         topPanel.setBorder(BorderFactory.createTitledBorder("Build Progress"));
-        topPanel.add(new JLabel("Current Build"));
+        currentBuild = new JLabel("<idle>");
+        topPanel.add(currentBuild);
         status = new JProgressBar(0,100);
         status.setModel(shipyard);
         status.setStringPainted(true);
@@ -39,14 +44,24 @@ public class ShipyardSettings extends JPanel{
         JPanel centrePanel = new JPanel();
         centrePanel.setLayout(new BoxLayout(centrePanel,BoxLayout.Y_AXIS));
         
-        JPanel currentStats = new JPanel();
-        currentStats.setBorder(BorderFactory.createTitledBorder("Currently Building"));
-        centrePanel.add(currentStats);
+        current = new ShipyardStatsPanel();
+        current.setBorder(BorderFactory.createTitledBorder("Currently Building"));
+        centrePanel.add(current);
         
-        JPanel selectedStats = new JPanel();
-        selectedStats.setBorder(BorderFactory.createTitledBorder("Selected Template"));
-        centrePanel.add(selectedStats);
+        selected = new ShipyardStatsPanel();
+        selected.setBorder(BorderFactory.createTitledBorder("Selected Template"));
+        centrePanel.add(selected);
         
         add(centrePanel, BorderLayout.CENTER);
+    }
+
+    public void setBuilding(Hull h){
+        current.setHull(h);
+        currentBuild.setText(h.getName());
+    }
+
+    public void clearBuild(){
+        current.setHull(null);
+        currentBuild.setText("<idle>");
     }
 }

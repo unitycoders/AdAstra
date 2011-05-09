@@ -9,7 +9,6 @@ import adastra.engine.Vessel;
 import java.awt.Dimension;
 import javax.swing.BoundedRangeModel;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeListener;
 import java.util.Vector;
@@ -28,6 +27,7 @@ public class Shipyard extends Building implements BoundedRangeModel {
     private int extent;
     private Vector<ChangeListener> listeners;
     private boolean ajusting;
+    private ShipyardSettings settings;
 
     public Shipyard() {
         super("shipyard");
@@ -37,6 +37,7 @@ public class Shipyard extends Building implements BoundedRangeModel {
         this.extent = 0;
         this.ajusting = false;
         this.listeners = new Vector<ChangeListener>();
+        this.settings = new ShipyardSettings(this);
     }
 
     public void build(Hull h) {
@@ -48,7 +49,15 @@ public class Shipyard extends Building implements BoundedRangeModel {
         current = h;
         progress = 0;
         completion = h.getMaxHp();
+        settings.setBuilding(h);
         fireChanged();
+    }
+
+    public void clearBuild(){
+        current = null;
+        progress = 0;
+        completion = 0;
+        settings.clearBuild();
     }
 
     @Override
@@ -64,17 +73,14 @@ public class Shipyard extends Building implements BoundedRangeModel {
 
                 //not building anything
                 //todo implement build q
-                current = null;
+                clearBuild();
             }
         }
     }
 
     @Override
     public JComponent getSettings() {
-        JPanel panel = new ShipyardSettings(this);
-        panel.setPreferredSize(new Dimension(600, 250));
-
-        return panel;
+        return settings;
     }
 
     protected void fireChanged() {
