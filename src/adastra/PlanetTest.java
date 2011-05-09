@@ -39,7 +39,7 @@ public class PlanetTest {
         while(true){
             planet.tick();
             try{
-                Thread.sleep(500);
+                Thread.sleep(100);
             }catch(InterruptedException e){
                 //meh.
             }

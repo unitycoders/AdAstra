@@ -46,10 +46,14 @@ public class ShipyardStatsPanel extends JPanel {
     
     
     public void setHull(Hull h){
+        if(hull != null){
+            preview.removeAll();
+            preview.repaint();
+        }
         this.hull = h;
 
         String hitpointLbl = "HitPoints: ";
-        String hardpointLbl = "Point: ";
+        String hardpointLbl = "Hardpoint: ";
 
         if(hull != null){
             preview.add(h.getView());
