@@ -7,11 +7,14 @@ package adastra.engine.planet;
 import adastra.engine.Hull;
 import adastra.engine.Vessel;
 import java.awt.Dimension;
+import java.awt.Polygon;
+import java.awt.Rectangle;
 import javax.swing.BoundedRangeModel;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeListener;
 import java.util.Vector;
+import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 
 /**
@@ -30,7 +33,7 @@ public class Shipyard extends Building implements BoundedRangeModel {
     private ShipyardSettings settings;
 
     public Shipyard() {
-        super("shipyard");
+        super("Shipyard");
         this.current = null;
         this.progress = 0;
         this.completion = 0;
@@ -81,6 +84,11 @@ public class Shipyard extends Building implements BoundedRangeModel {
     @Override
     public JComponent getSettings() {
         return settings;
+    }
+
+    @Override
+    public JComponent getIcon(){
+        return new JLabel("Fail!");
     }
 
     protected void fireChanged() {
@@ -154,4 +162,5 @@ public class Shipyard extends Building implements BoundedRangeModel {
     public void removeChangeListener(ChangeListener cl) {
         listeners.remove(cl);
     }
+    
 }

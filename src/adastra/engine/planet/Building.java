@@ -4,7 +4,7 @@
  */
 package adastra.engine.planet;
 
-import adastra.engine.planet.Planet;
+import java.awt.Polygon;
 import javax.swing.JComponent;
 
 /**
@@ -12,16 +12,11 @@ import javax.swing.JComponent;
  * @author webpigeon
  */
 public abstract class Building {
-    private Planet builtOn;
     private String name;
     
     public Building(String name){
         this.name = name;
-    }
-        
-    public void bindPlanet(Planet p){
-        this.builtOn = p;
-    }
+    } 
     
     public String getName(){
         return name;
@@ -29,4 +24,10 @@ public abstract class Building {
     
     public abstract void gameTick();
     public abstract JComponent getSettings();
+    public abstract JComponent getIcon();
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }
