@@ -4,7 +4,6 @@
  */
 package adastra.engine.planet;
 
-import java.awt.Polygon;
 import javax.swing.JComponent;
 
 /**
