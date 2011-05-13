@@ -7,7 +7,7 @@ package adastra;
 import adastra.engine.Hull;
 import adastra.engine.Player;
 import adastra.engine.planet.Planet;
-import adastra.engine.planet.PlanetClass;
+import adastra.engine.planet.PlanetType;
 import adastra.engine.planet.Shipyard;
 import adastra.engine.planet.ShipyardBlueprint;
 
@@ -31,7 +31,7 @@ public class PlanetTest {
         player.registerBuilding(new ShipyardBlueprint());
 
         //Planet tools
-        PlanetClass pClass = new PlanetClass(10,10);
+        PlanetType pClass = new PlanetType(10,10);
         Planet planet = new Planet(pClass);
         planet.setOwner(player);
 

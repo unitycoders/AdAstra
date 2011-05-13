@@ -8,12 +8,12 @@ package adastra.engine.planet;
  *
  * @author jwalto
  */
-public class PlanetClass {
+public class PlanetType {
 
     private int rows;
     private int cols;
 
-    public PlanetClass(int rows, int cols) {
+    public PlanetType(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
     }

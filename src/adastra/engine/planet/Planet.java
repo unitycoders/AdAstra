@@ -13,12 +13,12 @@ import javax.swing.JComponent;
  * @author webpigeon
  */
 public class Planet extends Asset {
-    private PlanetClass planet;
+    private PlanetType planet;
     private Building[][] buildings;
     private PlanetWindow settings;
     private int x,y;
 
-    public Planet(PlanetClass clss){
+    public Planet(PlanetType clss){
         super(null);
         planet = clss;
         owner = null;
@@ -66,7 +66,7 @@ public class Planet extends Asset {
         return this.y;
     }
 
-    public PlanetClass getPClass(){
+    public PlanetType getPClass(){
         return planet;
     }
     
@@ -81,7 +81,9 @@ public class Planet extends Asset {
     /**
      * Do this once a tick
      */
+    @Override
     public void tick(){
+       super.tick();
         for(Building[] ba : buildings){
             for(Building b : ba){
                 if(b != null)

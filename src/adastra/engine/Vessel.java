@@ -44,7 +44,7 @@ public class Vessel extends Asset {
             hw.use(id);
         }
     }
-    
+
     /**
      * Add a new piece of hardware to a ship
      * 
