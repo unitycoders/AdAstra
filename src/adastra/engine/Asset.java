@@ -23,6 +23,7 @@ public class Asset {
     protected Event order;
     protected List<AssetListener> listeners;
     protected Map<String, Integer> properties;
+    protected double rotation;
 
     /**
      * 
@@ -33,6 +34,7 @@ public class Asset {
         this.location = location;
         this.listeners = new ArrayList<AssetListener>();
         this.properties = new HashMap<String,Integer>();
+        this.rotation = 0;
     }
     
     /**
@@ -106,6 +108,14 @@ public class Asset {
         properties.put(name, value);
     }
 
+    public void rotate(double theta){
+        this.rotation = (rotation+theta)%360;
+    }
+    
+    public void rotateTo(double angle){
+        this.rotation = angle%360;
+    }
+    
     /**
      *
      * @param listener
