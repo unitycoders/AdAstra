@@ -158,7 +158,8 @@ public class Asset {
     
     public void paintAt(Graphics g, int x, int y){
         g.setColor(Color.WHITE);
-        g.fillOval(x, y, 35, 35);
+        //TODO this is a bad way of doing it, make it better
+        g.fillRect(x, y, 35, 35);
     }
     
 }
