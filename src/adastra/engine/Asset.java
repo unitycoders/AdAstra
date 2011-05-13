@@ -4,6 +4,8 @@
  */
 package adastra.engine;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
@@ -116,6 +118,10 @@ public class Asset {
         this.rotation = angle%360;
     }
     
+    public Location getLocation(){
+        return location;
+    }
+    
     /**
      *
      * @param listener
@@ -148,6 +154,11 @@ public class Asset {
         for(AssetListener al : listeners){
             al.onChangeLocation();
         }
+    }
+    
+    public void paintAt(Graphics g, int x, int y){
+        g.setColor(Color.WHITE);
+        g.fillOval(x, y, 35, 35);
     }
     
 }

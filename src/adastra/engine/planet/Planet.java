@@ -5,6 +5,7 @@
 package adastra.engine.planet;
 
 import adastra.engine.Asset;
+import adastra.engine.Location;
 import adastra.engine.Player;
 import javax.swing.JComponent;
 
@@ -19,11 +20,10 @@ public class Planet extends Asset {
     private int x,y;
 
     public Planet(PlanetType clss){
-        super(null);
+        super(new Location(10,10));
         planet = clss;
         owner = null;
-        x = 0;
-        y = 0;
+        x = y = 0;
         buildings = new Building[planet.getRows()][planet.getCols()];
         settings = new PlanetWindow(this);
         settings.addContent("Overview", new PlanetSettings(this));
