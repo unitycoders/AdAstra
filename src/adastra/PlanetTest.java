@@ -5,9 +5,11 @@
 package adastra;
 
 import adastra.engine.Hull;
+import adastra.engine.Player;
 import adastra.engine.planet.Planet;
-import adastra.engine.planet.PlanetSettings;
+import adastra.engine.planet.PlanetType;
 import adastra.engine.planet.Shipyard;
+import adastra.engine.planet.ShipyardBlueprint;
 
 import java.awt.Dimension;
 
@@ -21,15 +23,18 @@ public class PlanetTest {
     
     public static void main(String[] args){
         //Build a frame
-        JFrame frame = new JFrame("Game Window");
+        JFrame frame = new JFrame("Planet Demo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800,600));
-       
+
+        Player player = new Player();
+        player.registerBuilding(new ShipyardBlueprint());
+
         //Planet tools
-        Planet planet = new Planet();
-        Shipyard sy = new Shipyard();
-        sy.build(new Hull());
-        planet.build(1, sy);
+        PlanetType pClass = new PlanetType(10,10);
+        Planet planet = new Planet(pClass);
+        planet.setOwner(player);
+
         frame.add(planet.getSettings());
         
         //Frame
@@ -39,7 +44,7 @@ public class PlanetTest {
         while(true){
             planet.tick();
             try{
-                Thread.sleep(500);
+                Thread.sleep(100);
             }catch(InterruptedException e){
                 //meh.
             }

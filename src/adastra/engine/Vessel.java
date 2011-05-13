@@ -20,6 +20,7 @@ public class Vessel extends Asset {
      * @param h The base hull of the vessel
      */
     public Vessel(Hull h){
+        super(null);
         this.hull = h;
         this.hardware = new Hardware[h.getHardpointCount()];
     }
@@ -30,6 +31,7 @@ public class Vessel extends Asset {
      * This method is for building ships after a game resume
      */
     public Vessel(Hull h, Hardware[] hw){
+        super(null);
         this.hull = h;
         this.hardware = hw;
     }
@@ -42,7 +44,7 @@ public class Vessel extends Asset {
             hw.use(id);
         }
     }
-    
+
     /**
      * Add a new piece of hardware to a ship
      * 
