@@ -21,7 +21,7 @@ import javax.swing.JPanel;
  *
  * @author webpigeon
  */
-public class SectorPanel extends JPanel implements ActionListener, SectorListener {
+public class SectorPanel extends JPanel implements ActionListener, SectorModelListener {
     private Box actions;
     private Asset asset;
     private JLabel currentEvent;
@@ -92,5 +92,10 @@ public class SectorPanel extends JPanel implements ActionListener, SectorListene
         currentEvent.setText("");
         invalidate();
         updateUI();
+    }
+
+    @Override
+    public void sectorDataChanged() {
+        //I'm not really fussed...
     }
 }

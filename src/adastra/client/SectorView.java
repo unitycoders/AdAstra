@@ -22,13 +22,14 @@ import javax.swing.JComponent;
  *
  * @author webpigeon
  */
-public class SectorView extends JComponent implements SectorListener {
+public class SectorView extends JComponent implements SectorModelListener {
 
     private Image starfield;
     private SectorModel model;
 
     public SectorView(SectorModel mdl) {
         this.model = mdl;
+        this.model.addSectorListener(this);
         try {
             this.starfield = ImageIO.read(new File("starfield.png"));
         } catch (IOException e) {
@@ -85,5 +86,11 @@ public class SectorView extends JComponent implements SectorListener {
     @Override
     public void assetChanged() {
         //don't really care...
+    }
+
+    @Override
+    public void sectorDataChanged() {
+        System.out.println("Sector data has changed");
+        repaint();
     }
 }

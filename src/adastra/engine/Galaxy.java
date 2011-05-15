@@ -5,6 +5,7 @@
 package adastra.engine;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,17 @@ import java.util.Map;
 public class Galaxy {
     private List<Sector> sectors;
     private Map<Sector, List<Sector>> links;
+    
+    public Galaxy(){
+        sectors = new ArrayList<Sector>();
+        links = new HashMap<Sector, List<Sector>>();
+    }
+    
+    public void tick(){
+        for(Sector s : sectors){
+            s.tick();
+        }
+    }
     
     public void addSector(Sector s1){
         sectors.add(s1);

@@ -81,6 +81,6 @@ public class PlanetSettings extends JPanel implements AssetListener {
 
     @Override
     public void onChangeLocation() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 }

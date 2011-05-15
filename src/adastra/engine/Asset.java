@@ -61,6 +61,11 @@ public class Asset {
             }
         }
     }
+    
+    public void setLocation(int x, int y){
+        location.setLocation(x, y);
+        fireChangeLocation();
+    }
 
     /**
      *
@@ -138,7 +143,7 @@ public class Asset {
     }
     
     public Ability[] getAbilities(Player p){
-        return new Ability[]{new Ability()};
+        return new Ability[]{new Ability(), new MoveAbility()};
     }
 
     /**

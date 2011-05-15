@@ -7,6 +7,7 @@ package adastra.client;
 import adastra.engine.Asset;
 import adastra.engine.Sector;
 import adastra.engine.Ability;
+import adastra.engine.SectorListener;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,31 +19,32 @@ import java.util.Map;
  *
  * @author webpigeon
  */
-public class SectorModel {
+public class SectorModel implements SectorListener {
     private Sector selectedSector;
     private Asset selectedAsset;
     private Ability selectedAbility;
     private Map<String, Ability> abilies;
-    private List<SectorListener> listeners;
+    private List<SectorModelListener> listeners;
   
     public SectorModel(){
         this.selectedSector = null;
         this.selectedAsset = null;
         this.selectedAbility = null;
         this.abilies = new HashMap<String, Ability>();
-        this.listeners = new ArrayList<SectorListener>();
+        this.listeners = new ArrayList<SectorModelListener>();
     }
     
-    public void addSectorListener(SectorListener l){
+    public void addSectorListener(SectorModelListener l){
         listeners.add(l);
     }
     
-    public void removeSectorListener(SectorListener l){
+    public void removeSectorListener(SectorModelListener l){
         listeners.remove(l);
     }
     
     public void setSector(Sector s){
         this.selectedSector = s;
+        s.addListener(this);
         fireSectorChanged();
     }
     
@@ -85,22 +87,44 @@ public class SectorModel {
         }
     }
     
+    protected void fireSectorDataChanged(){
+        for(SectorModelListener l : listeners){
+            l.sectorDataChanged();
+        }
+    }
+    
     protected void fireSectorChanged(){
-        for(SectorListener l : listeners){
+        for(SectorModelListener l : listeners){
             l.sectorChanged();
         }
     }
     
     protected void fireOrdersChanged(){
-                for(SectorListener l : listeners){
+                for(SectorModelListener l : listeners){
             l.ordersChanged();
         }
         
     }
     
     protected void fireAssetChanged(){
-                for(SectorListener l : listeners){
+                for(SectorModelListener l : listeners){
             l.assetChanged();
         }
+    }
+
+    @Override
+    public void sectorDataChanged() {
+        System.out.println("Got sector changed event!");
+        fireSectorDataChanged();
+    }
+
+    @Override
+    public void assetRemoved(Asset a) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void assetAdded(Asset a) {
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 }

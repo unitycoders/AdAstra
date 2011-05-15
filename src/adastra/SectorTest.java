@@ -7,6 +7,8 @@ package adastra;
 import adastra.client.SectorModel;
 import adastra.client.SectorPanel;
 import adastra.client.SectorView;
+import adastra.engine.Galaxy;
+import adastra.engine.GameClock;
 import adastra.engine.Hull;
 import adastra.engine.Location;
 import adastra.engine.Player;
@@ -17,6 +19,7 @@ import adastra.engine.planet.PlanetType;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.Random;
+import java.util.Timer;
 
 import javax.swing.JFrame;
 
@@ -37,10 +40,17 @@ public class SectorTest {
         JFrame frame = new JFrame("Sector Demo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
+        
+        
+        //and the universe was born in a... java object
+        Galaxy gal = new Galaxy();
+        Timer t = new Timer();
+        t.scheduleAtFixedRate(new GameClock(gal), 0, 3600);
 
         Sector sector = new Sector();
         buildSector(sector);
         buildPlayer(sector);
+        gal.addSector(sector);
 
         SectorModel model = new SectorModel();
         model.setSector(sector);

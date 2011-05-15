@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package adastra.client;
+package adastra.engine;
 
 /**
  *
@@ -10,8 +10,8 @@ package adastra.client;
  */
 public interface SectorListener {
     
-    public void sectorChanged();
-    public void ordersChanged();
-    public void assetChanged();
-        
+    public void sectorDataChanged();
+    public void assetRemoved(Asset a);
+    public void assetAdded(Asset a);
+    
 }
