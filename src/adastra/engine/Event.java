@@ -11,6 +11,10 @@ package adastra.engine;
  */
 public class Event {
 
+    public String getDescription(){
+        return "Do things...";
+    }
+    
     public void run(){
         System.out.println("things happened!");
     }

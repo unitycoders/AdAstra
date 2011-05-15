@@ -4,6 +4,8 @@
  */
 package adastra;
 
+import adastra.client.SectorModel;
+import adastra.client.SectorPanel;
 import adastra.client.SectorView;
 import adastra.engine.Hull;
 import adastra.engine.Location;
@@ -12,6 +14,7 @@ import adastra.engine.Sector;
 import adastra.engine.Vessel;
 import adastra.engine.planet.Planet;
 import adastra.engine.planet.PlanetType;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.Random;
 
@@ -39,10 +42,15 @@ public class SectorTest {
         buildSector(sector);
         buildPlayer(sector);
 
-        SectorView sectorView = new SectorView();
-        sectorView.setSector(sector);
+        SectorModel model = new SectorModel();
+        model.setSector(sector);
+        
+        SectorPanel sectorPanel = new SectorPanel(model);
+        
+        SectorView sectorView = new SectorView(model);
 
         frame.add(sectorView);
+        frame.add(sectorPanel, BorderLayout.SOUTH);
 
         //Frame
         frame.pack();
@@ -51,7 +59,7 @@ public class SectorTest {
 
     public static void buildSector(Sector s) {
         Random r = new Random();
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 10; i++) {
             buildPlanet(s);
         }
     }
@@ -66,8 +74,11 @@ public class SectorTest {
         Player p = new Player();
         
         Hull h = new Hull();
-        Vessel v = new Vessel(new Location(50,50), h);
-        s.add(v);
+        Vessel v1 = new Vessel(new Location(50,50), h);
+        s.add(v1);
+        
+        Vessel v2 = new Vessel(new Location(50,100), h);
+        s.add(v2);
         
         return p;
     }

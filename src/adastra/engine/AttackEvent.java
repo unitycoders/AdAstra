@@ -10,10 +10,10 @@ package adastra.engine;
  * @author jwalto
  */
 public class AttackEvent extends Event {
-    private Vessel subject;
-    private Vessel target;
+    private Asset subject;
+    private Asset target;
     
-    public AttackEvent(Vessel subject, Vessel target){
+    public AttackEvent(Asset subject, Asset target){
         this.subject = subject;
         this.target = target;
     }
@@ -27,6 +27,10 @@ public class AttackEvent extends Event {
     @Override
     public boolean isComplete(){
         return true;
+    }
+    
+    public String getDescription(){
+        return "Attack asset at "+target.getLocation();
     }
 
 }

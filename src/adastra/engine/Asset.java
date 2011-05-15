@@ -136,6 +136,10 @@ public class Asset {
     public void addAssetListener(AssetListener listener){
         this.listeners.add(listener);
     }
+    
+    public Ability[] getAbilities(Player p){
+        return new Ability[]{new Ability()};
+    }
 
     /**
      *

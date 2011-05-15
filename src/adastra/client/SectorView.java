@@ -22,14 +22,13 @@ import javax.swing.JComponent;
  *
  * @author webpigeon
  */
-public class SectorView extends JComponent {
+public class SectorView extends JComponent implements SectorListener {
 
-    private Sector current;
     private Image starfield;
-    private Asset selected;
+    private SectorModel model;
 
-    public SectorView() {
-        this.current = null;
+    public SectorView(SectorModel mdl) {
+        this.model = mdl;
         try {
             this.starfield = ImageIO.read(new File("starfield.png"));
         } catch (IOException e) {
@@ -37,26 +36,19 @@ public class SectorView extends JComponent {
         }
         this.setBackground(Color.BLACK);
         this.setPreferredSize(new Dimension(1024,768));
-        this.setMaximumSize(new Dimension(1024,768));
         
         this.addMouseListener(new MouseAdapter(){
 
             @Override
             public void mouseClicked(MouseEvent me) {
-                Asset a = current.getAssetAt(me.getX(), me.getY());
-                if(a != null){
-                   selected = a;
-                   System.out.println(a);
-                   repaint();
+                if(me.getButton() == MouseEvent.BUTTON1){
+                    model.selectAssetAt(me.getX(), me.getY());
+                }else{
+                    model.giveOrder(me.getPoint());
                 }
             }
             
         });
-    }
-
-    public void setSector(Sector s) {
-        this.current = s;
-        repaint();
     }
 
     @Override
@@ -66,7 +58,7 @@ public class SectorView extends JComponent {
 
     @Override
     protected void paintChildren(Graphics g) {
-        for (Asset a : current) {
+        for (Asset a : model.getSector()) {
             //paint asset
             Location loc = a.getLocation();
             a.paintAt(g, loc.getX(), loc.getY());
@@ -78,5 +70,20 @@ public class SectorView extends JComponent {
         g.setColor(getBackground());
         g.fillRect(0, 0, getWidth(), getHeight());
         g.drawImage(starfield, 0, 0, Color.BLACK, null);
+    }
+
+    @Override
+    public void sectorChanged() {
+        repaint();
+    }
+
+    @Override
+    public void ordersChanged() {
+        //don't really care...
+    }
+
+    @Override
+    public void assetChanged() {
+        //don't really care...
     }
 }
