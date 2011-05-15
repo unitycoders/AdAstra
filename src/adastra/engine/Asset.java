@@ -6,6 +6,7 @@ package adastra.engine;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
@@ -108,6 +109,12 @@ public class Asset {
      */
     public void setProperty(String name, int value){
         properties.put(name, value);
+    }
+    
+    public boolean contains(int x, int y){
+        //TODO get better collition detection
+        Point p = new Point(x, y);
+        return p.distance(location.getX(), location.getY()) < 35;
     }
 
     public void rotate(double theta){

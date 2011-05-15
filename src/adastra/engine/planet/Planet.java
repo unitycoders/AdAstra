@@ -7,6 +7,8 @@ package adastra.engine.planet;
 import adastra.engine.Asset;
 import adastra.engine.Location;
 import adastra.engine.Player;
+import java.awt.Color;
+import java.awt.Graphics;
 import javax.swing.JComponent;
 
 /**
@@ -14,17 +16,17 @@ import javax.swing.JComponent;
  * @author webpigeon
  */
 public class Planet extends Asset {
-    private PlanetType planet;
+    private PlanetType type;
     private Building[][] buildings;
     private PlanetWindow settings;
     private int x,y;
 
-    public Planet(PlanetType clss){
-        super(new Location(10,10));
-        planet = clss;
+    public Planet(int x, int y, PlanetType clss){
+        super(new Location(x,y));
+        type = clss;
         owner = null;
         x = y = 0;
-        buildings = new Building[planet.getRows()][planet.getCols()];
+        buildings = new Building[type.getRows()][type.getCols()];
         settings = new PlanetWindow(this);
         settings.addContent("Overview", new PlanetSettings(this));
     }
@@ -45,7 +47,7 @@ public class Planet extends Asset {
      * @param b 
      */
     public void build(int row, int col, Building b){
-        if(!planet.canBuild(row, col) || buildings[row][col] != null){
+        if(!type.canBuild(row, col) || buildings[row][col] != null){
             throw new RuntimeException("Can't build here!");
         }
 
@@ -67,7 +69,7 @@ public class Planet extends Asset {
     }
 
     public PlanetType getPClass(){
-        return planet;
+        return type;
     }
     
     public JComponent getSettings(){
@@ -90,5 +92,10 @@ public class Planet extends Asset {
                     b.gameTick();
             }
         }
+    }
+    
+    public void paintAt(Graphics g, int x, int y){
+        g.setColor(type.getColour());
+        g.fillOval(x,y,35,35);
     }
 }

@@ -31,8 +31,8 @@ public class PlanetTest {
         player.registerBuilding(new ShipyardBlueprint());
 
         //Planet tools
-        PlanetType pClass = new PlanetType(10,10);
-        Planet planet = new Planet(pClass);
+        PlanetType pClass = new PlanetType(10,10, 0,0,0);
+        Planet planet = new Planet(10,10, pClass);
         planet.setOwner(player);
 
         frame.add(planet.getSettings());

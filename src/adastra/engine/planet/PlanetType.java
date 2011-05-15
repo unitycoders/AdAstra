@@ -4,18 +4,21 @@
  */
 package adastra.engine.planet;
 
+import java.awt.Color;
+
 /**
  *
  * @author jwalto
  */
 public class PlanetType {
-
+    private Color colour;
     private int rows;
     private int cols;
 
-    public PlanetType(int rows, int cols) {
+    public PlanetType(int rows, int cols, int r, int g, int b) {
         this.rows = rows;
         this.cols = cols;
+        this.colour = new Color(r, g, b);
     }
 
     public int getPlots() {
@@ -32,5 +35,9 @@ public class PlanetType {
 
     public int getCols() {
         return cols;
+    }
+    
+    public Color getColour(){
+        return colour;
     }
 }

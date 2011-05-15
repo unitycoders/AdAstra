@@ -3,7 +3,11 @@
  * and open the template in the editor.
  */
 package adastra.engine;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Polygon;
 import java.util.Arrays;
 
 /**
@@ -19,9 +23,10 @@ public class Vessel extends Asset {
      * 
      * @param h The base hull of the vessel
      */
-    public Vessel(Hull h){
-        super(null);
+    public Vessel(Location l, Hull h){
+        super(l);
         this.hull = h;
+        this.rotation = 90;
         this.hardware = new Hardware[h.getHardpointCount()];
     }
     
@@ -94,6 +99,19 @@ public class Vessel extends Asset {
      */
     public int getHardpointCount(){
         return hardware.length;
+    }
+    
+    public void paintAt(Graphics g, int x, int y){
+        int xp[] = new int[]{x-12,x,x+12};
+        int yp[] = new int[]{y-17,y+17,y-17};
+        
+        Graphics2D g2 = (Graphics2D)g;
+        
+        Polygon poly = new Polygon(xp, yp, 3);
+        g2.rotate(Math.toRadians(rotation)*-1, x, y);
+        g2.setColor(Color.WHITE);
+        g2.fillPolygon(poly);
+        g2.rotate(Math.toRadians(rotation), x, y);
     }
     
     @Override

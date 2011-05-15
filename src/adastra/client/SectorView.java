@@ -11,6 +11,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -24,6 +26,7 @@ public class SectorView extends JComponent {
 
     private Sector current;
     private Image starfield;
+    private Asset selected;
 
     public SectorView() {
         this.current = null;
@@ -35,6 +38,20 @@ public class SectorView extends JComponent {
         this.setBackground(Color.BLACK);
         this.setPreferredSize(new Dimension(1024,768));
         this.setMaximumSize(new Dimension(1024,768));
+        
+        this.addMouseListener(new MouseAdapter(){
+
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                Asset a = current.getAssetAt(me.getX(), me.getY());
+                if(a != null){
+                   selected = a;
+                   System.out.println(a);
+                   repaint();
+                }
+            }
+            
+        });
     }
 
     public void setSector(Sector s) {

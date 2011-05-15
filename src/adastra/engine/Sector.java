@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package adastra.engine;
 
 import java.util.ArrayList;
@@ -14,19 +13,29 @@ import java.util.List;
  * @author jwalto
  */
 public class Sector implements Iterable<Asset> {
+
     private List<Asset> assets;
-    
-    public Sector(){
+
+    public Sector() {
         this.assets = new ArrayList<Asset>();
     }
-    
-    public void add(Asset a){
+
+    public void add(Asset a) {
         this.assets.add(a);
+    }
+
+    public Asset getAssetAt(int x, int y) {
+        for (Asset a : assets) {
+            if (a.contains(x, y)) {
+                return a;
+            }
+        }
+
+        return null;
     }
 
     @Override
     public Iterator<Asset> iterator() {
         return assets.iterator();
     }
-
 }

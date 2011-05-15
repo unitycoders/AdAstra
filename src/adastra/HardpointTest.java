@@ -16,7 +16,7 @@ public class HardpointTest {
     
     public static void main(String[] args){
         Hull hull = new Hull();
-        Vessel v = new Vessel(hull);
+        Vessel v = new Vessel(null, hull);
         Hardware hw = new Hardware();
         
         //test add test cases

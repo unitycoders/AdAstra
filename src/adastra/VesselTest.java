@@ -22,9 +22,9 @@ public class VesselTest {
 
         Hardware hw = new Weapon();
         Hull h = new Hull();
-        Vessel subject = new Vessel(h);
+        Vessel subject = new Vessel(null, h);
 
-        Vessel target = new Vessel(h);
+        Vessel target = new Vessel(null, h);
 
         subject.setHardware(0, hw);
         Event a = new AttackEvent(subject,target);

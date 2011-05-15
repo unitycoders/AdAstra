@@ -72,7 +72,7 @@ public class Shipyard extends Building implements BoundedRangeModel {
 
             if (progress >= completion) {
                 //todo write ship launch routine
-                Vessel v = new Vessel(current);
+                Vessel v = new Vessel(null, current);
 
                 //not building anything
                 //todo implement build q
