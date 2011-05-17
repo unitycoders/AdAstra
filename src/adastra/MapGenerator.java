@@ -32,7 +32,7 @@ public class MapGenerator {
     public Sector nextSector(){
         Sector s = new Sector();
         //Star star = nextStar();
-        Location star = new Location(random.nextInt(1024), random.nextInt(1024));
+        Location star = new Location(0, 0);
 
         //s.add(new Planet(star.getX(), star.getY(), starType));
 

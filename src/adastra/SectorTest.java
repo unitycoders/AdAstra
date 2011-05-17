@@ -30,12 +30,6 @@ import javax.swing.JFrame;
  */
 public class SectorTest {
 
-    private static PlanetType[] pClasses = new PlanetType[]{
-        new PlanetType(10, 10, 255,255,255),
-        new PlanetType(10, 10, 150,150,0),
-        new PlanetType(10, 10, 0,250,250)
-    };
-
     public static void main(String[] args) {
         //Build a frame
         JFrame frame = new JFrame("Sector Demo");
