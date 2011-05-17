@@ -27,7 +27,7 @@ public class Vessel extends Asset {
      * @param h The base hull of the vessel
      */
     public Vessel(Location l, Hull h){
-        super(l, 35);
+        super(l, 24);
         this.hull = h;
         this.rotation = 90;
         this.hardware = new Hardware[h.getHardpointCount()];
@@ -39,7 +39,7 @@ public class Vessel extends Asset {
      * This method is for building ships after a game resume
      */
     public Vessel(Hull h, Hardware[] hw){
-        super(null, 35);
+        super(null, 24);
         this.hull = h;
         this.hardware = hw;
     }
@@ -111,8 +111,10 @@ public class Vessel extends Asset {
     }
     
     public void paintAt(Graphics g, int x, int y){
-        int xp[] = new int[]{x-12,x,x+12};
-        int yp[] = new int[]{y-17,y+17,y-17};
+        int radius = getRadius()/4*3;
+
+        int xp[] = new int[]{x-radius,x,x+radius};
+        int yp[] = new int[]{y-radius,y+radius,y-radius};
         
         Graphics2D g2 = (Graphics2D)g;
         
