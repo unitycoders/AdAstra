@@ -33,5 +33,17 @@ public class Location {
     public String toString(){
         return "("+x+","+y+")";
     }
-    
+
+    public int getDist(Location l){
+        return getDist(l.getX(), l.getY());
+    }
+
+
+    public int getDist(int x, int y){
+        int dx = this.x-x;
+        int dy = this.y-y;
+
+
+        return (int)Math.sqrt((dx*dx) + (dy*dy));
+    }
 }

@@ -9,15 +9,16 @@ import adastra.client.SectorPanel;
 import adastra.client.SectorView;
 import adastra.engine.Galaxy;
 import adastra.engine.GameClock;
-import adastra.engine.Hull;
+import adastra.engine.vessel.Hull;
 import adastra.engine.Location;
 import adastra.engine.Player;
 import adastra.engine.Sector;
-import adastra.engine.Vessel;
+import adastra.engine.vessel.Vessel;
 import adastra.engine.planet.Planet;
 import adastra.engine.planet.PlanetType;
+import adastra.engine.planet.ShipyardBlueprint;
+import adastra.engine.vessel.Engine;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.util.Random;
 import java.util.Timer;
 
@@ -40,15 +41,15 @@ public class SectorTest {
         JFrame frame = new JFrame("Sector Demo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        
+
+        MapGenerator gen = new MapGenerator();
         
         //and the universe was born in a... java object
         Galaxy gal = new Galaxy();
         Timer t = new Timer();
-        t.scheduleAtFixedRate(new GameClock(gal), 0, 3600);
+        t.scheduleAtFixedRate(new GameClock(gal), 0, 3000);
 
-        Sector sector = new Sector();
-        buildSector(sector);
+        Sector sector = gen.nextSector();
         buildPlayer(sector);
         gal.addSector(sector);
 
@@ -66,28 +67,22 @@ public class SectorTest {
         frame.pack();
         frame.setVisible(true);
     }
-
-    public static void buildSector(Sector s) {
-        Random r = new Random();
-        for (int i = 0; i < 10; i++) {
-            buildPlanet(s);
-        }
-    }
-
-    public static void buildPlanet(Sector s) {
-        Random r = new Random();
-        PlanetType type = pClasses[r.nextInt(pClasses.length)];
-        s.add(new Planet(r.nextInt(950)+35, r.nextInt(700), type));
-    }
     
     public static Player buildPlayer(Sector s){
         Player p = new Player();
+        p.registerBuilding(new ShipyardBlueprint());
+
+        Planet planet = new Planet(550,550, new PlanetType(255,255,255));
+        planet.setOwner(p);
+        s.add(planet);
         
         Hull h = new Hull();
-        Vessel v1 = new Vessel(new Location(50,50), h);
+        Vessel v1 = new Vessel(new Location(500,500), h);
+        v1.setHardware(0, new Engine());
         s.add(v1);
         
         Vessel v2 = new Vessel(new Location(50,100), h);
+        v2.setHardware(0, new Engine());
         s.add(v2);
         
         return p;

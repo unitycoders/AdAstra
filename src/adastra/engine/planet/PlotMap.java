@@ -19,7 +19,14 @@ import javax.swing.JComponent;
 public class PlotMap extends JComponent implements MouseListener {
 
     private Planet planet;
+    private PlanetType type;
     private int rows, cols;
+
+    public PlotMap(Planet planet, PlanetType type){
+        this.planet = planet;
+        this.type = type;
+        this.addMouseListener(this);
+    }
 
     public PlotMap(Planet planet, int rows, int cols) {
         this.setPreferredSize(new Dimension(20,20));
@@ -31,7 +38,7 @@ public class PlotMap extends JComponent implements MouseListener {
 
     @Override
     protected void paintComponent(Graphics g) {
-        g.setColor(new Color(61, 114, 55));
+        g.setColor(new Color(0, 63, 7));
         g.fillRect(0, 0, getWidth(), getHeight());
 
         int height = getHeight() / rows;
@@ -56,7 +63,7 @@ public class PlotMap extends JComponent implements MouseListener {
             }
         }
 
-        g.setColor(Color.RED);
+        g.setColor(planet.getPClass().canBuild(planet.getX(), planet.getY())?Color.GREEN:Color.RED);
         g.drawRect((planet.getX() * width)+padx, (planet.getY() * height)+pady, (width), (height));
     }
 

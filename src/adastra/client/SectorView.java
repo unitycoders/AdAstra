@@ -5,6 +5,7 @@
 package adastra.client;
 
 import adastra.engine.Asset;
+import adastra.engine.EventI;
 import adastra.engine.Location;
 import adastra.engine.Sector;
 import java.awt.Color;
@@ -17,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 
 /**
  *
@@ -44,6 +46,11 @@ public class SectorView extends JComponent implements SectorModelListener {
             public void mouseClicked(MouseEvent me) {
                 if(me.getButton() == MouseEvent.BUTTON1){
                     model.selectAssetAt(me.getX(), me.getY());
+                }else if (me.getButton() == MouseEvent.BUTTON2){
+                    Asset selected = model.getAsset();
+                    if(selected != null){
+                        new AssetManagementScreen(null, selected);
+                    }
                 }else{
                     model.giveOrder(me.getPoint());
                 }
@@ -64,6 +71,21 @@ public class SectorView extends JComponent implements SectorModelListener {
             Location loc = a.getLocation();
             a.paintAt(g, loc.getX(), loc.getY());
         }
+
+        //paint order marker
+        Asset selected = model.getAsset();
+        if(selected != null){
+            Location loc = selected.getLocation();
+            g.setColor(Color.RED);
+            g.drawOval(loc.getX()-20, loc.getY()-20, 40, 40);
+
+            EventI e = selected.getEvent();
+            if(e != null){
+                Location l = e.getTargetLocation();
+                g.drawOval(l.getX()-5, l.getY()-5, 10, 10);
+                g.drawLine(loc.getX(), loc.getY(), l.getX(), l.getY());
+            }
+        }
     }
 
     @Override
@@ -80,17 +102,16 @@ public class SectorView extends JComponent implements SectorModelListener {
 
     @Override
     public void ordersChanged() {
-        //don't really care...
+        repaint();
     }
 
     @Override
     public void assetChanged() {
-        //don't really care...
+        repaint();
     }
 
     @Override
     public void sectorDataChanged() {
-        System.out.println("Sector data has changed");
         repaint();
     }
 }

@@ -33,7 +33,6 @@ public class Galaxy {
     }
     
     public void addLink(Sector s1, Sector s2){
-        //TODO write method
         List<Sector> sectorLinks = links.get(s1);
         if(sectorLinks == null){
             sectorLinks = new ArrayList<Sector>();

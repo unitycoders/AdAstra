@@ -4,7 +4,7 @@
  */
 package adastra;
 
-import adastra.engine.Hull;
+import adastra.engine.vessel.Hull;
 import adastra.engine.Player;
 import adastra.engine.planet.Planet;
 import adastra.engine.planet.PlanetType;
@@ -35,7 +35,7 @@ public class PlanetTest {
         Planet planet = new Planet(10,10, pClass);
         planet.setOwner(player);
 
-        frame.add(planet.getSettings());
+        frame.add(planet.getProperties());
         
         //Frame
         frame.pack();

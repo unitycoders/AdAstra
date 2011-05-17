@@ -9,7 +9,7 @@ package adastra.engine;
  *
  * @author jwalto
  */
-public class AttackEvent extends Event {
+public class AttackEvent implements EventI {
     private Asset subject;
     private Asset target;
     
@@ -31,6 +31,11 @@ public class AttackEvent extends Event {
     
     public String getDescription(){
         return "Attack asset at "+target.getLocation();
+    }
+
+    @Override
+    public Location getTargetLocation() {
+        return target.getLocation();
     }
 
 }

@@ -3,12 +3,14 @@
  * and open the template in the editor.
  */
 
-package adastra.engine;
+package adastra.client;
+
+import javax.swing.JComponent;
 
 /**
  *
  * @author jwalto
  */
-public class Weapon extends Hardware {
+public class GameClock extends JComponent {
 
 }

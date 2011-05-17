@@ -6,7 +6,7 @@ package adastra.client;
 
 import adastra.engine.Asset;
 import adastra.engine.Sector;
-import adastra.engine.Ability;
+import adastra.engine.AbilityI;
 import adastra.engine.SectorListener;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -22,15 +22,15 @@ import java.util.Map;
 public class SectorModel implements SectorListener {
     private Sector selectedSector;
     private Asset selectedAsset;
-    private Ability selectedAbility;
-    private Map<String, Ability> abilies;
+    private AbilityI selectedAbility;
+    private Map<String, AbilityI> abilies;
     private List<SectorModelListener> listeners;
   
     public SectorModel(){
         this.selectedSector = null;
         this.selectedAsset = null;
         this.selectedAbility = null;
-        this.abilies = new HashMap<String, Ability>();
+        this.abilies = new HashMap<String, AbilityI>();
         this.listeners = new ArrayList<SectorModelListener>();
     }
     
@@ -54,10 +54,11 @@ public class SectorModel implements SectorListener {
     
     public void setAsset(Asset a){
         this.selectedAsset = a;
+        setAbility(null);
         abilies.clear();
         
         //TODO add player support
-        for(Ability ab : a.getAbilities(null)){
+        for(AbilityI ab : a.getAbilities(null)){
             abilies.put(ab.getCommand(), ab);
         }
         fireAssetChanged();
@@ -67,17 +68,23 @@ public class SectorModel implements SectorListener {
         return this.selectedAsset;
     }
     
-    public Collection<Ability> getAbilities(){
+    public Collection<AbilityI> getAbilities(){
         return abilies.values();
     }
     
     public void setAbility(String command){
-        this.selectedAbility = abilies.get(command);
+        if(command != null){
+            this.selectedAbility = abilies.get(command);
+        }else{
+            this.selectedAbility = null;
+        }
     }
     
     public void giveOrder(Point p){
-        selectedAsset.setEvent(selectedAbility.fireEvent(selectedAsset, p));
-        fireOrdersChanged();
+        if(selectedAbility != null){
+            selectedAsset.setEvent(selectedAbility.fireEvent(selectedAsset, p));
+            fireOrdersChanged();
+        }
     }
     
     public void selectAssetAt(int x, int y){

@@ -72,7 +72,7 @@ public class Planet extends Asset {
         return type;
     }
     
-    public JComponent getSettings(){
+    public JComponent getProperties(){
         return settings;
     }
 
@@ -96,6 +96,6 @@ public class Planet extends Asset {
     
     public void paintAt(Graphics g, int x, int y){
         g.setColor(type.getColour());
-        g.fillOval(x,y,35,35);
+        g.fillOval(x-17,y-17,34,34);
     }
 }

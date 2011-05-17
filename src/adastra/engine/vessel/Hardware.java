@@ -2,13 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package adastra.engine;
+package adastra.engine.vessel;
+
+import adastra.engine.AbilityI;
+import adastra.engine.Asset;
+import java.util.Collection;
 
 /**
  *
  * @author webpigeon
  */
-public class Hardware {
+public abstract class Hardware {
     private Asset attached;
     
     /**
@@ -16,10 +20,12 @@ public class Hardware {
      * 
      * @param opiton gives a piece the hardware the chance to do multiple things
      */
-    public void use(int opiton){
-        
-    }
-    
+    public abstract void use(int opiton);
+
+    public abstract String getName();
+
+    public abstract Collection<AbilityI> getAbilities();
+
     public void bindAsset(Asset attached){
         this.attached = attached;
     }

@@ -10,7 +10,7 @@ import java.awt.Point;
  *
  * @author webpigeon
  */
-public class MoveAbility extends Ability {
+public class MoveAbility implements AbilityI {
     
     public String getName(){
         return "Move";
@@ -20,7 +20,7 @@ public class MoveAbility extends Ability {
         return "command.core.move";
     }
     
-    public Event fireEvent(Asset source, Point target){
+    public EventI fireEvent(Asset source, Point target){
         return new MoveEvent(source, target); 
     }
 }

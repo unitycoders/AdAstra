@@ -6,11 +6,12 @@
 package adastra;
 
 import adastra.engine.AttackEvent;
-import adastra.engine.Event;
-import adastra.engine.Hull;
-import adastra.engine.Vessel;
-import adastra.engine.Hardware;
-import adastra.engine.Weapon;
+import adastra.engine.EventI;
+import adastra.engine.vessel.Engine;
+import adastra.engine.vessel.Hull;
+import adastra.engine.vessel.Vessel;
+import adastra.engine.vessel.Hardware;
+import adastra.engine.vessel.Weapon;
 
 /**
  *
@@ -23,11 +24,12 @@ public class VesselTest {
         Hardware hw = new Weapon();
         Hull h = new Hull();
         Vessel subject = new Vessel(null, h);
+        subject.setHardware(0, new Engine());
 
         Vessel target = new Vessel(null, h);
 
         subject.setHardware(0, hw);
-        Event a = new AttackEvent(subject,target);
+        EventI a = new AttackEvent(subject,target);
         subject.setEvent(a);
     }
 

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package adastra.engine;
+package adastra.engine.vessel;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -36,7 +36,7 @@ public class Hull {
     }
 
     public int getHardpointCount(){
-        return 0; //TODO code hardpoints into hulls
+        return 1; //TODO code hardpoints into hulls
     }
     
     public int getMaxHp(){

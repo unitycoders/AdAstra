@@ -2,13 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package adastra.engine;
+package adastra.engine.vessel;
+import adastra.engine.Asset;
+import adastra.engine.Location;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.util.Arrays;
+import javax.swing.JComponent;
 
 /**
  *
@@ -73,8 +76,14 @@ public class Vessel extends Asset {
         if(hardware[id] != null){
             old = hardware[id];
             old.unbindAsset();
+            addProperty("hardware."+old.getName()+".count", -1);
+            if(getProperty("hardware."+old.getName()+".count") <= 0){
+                abilities.removeAll(hardware[id].getAbilities());
+            }
         }
-        
+
+        addProperty("hardware."+hw.getName()+".count", 1);
+        abilities.addAll(hw.getAbilities());
         hardware[id] = hw;
         hw.bindAsset(this);
         return old;
@@ -108,10 +117,15 @@ public class Vessel extends Asset {
         Graphics2D g2 = (Graphics2D)g;
         
         Polygon poly = new Polygon(xp, yp, 3);
-        g2.rotate(Math.toRadians(rotation)*-1, x, y);
+        g2.rotate(Math.toRadians(rotation+90), x, y);
         g2.setColor(Color.WHITE);
         g2.fillPolygon(poly);
-        g2.rotate(Math.toRadians(rotation), x, y);
+        g2.rotate(Math.toRadians(rotation+90)*-1, x, y);
+    }
+
+    @Override
+    public JComponent getProperties(){
+        return null;
     }
     
     @Override

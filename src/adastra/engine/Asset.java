@@ -20,11 +20,12 @@ import java.util.HashMap;
  *
  * @author webpigeon
  */
-public class Asset {
+public abstract class Asset {
     protected Player owner;
     protected Location location;
-    protected Event order;
+    protected EventI order;
     protected List<AssetListener> listeners;
+    protected List<AbilityI> abilities;
     protected Map<String, Integer> properties;
     protected double rotation;
 
@@ -36,6 +37,7 @@ public class Asset {
         this.owner = null;
         this.location = location;
         this.listeners = new ArrayList<AssetListener>();
+        this.abilities = new ArrayList<AbilityI>();
         this.properties = new HashMap<String,Integer>();
         this.rotation = 0;
     }
@@ -48,6 +50,8 @@ public class Asset {
     public JComponent getForm(){
         return new JLabel("<Insert form here>");
     }
+
+    public abstract JComponent getProperties();
 
     /**
      * 
@@ -71,7 +75,7 @@ public class Asset {
      *
      * @param e
      */
-    public void setEvent(Event e){
+    public void setEvent(EventI e){
         this.order = e;
     }
 
@@ -79,7 +83,7 @@ public class Asset {
      *
      * @return
      */
-    public Event getEvent(){
+    public EventI getEvent(){
         return this.order;
     }
 
@@ -119,7 +123,7 @@ public class Asset {
     public boolean contains(int x, int y){
         //TODO get better collition detection
         Point p = new Point(x, y);
-        return p.distance(location.getX(), location.getY()) < 35;
+        return p.distance(location.getX(), location.getY()) < 17;
     }
 
     public void rotate(double theta){
@@ -142,8 +146,9 @@ public class Asset {
         this.listeners.add(listener);
     }
     
-    public Ability[] getAbilities(Player p){
-        return new Ability[]{new Ability(), new MoveAbility()};
+    public AbilityI[] getAbilities(Player p){
+        AbilityI[] aa = new AbilityI[abilities.size()];
+        return abilities.toArray(aa);
     }
 
     /**

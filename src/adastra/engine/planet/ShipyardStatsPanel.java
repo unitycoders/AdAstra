@@ -4,7 +4,7 @@
  */
 package adastra.engine.planet;
 
-import adastra.engine.Hull;
+import adastra.engine.vessel.Hull;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;

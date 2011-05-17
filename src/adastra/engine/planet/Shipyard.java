@@ -4,8 +4,8 @@
  */
 package adastra.engine.planet;
 
-import adastra.engine.Hull;
-import adastra.engine.Vessel;
+import adastra.engine.vessel.Hull;
+import adastra.engine.vessel.Vessel;
 import java.awt.Dimension;
 import java.awt.Polygon;
 import java.awt.Rectangle;

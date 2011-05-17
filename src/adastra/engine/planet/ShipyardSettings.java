@@ -6,7 +6,7 @@ package adastra.engine.planet;
 
 import java.awt.BorderLayout;
 import javax.swing.*;
-import adastra.engine.Hull;
+import adastra.engine.vessel.Hull;
 
 /**
  *
