@@ -74,6 +74,14 @@ public class Sector implements Iterable<Asset>, AssetListener {
         }
     }
 
+    public int getWidth(){
+        return 1200;
+    }
+
+    public int getHeight(){
+        return 1200;
+    }
+
     @Override
     public void onChangeOwner(Player newOwner) {
        //I'm not really fussed.

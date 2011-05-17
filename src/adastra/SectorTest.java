@@ -72,16 +72,16 @@ public class SectorTest {
         Player p = new Player();
         p.registerBuilding(new ShipyardBlueprint());
 
-        Planet planet = new Planet(550,550, new PlanetType(255,255,255));
+        Planet planet = new Planet(0, 0, new PlanetType(255,255,255));
         planet.setOwner(p);
         s.add(planet);
         
         Hull h = new Hull();
-        Vessel v1 = new Vessel(new Location(500,500), h);
+        Vessel v1 = new Vessel(new Location(-600,-600), h);
         v1.setHardware(0, new Engine());
         s.add(v1);
         
-        Vessel v2 = new Vessel(new Location(50,100), h);
+        Vessel v2 = new Vessel(new Location(600,600), h);
         v2.setHardware(0, new Engine());
         s.add(v2);
         
