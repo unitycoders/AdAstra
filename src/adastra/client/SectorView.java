@@ -105,7 +105,8 @@ public class SectorView extends JComponent implements SectorModelListener {
         if (selected != null) {
             Location loc = selected.getLocation();
             g.setColor(Color.RED);
-            g.drawOval(loc.getX() - 20, loc.getY() - 20, 40, 40);
+            int radius = selected.getRadius();
+            g.drawOval(loc.getX() - radius, loc.getY() - radius, radius*2, radius*2);
 
             EventI e = selected.getEvent();
             if (e != null) {

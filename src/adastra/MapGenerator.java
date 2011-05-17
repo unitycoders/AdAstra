@@ -8,7 +8,6 @@ import adastra.engine.Sector;
 import adastra.engine.Location;
 import adastra.engine.planet.Planet;
 import adastra.engine.planet.PlanetType;
-import adastra.engine.vessel.Vessel;
 import java.util.Random;
 
 /**
@@ -36,7 +35,7 @@ public class MapGenerator {
 
         //s.add(new Planet(star.getX(), star.getY(), starType));
 
-        int nPlanets = random.nextInt(3)+1;
+        int nPlanets = 3;
         for(int i=1; i<nPlanets; i++){
             s.add(nextPlanet(star.getX(), star.getY(), i));
         }
@@ -50,7 +49,7 @@ public class MapGenerator {
 
     public Planet nextPlanet(int starx, int stary, int pos){
         int x = starx;
-        int y = (45*pos)+stary;
+        int y = (150*pos)+stary+250;
         return new Planet(x, y, types[random.nextInt(types.length)]);
     }
     

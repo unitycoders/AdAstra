@@ -28,13 +28,15 @@ public abstract class Asset {
     protected List<AbilityI> abilities;
     protected Map<String, Integer> properties;
     protected double rotation;
+    protected int radius;
 
     /**
      * 
      * @param location
      */
-    public Asset(Location location){
+    public Asset(Location location, int radius){
         this.owner = null;
+        this.radius = radius;
         this.location = location;
         this.listeners = new ArrayList<AssetListener>();
         this.abilities = new ArrayList<AbilityI>();
@@ -123,7 +125,11 @@ public abstract class Asset {
     public boolean contains(int x, int y){
         //TODO get better collition detection
         Point p = new Point(x, y);
-        return p.distance(location.getX(), location.getY()) < 17;
+        return p.distance(location.getX(), location.getY()) < radius;
+    }
+
+    public int getRadius(){
+        return radius;
     }
 
     public void rotate(double theta){

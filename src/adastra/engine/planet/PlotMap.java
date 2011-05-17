@@ -63,7 +63,7 @@ public class PlotMap extends JComponent implements MouseListener {
             }
         }
 
-        g.setColor(planet.getPClass().canBuild(planet.getX(), planet.getY())?Color.GREEN:Color.RED);
+        g.setColor(planet.getType().canBuild(planet.getX(), planet.getY())?Color.GREEN:Color.RED);
         g.drawRect((planet.getX() * width)+padx, (planet.getY() * height)+pady, (width), (height));
     }
 

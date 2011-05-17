@@ -7,7 +7,6 @@ package adastra.engine.planet;
 import adastra.engine.Asset;
 import adastra.engine.Location;
 import adastra.engine.Player;
-import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JComponent;
 
@@ -19,13 +18,13 @@ public class Planet extends Asset {
     private PlanetType type;
     private Building[][] buildings;
     private PlanetWindow settings;
+    @Deprecated
     private int x,y;
 
     public Planet(int x, int y, PlanetType clss){
-        super(new Location(x,y));
+        super(new Location(x,y), 50);
         type = clss;
         owner = null;
-        x = y = 0;
         buildings = new Building[type.getRows()][type.getCols()];
         settings = new PlanetWindow(this);
         settings.addContent("Overview", new PlanetSettings(this));
@@ -55,20 +54,23 @@ public class Planet extends Asset {
         settings.addContent(b.getName(), b.getSettings());
     }
 
+    @Deprecated
     public void setSelected(int x, int y){
         this.x = x;
         this.y = y;
     }
 
+    @Deprecated
     public int getX(){
         return this.x;
     }
 
+    @Deprecated
     public int getY(){
         return this.y;
     }
 
-    public PlanetType getPClass(){
+    public PlanetType getType(){
         return type;
     }
     
@@ -96,6 +98,10 @@ public class Planet extends Asset {
     
     public void paintAt(Graphics g, int x, int y){
         g.setColor(type.getColour());
-        g.fillOval(x-17,y-17,34,34);
+        Location l = getLocation();
+        int radius  = (getRadius()/4)*3;
+        int diamater = radius *2;
+
+        g.fillOval(l.getX()-radius, l.getY()-radius, diamater, diamater);
     }
 }
