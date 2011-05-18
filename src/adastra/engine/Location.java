@@ -10,9 +10,11 @@ package adastra.engine;
  * @author jwalto
  */
 public class Location {
+    private Sector sector;
     private int x,y;
     
-    public Location(int x, int y){
+    public Location(Sector s, int x, int y){
+        this.sector = s;
         this.x = x;
         this.y = y;
     }
@@ -20,6 +22,10 @@ public class Location {
     public void setLocation(int x, int y){
         this.x = x;
         this.y = y;
+    }
+
+    public Sector getSector(){
+        return sector;
     }
     
     public int getX(){

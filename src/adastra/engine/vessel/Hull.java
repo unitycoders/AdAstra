@@ -16,6 +16,7 @@ public class Hull {
     private int hp = 0;
     private int maxHp = 0;
 
+    @Deprecated
     public Hull(){
         this.name = "Cake";
         this.maxHp = 100;
@@ -36,7 +37,7 @@ public class Hull {
     }
 
     public int getHardpointCount(){
-        return 1; //TODO code hardpoints into hulls
+        return 5; //TODO code hardpoints into hulls
     }
     
     public int getMaxHp(){

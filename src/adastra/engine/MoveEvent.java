@@ -16,15 +16,17 @@ public class MoveEvent implements EventI {
     
     public MoveEvent(Asset what, Point where){
         this.what = what;
-        this.where = new Location(where.x, where.y);
+        this.where = new Location(what.getLocation().getSector(),where.x, where.y);
     }
     
+    @Override
     public String getDescription(){
         return "move to "+where;
     }
     
+    @Override
     public void run(){
-        int maxDist = 50;
+        int maxDist = what.getProperty("core.engine.power");
         Location l = what.getLocation();
 
         double rotation = Math.atan2(l.getY()-where.getY(), l.getX()-where.getX());
@@ -44,13 +46,14 @@ public class MoveEvent implements EventI {
         what.setLocation(x, y);
     }
 
+    @Override
     public boolean isComplete(){
         return what.getLocation().getDist(where.getX(), where.getY()) < 15;
     }
 
     @Override
-    public Location getTargetLocation() {
-        return where;
+    public Location[] getTargetLocation() {
+        return new Location[]{where};
     }
     
 }

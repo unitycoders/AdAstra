@@ -31,13 +31,13 @@ public class MapGenerator {
     public Sector nextSector(){
         Sector s = new Sector();
         //Star star = nextStar();
-        Location star = new Location(0, 0);
+        Location star = new Location(s, 0, 0);
 
         //s.add(new Planet(star.getX(), star.getY(), starType));
 
         int nPlanets = 3;
         for(int i=1; i<nPlanets; i++){
-            s.add(nextPlanet(star.getX(), star.getY(), i));
+            s.add(nextPlanet(star.getX(), star.getY(), i, s));
         }
 
         return s;
@@ -47,10 +47,10 @@ public class MapGenerator {
 
     //}
 
-    public Planet nextPlanet(int starx, int stary, int pos){
+    public Planet nextPlanet(int starx, int stary, int pos, Sector s){
         int x = starx;
         int y = (150*pos)+stary+250;
-        return new Planet(x, y, types[random.nextInt(types.length)]);
+        return new Planet(s, x, y, types[random.nextInt(types.length)]);
     }
     
 }

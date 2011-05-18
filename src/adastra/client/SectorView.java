@@ -14,6 +14,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
@@ -63,6 +64,14 @@ public class SectorView extends JComponent implements SectorModelListener {
                 if(e.getKeyChar() == 'w'){
                     moveView(0,1);
                 }
+
+                if(e.getKeyChar() == 'x'){
+                    model.toggleCompostite();
+                }
+
+                if(e.getKeyChar() == 'c'){
+                    requestFocus();
+                }
             }
 
             @Override
@@ -92,6 +101,7 @@ public class SectorView extends JComponent implements SectorModelListener {
     @Override
     protected void paintChildren(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.translate(viewpoint.x, viewpoint.y);
 
         for (Asset a : model.getSector()) {
@@ -110,9 +120,13 @@ public class SectorView extends JComponent implements SectorModelListener {
 
             EventI e = selected.getEvent();
             if (e != null) {
-                Location l = e.getTargetLocation();
-                g.drawOval(l.getX() - 5, l.getY() - 5, 10, 10);
-                g.drawLine(loc.getX(), loc.getY(), l.getX(), l.getY());
+                Location prev = loc;
+                Location[] la = e.getTargetLocation();
+                for(Location l : la){
+                    g.drawOval(l.getX() - 5, l.getY() - 5, 10, 10);
+                    g.drawLine(prev.getX(), prev.getY(), l.getX(), l.getY());
+                    prev = l;
+                }
             }
         }
     }

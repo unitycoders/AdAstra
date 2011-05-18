@@ -17,8 +17,8 @@ public class ShipyardBlueprint extends BuildingBlueprint {
     }
 
     @Override
-    public Building makeBuilding() {
-        return new Shipyard();
+    public Building makeBuilding(Planet p) {
+        return new Shipyard(p);
     }
 
 }

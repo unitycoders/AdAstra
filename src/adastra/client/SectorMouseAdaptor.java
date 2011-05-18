@@ -16,7 +16,6 @@ import java.awt.event.MouseMotionListener;
  */
 public class SectorMouseAdaptor implements MouseListener, MouseMotionListener {
 
-    private boolean dragging = false;
     private SectorView sectorView;
     private SectorModel model;
     private Point startPoint;
@@ -28,6 +27,7 @@ public class SectorMouseAdaptor implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent me) {
+        sectorView.requestFocus();
         Point p = sectorView.getStart(me.getPoint());
 
         if (me.getButton() == MouseEvent.BUTTON1) {

@@ -12,7 +12,7 @@ package adastra.engine.planet;
 public abstract class BuildingBlueprint {
 
     public abstract String getName();
-    public abstract Building makeBuilding();
+    public abstract Building makeBuilding(Planet p);
 
     @Override
     public String toString(){

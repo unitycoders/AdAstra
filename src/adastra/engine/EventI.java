@@ -17,5 +17,5 @@ public interface EventI {
 
     public boolean isComplete();
 
-    public Location getTargetLocation();
+    public Location[] getTargetLocation();
 }

@@ -32,7 +32,7 @@ public class PlanetTest {
 
         //Planet tools
         PlanetType pClass = new PlanetType(0,0,0);
-        Planet planet = new Planet(10,10, pClass);
+        Planet planet = new Planet(null, 10,10, pClass);
         planet.setOwner(player);
 
         frame.add(planet.getProperties());

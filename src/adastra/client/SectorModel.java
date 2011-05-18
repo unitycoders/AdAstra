@@ -7,6 +7,8 @@ package adastra.client;
 import adastra.engine.Asset;
 import adastra.engine.Sector;
 import adastra.engine.AbilityI;
+import adastra.engine.CompositeEvent;
+import adastra.engine.EventI;
 import adastra.engine.SectorListener;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -25,6 +27,8 @@ public class SectorModel implements SectorListener {
     private AbilityI selectedAbility;
     private Map<String, AbilityI> abilies;
     private List<SectorModelListener> listeners;
+    private CompositeEvent events;
+    private boolean compostite;
   
     public SectorModel(){
         this.selectedSector = null;
@@ -32,6 +36,7 @@ public class SectorModel implements SectorListener {
         this.selectedAbility = null;
         this.abilies = new HashMap<String, AbilityI>();
         this.listeners = new ArrayList<SectorModelListener>();
+        this.compostite = false;
     }
     
     public void addSectorListener(SectorModelListener l){
@@ -55,6 +60,7 @@ public class SectorModel implements SectorListener {
     public void setAsset(Asset a){
         this.selectedAsset = a;
         setAbility(null);
+        events = null;
         abilies.clear();
         
         //TODO add player support
@@ -79,10 +85,32 @@ public class SectorModel implements SectorListener {
             this.selectedAbility = null;
         }
     }
-    
+
+    public void toggleCompostite(){
+        if(selectedAsset == null){
+            return;
+        }
+
+        if(compostite){
+            compostite = false;
+            events = null;
+        }else{
+            compostite = true;
+            events = new CompositeEvent(selectedAsset, this);
+            selectedAsset.setEvent(events);
+        }
+        fireOrdersChanged();
+    }
+
     public void giveOrder(Point p){
         if(selectedAbility != null){
-            selectedAsset.setEvent(selectedAbility.fireEvent(selectedAsset, p));
+            EventI event = selectedAbility.fireEvent(selectedAsset, p);
+            if(compostite){
+                events.addEvent(event);
+                selectedAsset.setEvent(events);
+            }else{
+                selectedAsset.setEvent(event);
+            }
             fireOrdersChanged();
         }
     }
@@ -106,7 +134,7 @@ public class SectorModel implements SectorListener {
         }
     }
     
-    protected void fireOrdersChanged(){
+    public void fireOrdersChanged(){
                 for(SectorModelListener l : listeners){
             l.ordersChanged();
         }

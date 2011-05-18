@@ -38,10 +38,11 @@ public class Vessel extends Asset {
      * 
      * This method is for building ships after a game resume
      */
-    public Vessel(Hull h, Hardware[] hw){
-        super(null, 24);
-        this.hull = h;
-        this.hardware = hw;
+    public Vessel(Location l, Hull h, Hardware[] hw){
+        this(l,h);
+        for(int i=0; i<hw.length; i ++){
+            setHardware(i, hw[i]);
+        }
     }
     
     /**

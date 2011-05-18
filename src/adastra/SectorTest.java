@@ -18,6 +18,8 @@ import adastra.engine.planet.Planet;
 import adastra.engine.planet.PlanetType;
 import adastra.engine.planet.ShipyardBlueprint;
 import adastra.engine.vessel.Engine;
+import adastra.engine.vessel.Hardware;
+import adastra.engine.vessel.VesselBlueprint;
 import java.awt.BorderLayout;
 import java.util.Random;
 import java.util.Timer;
@@ -65,20 +67,13 @@ public class SectorTest {
     public static Player buildPlayer(Sector s){
         Player p = new Player();
         p.registerBuilding(new ShipyardBlueprint());
+        p.registerVessel(new VesselBlueprint("Demo Ship", new Hull(), new Hardware[]{new Engine()}));
+        p.registerVessel(new VesselBlueprint("Scout Ship", new Hull(), new Hardware[]{new Engine(), new Engine(), new Engine()}));
 
-        Planet planet = new Planet(0, 0, new PlanetType(255,255,255));
+        Planet planet = new Planet(s, 0, 0, new PlanetType(255,255,255));
         planet.setOwner(p);
         s.add(planet);
-        
-        Hull h = new Hull();
-        Vessel v1 = new Vessel(new Location(-600,-600), h);
-        v1.setHardware(0, new Engine());
-        s.add(v1);
-        
-        Vessel v2 = new Vessel(new Location(600,600), h);
-        v2.setHardware(0, new Engine());
-        s.add(v2);
-        
+            
         return p;
     }
 }

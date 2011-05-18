@@ -4,14 +4,10 @@
  */
 package adastra.engine.planet;
 
-import adastra.engine.vessel.Hull;
 import adastra.engine.vessel.Vessel;
-import java.awt.Dimension;
-import java.awt.Polygon;
-import java.awt.Rectangle;
+import adastra.engine.vessel.VesselBlueprint;
 import javax.swing.BoundedRangeModel;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 import javax.swing.event.ChangeListener;
 import java.util.Vector;
 import javax.swing.JLabel;
@@ -24,7 +20,8 @@ import javax.swing.event.ChangeEvent;
  */
 public class Shipyard extends Building implements BoundedRangeModel {
 
-    private Hull current;
+    private Planet planet;
+    private VesselBlueprint current;
     private int progress; //current progress
     private int completion; //progress needed for completion
     private int extent;
@@ -32,8 +29,9 @@ public class Shipyard extends Building implements BoundedRangeModel {
     private boolean ajusting;
     private ShipyardSettings settings;
 
-    public Shipyard() {
+    public Shipyard(Planet planet) {
         super("Shipyard");
+        this.planet = planet;
         this.current = null;
         this.progress = 0;
         this.completion = 0;
@@ -43,16 +41,18 @@ public class Shipyard extends Building implements BoundedRangeModel {
         this.settings = new ShipyardSettings(this);
     }
 
-    public void build(Hull h) {
+    public void build(VesselBlueprint v) {
         if (current != null) {
-            throw new RuntimeException("already building something!");
+            //throw new RuntimeException("already building something!");
+            //TODO add to queue
+            return;
         }
 
         //set the new build up
-        current = h;
+        current = v;
         progress = 0;
-        completion = h.getMaxHp();
-        settings.setBuilding(h);
+        completion = v.getBuildTime();
+        settings.setBuilding(v);
         fireChanged();
     }
 
@@ -67,13 +67,13 @@ public class Shipyard extends Building implements BoundedRangeModel {
     public void gameTick() {
         //if we're building something, increment the build counter
         if (current != null) {
-            progress++;
+            progress += 100;
             fireChanged();
 
             if (progress >= completion) {
                 //todo write ship launch routine
-                Vessel v = new Vessel(null, current);
-
+                Vessel v = current.buildVessel();
+                planet.orbitPlanet(v);
                 //not building anything
                 //todo implement build q
                 clearBuild();
@@ -141,6 +141,13 @@ public class Shipyard extends Building implements BoundedRangeModel {
     @Override
     public int getExtent() {
         return extent;
+    }
+
+    public BlueprintManager getBlueprints(){
+        if(planet != null && planet.getOwner() != null){
+            return this.planet.getOwner().getVessels();
+        }
+        return null;
     }
 
     @Override

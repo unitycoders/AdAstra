@@ -34,8 +34,8 @@ public class AttackEvent implements EventI {
     }
 
     @Override
-    public Location getTargetLocation() {
-        return target.getLocation();
+    public Location[] getTargetLocation() {
+        return new Location[]{target.getLocation()};
     }
 
 }

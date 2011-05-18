@@ -4,10 +4,14 @@
  */
 package adastra.engine.planet;
 
+import utilities.CrazyMath;
 import adastra.engine.Asset;
 import adastra.engine.Location;
 import adastra.engine.Player;
+import adastra.engine.Sector;
+import adastra.engine.vessel.Vessel;
 import java.awt.Graphics;
+import java.util.Random;
 import javax.swing.JComponent;
 
 /**
@@ -21,8 +25,8 @@ public class Planet extends Asset {
     @Deprecated
     private int x,y;
 
-    public Planet(int x, int y, PlanetType clss){
-        super(new Location(x,y), 50);
+    public Planet(Sector s, int x, int y, PlanetType clss){
+        super(new Location(s, x,y), 50);
         type = clss;
         owner = null;
         buildings = new Building[type.getRows()][type.getCols()];
@@ -37,6 +41,19 @@ public class Planet extends Asset {
 
     public Player getOwner(){
         return this.owner;
+    }
+
+    public void orbitPlanet(Asset v){
+        //TODO
+        Location pos = this.getLocation();
+        Random r = new Random();
+        int deg = r.nextInt(360);
+        int magnitude = 20 + this.radius;
+
+        pos.getSector().add(v);
+        Location disp = CrazyMath.circularDisplacement(magnitude, deg);
+        System.out.println(disp.getX() + " : " + disp.getY());
+        v.setLocation(pos.getX()+disp.getX(), pos.getY()+disp.getY());
     }
 
     /**

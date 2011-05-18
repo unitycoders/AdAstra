@@ -7,6 +7,7 @@ package adastra.engine;
 
 import adastra.engine.planet.BlueprintManager;
 import adastra.engine.planet.BuildingBlueprint;
+import adastra.engine.vessel.VesselBlueprint;
 import java.util.ArrayList;
 
 /**
@@ -14,10 +15,12 @@ import java.util.ArrayList;
  * @author jwalto
  */
 public class Player {
-    private BlueprintManager buildingBps;
+    private BlueprintManager<BuildingBlueprint> buildingBps;
+    private BlueprintManager<VesselBlueprint> vessels;
 
     public Player(){
-        buildingBps= new BlueprintManager();
+        buildingBps = new BlueprintManager<BuildingBlueprint>();
+        vessels = new BlueprintManager<VesselBlueprint>();
     }
 
     public void registerBuilding(BuildingBlueprint bp){
@@ -26,6 +29,14 @@ public class Player {
 
     public BlueprintManager getBuildings(){
         return buildingBps;
+    }
+
+    public void registerVessel(VesselBlueprint bp){
+        vessels.registerBlueprint(bp);
+    }
+
+    public BlueprintManager getVessels(){
+        return vessels;
     }
 
 }

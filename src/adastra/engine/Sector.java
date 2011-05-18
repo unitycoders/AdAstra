@@ -36,7 +36,10 @@ public class Sector implements Iterable<Asset>, AssetListener {
     }
     
     public void tick(){
-        for(Asset a : assets){
+        Asset[] aa = new Asset[assets.size()];
+        assets.toArray(aa);
+
+        for(Asset a :aa){
             a.tick();
         }
     }

@@ -13,7 +13,7 @@ import java.util.Collection;
  * @author webpigeon
  */
 public abstract class Hardware {
-    private Asset attached;
+    protected Asset attached;
     
     /**
      * Use this hardware
@@ -25,6 +25,8 @@ public abstract class Hardware {
     public abstract String getName();
 
     public abstract Collection<AbilityI> getAbilities();
+
+    public abstract int getBuildTime();
 
     public void bindAsset(Asset attached){
         this.attached = attached;

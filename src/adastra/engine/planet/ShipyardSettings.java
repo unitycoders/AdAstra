@@ -5,8 +5,10 @@
 package adastra.engine.planet;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
 import javax.swing.*;
-import adastra.engine.vessel.Hull;
+import adastra.engine.vessel.VesselBlueprint;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -36,10 +38,26 @@ public class ShipyardSettings extends JPanel{
         status.setStringPainted(true);
         topPanel.add(status);
         add(topPanel, BorderLayout.NORTH);     
-        
-        JList buildList = new JList(new String[]{"Small Vessel", "Medium Vessel"});
+
+        JPanel leftPane = new JPanel(new BorderLayout());
+        final JList buildList = new JList(shipyard.getBlueprints());
         buildList.setBorder(BorderFactory.createTitledBorder("Template List"));
-        add(buildList, BorderLayout.WEST);
+        leftPane.add(buildList, BorderLayout.CENTER);
+
+        JButton buildButton = new JButton("Build");
+        buildButton.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                VesselBlueprint bp = (VesselBlueprint)buildList.getSelectedValue();
+                shipyard.build(bp);
+            }
+
+        });
+
+        leftPane.add(buildButton, BorderLayout.SOUTH);
+        add(leftPane, BorderLayout.WEST);
         
         JPanel centrePanel = new JPanel();
         centrePanel.setLayout(new BoxLayout(centrePanel,BoxLayout.Y_AXIS));
@@ -55,9 +73,9 @@ public class ShipyardSettings extends JPanel{
         add(centrePanel, BorderLayout.CENTER);
     }
 
-    public void setBuilding(Hull h){
-        current.setHull(h);
-        currentBuild.setText(h.getName());
+    public void setBuilding(VesselBlueprint v){
+        current.setHull(v);
+        currentBuild.setText(v.getName());
     }
 
     public void clearBuild(){

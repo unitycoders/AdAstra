@@ -55,9 +55,10 @@ public class PlanetSettings extends JPanel implements AssetListener {
                 BuildingBlueprint b = (BuildingBlueprint) buildingList.getSelectedValue();
                 if (b != null) {
                     try {
-                        planet.build(planet.getX(), planet.getY(), b.makeBuilding());
+                        planet.build(planet.getX(), planet.getY(), b.makeBuilding(planet));
                     } catch (RuntimeException e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
+                        throw e;
                     }
                 }
             }

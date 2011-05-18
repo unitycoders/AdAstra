@@ -15,16 +15,17 @@ import javax.swing.event.ListDataListener;
  *
  * @author jwalto
  */
-public class BlueprintManager implements ListModel {
-    private List<BuildingBlueprint> blueprints;
+public class BlueprintManager<T> implements ListModel {
+    private List<T> blueprints;
+
     private List<ListDataListener> listeners;
 
     public BlueprintManager(){
-        blueprints = new ArrayList<BuildingBlueprint>();
+        blueprints = new ArrayList<T>();
         listeners = new ArrayList<ListDataListener>();
     }
 
-    public void registerBlueprint(BuildingBlueprint bp){
+    public void registerBlueprint(T bp){
         this.blueprints.add(bp);
         ListDataEvent evt = new ListDataEvent(this, ListDataEvent.INTERVAL_ADDED, blueprints.size()-1, blueprints.size());
         for(ListDataListener listener : listeners){

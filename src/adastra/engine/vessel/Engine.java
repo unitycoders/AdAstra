@@ -6,6 +6,7 @@
 package adastra.engine.vessel;
 
 import adastra.engine.AbilityI;
+import adastra.engine.Asset;
 import adastra.engine.MoveAbility;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,5 +33,24 @@ public class Engine extends Hardware {
     public String getName() {
         return "engine";
     }
+
+    @Override
+    public int getBuildTime() {
+        return 30;
+    }
+
+    @Override
+    public void bindAsset(Asset attached) {
+        super.bindAsset(attached);
+        attached.addProperty("core.engine.power", 50);
+    }
+
+    @Override
+    public void unbindAsset() {
+        attached.addProperty("core.engine.power", -50);
+        super.unbindAsset();
+    }
+
+
 
 }

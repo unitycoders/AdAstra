@@ -5,6 +5,7 @@
 package adastra.engine.planet;
 
 import adastra.engine.vessel.Hull;
+import adastra.engine.vessel.VesselBlueprint;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -17,7 +18,7 @@ import javax.swing.JPanel;
  * @author webpigeon
  */
 public class ShipyardStatsPanel extends JPanel {
-    private Hull hull;
+    private VesselBlueprint blueprint;
     private JPanel preview;
     private JLabel hpLabel;
     private JLabel pointsLabel;
@@ -45,17 +46,18 @@ public class ShipyardStatsPanel extends JPanel {
     }
     
     
-    public void setHull(Hull h){
-        if(hull != null){
+    public void setHull(VesselBlueprint v){
+        if(this.blueprint != null){
             preview.removeAll();
             preview.repaint();
         }
-        this.hull = h;
+        this.blueprint = v;
 
         String hitpointLbl = "HitPoints: ";
         String hardpointLbl = "Hardpoint: ";
 
-        if(hull != null){
+        if(this.blueprint != null){
+            Hull h = blueprint.getHull();
             preview.add(h.getView());
             hitpointLbl += h.getMaxHp();
             hardpointLbl += h.getHardpointCount();
