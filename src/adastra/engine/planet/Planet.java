@@ -96,7 +96,10 @@ public class Planet extends Asset {
     }
 
     public Building getBuildingAt(int row, int col){
-        return buildings[row][col]; //TODO code guard for out of bounds
+        if(buildings.length <= row || buildings[row].length <= col){
+            return null; //out of bounds
+        }
+        return buildings[row][col];
     }
     
     /**

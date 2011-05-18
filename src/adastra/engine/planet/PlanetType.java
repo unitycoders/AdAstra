@@ -51,7 +51,11 @@ public class PlanetType {
     }
 
     public boolean canBuild(int row, int col) {
-        return build[row][col]; //TODO build guard
+        if(build.length <= row || build[row].length <= col){
+            return false; //out of bounds
+        }
+        
+        return build[row][col];
     }
 
     public int getRows() {

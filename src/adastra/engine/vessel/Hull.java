@@ -15,6 +15,7 @@ public class Hull {
     private String name;
     private int hp = 0;
     private int maxHp = 0;
+    private int[] hardpoints; //TODO find out what these should be (not ints)
 
     @Deprecated
     public Hull(){
@@ -37,10 +38,14 @@ public class Hull {
     }
 
     public int getHardpointCount(){
-        return 5; //TODO code hardpoints into hulls
+        return hardpoints.length;
     }
     
     public int getMaxHp(){
+        return maxHp;
+    }
+    
+    public int getBuildTime(){
         return maxHp;
     }
 }
