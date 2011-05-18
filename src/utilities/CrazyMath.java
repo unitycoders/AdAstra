@@ -20,4 +20,8 @@ public class CrazyMath {
         return new Location(null,(int)x,(int)y);
     }
 
+    public static Location positionAlongALine(Location start, Location end, int percent){
+
+        return null;
+    }
 }
