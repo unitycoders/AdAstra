@@ -28,6 +28,6 @@ public class MovementAgent {
     }
 
     public void run(int i, int max){
-        v.setLocation(CrazyMath.positionAlongALine(startLocation,endLocation, 15000/40));
+        //v.setLocation(CrazyMath.positionAlongALine(startLocation,endLocation, 15000/40));
     }
 }

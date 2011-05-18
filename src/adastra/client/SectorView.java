@@ -40,54 +40,18 @@ public class SectorView extends JComponent implements SectorModelListener {
             System.err.println("Loading starfield failed: " + e.toString());
         }
         this.setBackground(Color.BLACK);
-        this.setPreferredSize(new Dimension(1024, 768));
 
+        //listeners
         SectorMouseAdaptor sml = new SectorMouseAdaptor(this, model);
         this.addMouseListener(sml);
         this.addMouseMotionListener(sml);
-
-        this.addKeyListener(new KeyListener(){
-
-            public void keyTyped(KeyEvent e) {
-                if(e.getKeyChar() == 'a'){
-                    moveView(1,0);
-                }
-
-                if(e.getKeyChar() == 'd'){
-                    moveView(-1,0);
-                }
-
-                if(e.getKeyChar() == 's'){
-                    moveView(0,-1);
-                }
-
-                if(e.getKeyChar() == 'w'){
-                    moveView(0,1);
-                }
-
-                if(e.getKeyChar() == 'x'){
-                    model.toggleCompostite();
-                }
-
-                if(e.getKeyChar() == 'c'){
-                    requestFocus();
-                }
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-
-        });
+        this.addKeyListener(new SectorKeyListener(this, model));
 
         this.setFocusable(true);
         this.requestFocus();
         
-        viewpoint = new Rectangle(600,600,1024,768);
+        viewpoint = new Rectangle(600,600,800,600);
+        this.setPreferredSize(new Dimension(viewpoint.width, viewpoint.height));
     }
 
     @Override
