@@ -6,7 +6,8 @@
 package adastra.engine;
 
 /**
- *
+ * The base tech tree class
+ * 
  * @author jwalto
  */
 public abstract class Technology {

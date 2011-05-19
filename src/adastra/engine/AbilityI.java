@@ -8,7 +8,9 @@ package adastra.engine;
 import java.awt.Point;
 
 /**
- *
+ * An ability something a player can do
+ * 
+ * 
  * @author jwalto
  */
 public interface AbilityI {

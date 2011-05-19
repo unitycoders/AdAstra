@@ -9,7 +9,9 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- *
+ * The most common area of the game map
+ * Each sector reprsents a solar system.
+ * 
  * @author jwalto
  */
 public class Sector implements Iterable<Asset>, AssetListener {

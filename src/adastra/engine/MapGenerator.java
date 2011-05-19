@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package adastra;
+package adastra.engine;
 
 import adastra.engine.Sector;
 import adastra.engine.Location;

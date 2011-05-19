@@ -7,7 +7,8 @@ package adastra.engine;
 import adastra.engine.planet.BuildingBlueprint;
 
 /**
- *
+ * A node of the tech tree which allows a player to build a building
+ * 
  * @author webpigeon
  */
 public class BuildingTechnology extends Technology {

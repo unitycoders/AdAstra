@@ -7,7 +7,8 @@ package adastra.engine;
 import java.util.TimerTask;
 
 /**
- *
+ * Controls the game ticks
+ * 
  * @author webpigeon
  */
 public class GameClock extends TimerTask {

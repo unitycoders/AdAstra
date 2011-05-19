@@ -6,7 +6,9 @@
 package adastra.engine;
 
 /**
- *
+ * The base interface for orders
+ * 
+ * 
  * @author jwalto
  */
 public interface EventI {

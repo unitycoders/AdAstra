@@ -17,7 +17,8 @@ import java.util.Map;
 import java.util.HashMap;
 
 /**
- *
+ * The base class for all game objects
+ * 
  * @author webpigeon
  */
 public abstract class Asset {

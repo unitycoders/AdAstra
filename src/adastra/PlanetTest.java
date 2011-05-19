@@ -27,7 +27,7 @@ public class PlanetTest {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800,600));
 
-        Player player = new Player();
+        Player player = new Player("Demo Player");
         player.registerBuilding(new ShipyardBlueprint());
 
         //Planet tools

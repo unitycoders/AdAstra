@@ -6,7 +6,8 @@
 package adastra.engine;
 
 /**
- *
+ * The AdAstra version of AWT point
+ * 
  * @author jwalto
  */
 public class Location {
