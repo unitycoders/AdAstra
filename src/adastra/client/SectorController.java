@@ -28,7 +28,6 @@ import javax.swing.JFrame;
  */
 public class SectorController extends TimerTask {
     private JFrame window;
-    private Galaxy galaxy;
     private SectorModel model;
     private SectorView sectorView;
     private int count = 0;
@@ -83,8 +82,8 @@ public class SectorController extends TimerTask {
         p.registerVessel(new VesselBlueprint("Demo Ship", new Hull(), new Hardware[]{new Engine()}));
         p.registerVessel(new VesselBlueprint("Scout Ship", new Hull(), new Hardware[]{new Engine(), new Engine(), new Engine()}));
 
-        Planet planet = new Planet(s, 0, 0, new PlanetType(255,255,255));
-        planet.setOwner(p);
+        Planet planet = new Planet(s, 0, 0, new PlanetType(255,255,255), new int[11][11]);
+        planet.colonise(p);
         s.add(planet);
     }
 

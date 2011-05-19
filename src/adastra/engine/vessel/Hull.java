@@ -19,13 +19,13 @@ public class Hull {
 
     @Deprecated
     public Hull(){
-        this.name = "Cake";
-        this.maxHp = 100;
+        this("demo hull", 100);
     }
 
     public Hull(String name, int hp){
         this.name = name;
         this.maxHp = hp;
+        this.hardpoints = new int[5];
     }
 
     public String getName(){

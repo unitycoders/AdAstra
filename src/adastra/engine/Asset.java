@@ -44,15 +44,6 @@ public abstract class Asset {
         this.properties = new HashMap<String,Integer>();
         this.rotation = 0;
     }
-    
-    /**
-     * Get the component representing the asset's apperance
-     * 
-     * @return 
-     */
-    public JComponent getForm(){
-        return new JLabel("<Insert form here>");
-    }
 
     public abstract JComponent getProperties();
 

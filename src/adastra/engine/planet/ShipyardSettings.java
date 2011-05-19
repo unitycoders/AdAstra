@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 import adastra.engine.vessel.VesselBlueprint;
 import java.awt.event.ActionListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -42,6 +44,16 @@ public class ShipyardSettings extends JPanel{
         JPanel leftPane = new JPanel(new BorderLayout());
         final JList buildList = new JList(shipyard.getBlueprints());
         buildList.setBorder(BorderFactory.createTitledBorder("Template List"));
+        buildList.addListSelectionListener(new ListSelectionListener(){
+
+            @Override
+            public void valueChanged(ListSelectionEvent lse) {
+                VesselBlueprint bp = (VesselBlueprint)buildList.getSelectedValue();
+                selected.setHull(bp);
+                selected.repaint();
+            }
+            
+        });
         leftPane.add(buildList, BorderLayout.CENTER);
 
         JButton buildButton = new JButton("Build");

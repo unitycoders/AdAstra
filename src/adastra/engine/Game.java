@@ -45,6 +45,10 @@ public class Game {
         }
     }
     
+    public Player getPlayer(int id){
+        return players.get(id);
+    }
+    
     public Galaxy getMap(){
         return map;
     }

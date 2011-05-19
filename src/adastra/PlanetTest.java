@@ -32,8 +32,8 @@ public class PlanetTest {
 
         //Planet tools
         PlanetType pClass = new PlanetType(0,0,0);
-        Planet planet = new Planet(null, 10,10, pClass);
-        planet.setOwner(player);
+        Planet planet = new Planet(null, 10,10, pClass, new int[10][10]);
+        planet.colonise(player);
 
         frame.add(planet.getProperties());
         

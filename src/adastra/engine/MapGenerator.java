@@ -23,7 +23,7 @@ public class MapGenerator {
         random = new Random();
         starType = new PlanetType(253, 202, 0);
         types = new PlanetType[]{
-            new PlanetType(200,0,200),
+            new PlanetType(0, 63, 7),
             new PlanetType(0,150,0)
         };
     }
@@ -50,7 +50,17 @@ public class MapGenerator {
     public Planet nextPlanet(int starx, int stary, int pos, Sector s){
         int x = starx;
         int y = (150*pos)+stary+250;
-        return new Planet(s, x, y, types[random.nextInt(types.length)]);
+        PlanetType t = types[random.nextInt(types.length)];
+        
+        //generate a random surface map
+        int[][] tileMap = new int[PlanetType.BUILD_COLS][PlanetType.BUILD_ROWS];
+        for(int i=0; i<PlanetType.BUILD_COLS; i++){
+            for(int j=0; j<PlanetType.BUILD_ROWS; j++){
+                tileMap[i][j] = random.nextInt(t.getTileCount());
+            }
+        }
+        
+        return new Planet(s, x, y, t, tileMap);
     }
     
 }

@@ -68,8 +68,8 @@ public class SectorTest {
         p.registerVessel(new VesselBlueprint("Demo Ship", new Hull(), new Hardware[]{new Engine()}));
         p.registerVessel(new VesselBlueprint("Scout Ship", new Hull(), new Hardware[]{new Engine(), new Engine(), new Engine()}));
 
-        Planet planet = new Planet(s, 0, 0, new PlanetType(255,255,255));
-        planet.setOwner(p);
+        Planet planet = new Planet(s, 0, 0, new PlanetType(255,255,255), new int[10][10]);
+        planet.colonise(p);
         s.add(planet);
             
         return p;
