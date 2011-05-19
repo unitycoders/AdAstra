@@ -4,7 +4,7 @@
  */
 package adastra.engine.vessel;
 
-import adastra.engine.AbilityI;
+import adastra.engine.Ability;
 import adastra.engine.Asset;
 import java.util.Collection;
 
@@ -17,7 +17,7 @@ public abstract class Hardware {
 
     public abstract String getName();
 
-    public abstract Collection<AbilityI> getAbilities();
+    public abstract Collection<Ability> getAbilities();
 
     public abstract int getBuildTime();
 

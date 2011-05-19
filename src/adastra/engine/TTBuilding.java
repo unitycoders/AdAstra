@@ -11,10 +11,10 @@ import adastra.engine.planet.BuildingBlueprint;
  * 
  * @author webpigeon
  */
-public class BuildingTechnology extends Technology {
+public class TTBuilding extends Technology {
     private BuildingBlueprint blueprint;
     
-    public BuildingTechnology(BuildingBlueprint blueprint, Technology left, Technology right){
+    public TTBuilding(BuildingBlueprint blueprint, Technology left, Technology right){
         super(left, right);
         this.blueprint = blueprint;
     }

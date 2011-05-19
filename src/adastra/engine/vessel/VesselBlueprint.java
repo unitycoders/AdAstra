@@ -5,13 +5,15 @@
 
 package adastra.engine.vessel;
 
+import adastra.engine.Blueprint;
 import adastra.engine.Location;
+import java.util.Map;
 
 /**
  *
  * @author jwalto
  */
-public class VesselBlueprint {
+public class VesselBlueprint extends Blueprint {
 
     private Hull hull;
     private Hardware[] hard;
@@ -64,6 +66,11 @@ public class VesselBlueprint {
     @Override
     public String toString(){
         return name;
+    }
+
+    @Override
+    public Map<String, Integer> getBuildCost() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

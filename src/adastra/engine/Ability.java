@@ -13,13 +13,13 @@ import java.awt.Point;
  * 
  * @author jwalto
  */
-public interface AbilityI {
+public interface Ability {
 
     public String getName();
 
     public String getCommand();
 
-    public EventI fireEvent(Asset source, Point target);
+    public Event fireEvent(Asset source, Point target);
 
  //         =,    (\_/)    ,=
  //          /`-'--(")--'-'\

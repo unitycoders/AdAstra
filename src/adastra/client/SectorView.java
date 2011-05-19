@@ -5,7 +5,7 @@
 package adastra.client;
 
 import adastra.engine.Asset;
-import adastra.engine.EventI;
+import adastra.engine.Event;
 import adastra.engine.Location;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -80,7 +80,7 @@ public class SectorView extends JComponent implements SectorModelListener {
             int radius = selected.getRadius();
             g.drawOval(loc.getX() - radius, loc.getY() - radius, radius*2, radius*2);
 
-            EventI e = selected.getEvent();
+            Event e = selected.getEvent();
             if (e != null) {
                 Location prev = loc;
                 Location[] la = e.getTargetLocation();

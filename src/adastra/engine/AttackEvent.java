@@ -10,7 +10,7 @@ package adastra.engine;
  * 
  * @author jwalto
  */
-public class AttackEvent implements EventI {
+public class AttackEvent implements Event {
     private Asset subject;
     private Asset target;
     
@@ -37,6 +37,11 @@ public class AttackEvent implements EventI {
     @Override
     public Location[] getTargetLocation() {
         return new Location[]{target.getLocation()};
+    }
+
+    @Override
+    public void microTick() {
+        //
     }
 
 }

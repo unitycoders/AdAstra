@@ -46,6 +46,6 @@ public class Hull {
     }
     
     public int getBuildTime(){
-        return maxHp;
+        return maxHp/10;
     }
 }

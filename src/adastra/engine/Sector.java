@@ -36,6 +36,15 @@ public class Sector implements Iterable<Asset>, AssetListener {
         this.assets.add(a);
         a.addAssetListener(this);
     }
+
+    public void microTick(){
+        Asset[] aa = new Asset[assets.size()];
+        assets.toArray(aa);
+
+        for(Asset a :aa){
+            a.microTick();
+        }
+    }
     
     public void tick(){
         Asset[] aa = new Asset[assets.size()];

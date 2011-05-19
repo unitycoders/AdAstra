@@ -5,7 +5,7 @@
 
 package adastra.engine.vessel;
 
-import adastra.engine.AbilityI;
+import adastra.engine.Ability;
 import java.util.Collection;
 
 /**
@@ -15,7 +15,7 @@ import java.util.Collection;
 public class Weapon extends Hardware {
 
     @Override
-    public Collection<AbilityI> getAbilities() {
+    public Collection<Ability> getAbilities() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

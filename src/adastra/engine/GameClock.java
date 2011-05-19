@@ -13,14 +13,21 @@ import java.util.TimerTask;
  */
 public class GameClock extends TimerTask {
     private Galaxy galaxy;
+    private int count;
     
     public GameClock(Galaxy gal){
         this.galaxy = gal;
+        count = 0;
     }
 
     @Override
     public void run() {
-        galaxy.tick(); //ubertick :P
+        count = (count +1) % 50;
+        if(count == 0){
+            System.out.println("painty goodness?");
+            galaxy.tick();
+        }
+        galaxy.microTick();
     }
     
 }

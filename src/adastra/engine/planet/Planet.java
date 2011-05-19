@@ -118,6 +118,7 @@ public class Planet extends Asset {
      * 
      * @return the properties screen for the planet
      */
+    @Override
     public JComponent getProperties(){
         if(colony == null){
             return new PlanetWindow(this);
@@ -144,6 +145,16 @@ public class Planet extends Asset {
            colony.tick();
        }
     }
+
+    @Override
+    public void microTick() {
+        super.tick();
+        if(colony != null){
+           colony.microTick();
+        }
+    }
+
+
 
     /**
      * Paint a planet to a given location

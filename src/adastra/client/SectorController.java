@@ -44,8 +44,8 @@ public class SectorController extends TimerTask {
         ctrl.resetCounter();
         
         Timer t = new Timer();
-        t.scheduleAtFixedRate(new GameClock(gal), 0, 15000);
-        t.scheduleAtFixedRate(ctrl, 0, 40);
+        t.scheduleAtFixedRate(new GameClock(gal), 0, 42);
+        //t.scheduleAtFixedRate(ctrl, 0, 40);
         
         enableCheats(g.getPlayer(0), sector);
     }

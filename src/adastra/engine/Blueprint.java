@@ -4,6 +4,8 @@
  */
 package adastra.engine;
 
+import java.util.Map;
+
 /**
  * The base class for all blueprints
  * it's not really used.
@@ -11,5 +13,8 @@ package adastra.engine;
  * @author webpigeon
  */
 public abstract class Blueprint {
+
+    public abstract int getBuildTime();
+    public abstract Map<String, Integer> getBuildCost();
     
 }

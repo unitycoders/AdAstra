@@ -17,12 +17,16 @@ import javax.swing.JComponent;
  */
 public class PlotMap extends JComponent implements MouseListener {
     private Planet planet;
-    private PlanetSettings settings;
+    private FactorySettings settings;
 
-    public PlotMap(Planet planet, PlanetSettings settings){
+    public PlotMap(Planet planet, FactorySettings settings){
         this.planet = planet;
         this.settings = settings;
         this.addMouseListener(this);
+    }
+
+    public void setFactory(FactorySettings factory){
+        this.settings = factory;
     }
 
     @Override
@@ -50,9 +54,11 @@ public class PlotMap extends JComponent implements MouseListener {
             }
         }
 
-        Point selected = settings.getSelected();
-        g.setColor(Color.GREEN);
-        g.drawRect((selected.x * width)+padx, (selected.y * height)+pady, (width), (height));
+        Point selected = settings.getSelection();
+        if(selected != null){
+            g.setColor(Color.GREEN);
+            g.drawRect((selected.x * width)+padx, (selected.y * height)+pady, (width), (height));
+        }
     }
 
     @Override

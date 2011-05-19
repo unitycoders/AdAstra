@@ -22,6 +22,12 @@ public class Galaxy {
         sectors = new ArrayList<Sector>();
         links = new HashMap<Sector, List<Sector>>();
     }
+
+    public void microTick(){
+        for(Sector s : sectors){
+            s.microTick();
+        }
+    }
     
     public void tick(){
         for(Sector s : sectors){

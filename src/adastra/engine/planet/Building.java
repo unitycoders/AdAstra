@@ -26,6 +26,7 @@ public abstract class Building {
     }
     
     public abstract void gameTick();
+    public abstract void microTick();
     public abstract JComponent getSettings();
     public abstract JComponent getIcon();
     

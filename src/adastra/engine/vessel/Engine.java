@@ -5,7 +5,7 @@
 
 package adastra.engine.vessel;
 
-import adastra.engine.AbilityI;
+import adastra.engine.Ability;
 import adastra.engine.Asset;
 import adastra.engine.MoveAbility;
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ import java.util.List;
 public class Engine extends Hardware {
 
     @Override
-    public Collection<AbilityI> getAbilities() {
-        List<AbilityI> ability = new ArrayList<AbilityI>();
+    public Collection<Ability> getAbilities() {
+        List<Ability> ability = new ArrayList<Ability>();
         ability.add(new MoveAbility());
         return ability;
     }
@@ -32,7 +32,7 @@ public class Engine extends Hardware {
 
     @Override
     public int getBuildTime() {
-        return 30;
+        return 5;
     }
 
     @Override

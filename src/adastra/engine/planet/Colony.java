@@ -48,21 +48,11 @@ public class Colony implements Iterable<Building[]> {
     }
 
     /**
-     * Check what we're currently builidng
+     * Check what we're currently builidng DONT CALL THIS I WILL EAT YOU.
      *
      */
-    private void checkBuild() {
-        if (blueprint == null) {
-            return; //not building
-        }
-
-        if (blueprint.getBuildTime() <= buildProgress) {
-            buildings[buildX][buildY] = blueprint.makeBuilding(planet);
-            blueprint = null;
-        } else {
-            buildProgress++;
-            System.out.println("build progress: "+buildProgress);
-        }
+    public void placeBuilding(int x, int y, Building b) {
+        buildings[buildX][buildY] = b;
     }
 
     /**
@@ -81,12 +71,20 @@ public class Colony implements Iterable<Building[]> {
      * 
      */
     public void tick() {
-        checkBuild();
-
         for (Building[] ba : buildings) {
             for (Building b : ba) {
                 if (b != null) {
                     b.gameTick();
+                }
+            }
+        }
+    }
+
+    public void microTick() {
+        for (Building[] ba : buildings) {
+            for (Building b : ba) {
+                if (b != null) {
+                    b.microTick();
                 }
             }
         }

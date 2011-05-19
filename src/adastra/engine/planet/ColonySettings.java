@@ -22,15 +22,17 @@ import javax.swing.JPanel;
  *
  * @author jwalto
  */
-public class PlanetSettings extends JPanel implements AssetListener {
+public class ColonySettings extends JPanel implements AssetListener {
     private Colony colony;
+    private ColonyBuilding colonyB;
     private Planet planet;
     private JList buildingList;
     private Point selected;
 
-    public PlanetSettings(Planet planet, Colony colony) {
+    public ColonySettings(Planet planet, Colony colony, ColonyBuilding colonyB) {
         this.colony = colony;
         this.planet = planet;
+        this.colonyB = colonyB;
         selected = new Point();
         buildUI();
         this.planet.addAssetListener(this);
@@ -60,9 +62,10 @@ public class PlanetSettings extends JPanel implements AssetListener {
                 BuildingBlueprint b = (BuildingBlueprint) buildingList.getSelectedValue();
                 if (b != null) {
                     try {
-                        colony.build(selected.x, selected.y, b);
+                        colonyB.build(selected.x, selected.y, b);
                     } catch (RuntimeException e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
+                        throw e;
                     }
                 }
             }
@@ -73,7 +76,7 @@ public class PlanetSettings extends JPanel implements AssetListener {
         
         add(leftPanel, BorderLayout.WEST);
 
-        add(new PlotMap(planet, this), BorderLayout.CENTER);
+        add(new PlotMap(planet, null), BorderLayout.CENTER);
     }
 
     public void updateList(BlueprintManager bp) {

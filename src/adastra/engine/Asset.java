@@ -24,9 +24,9 @@ import java.util.HashMap;
 public abstract class Asset {
     protected Player owner;
     protected Location location;
-    protected EventI order;
+    protected Event order;
     protected List<AssetListener> listeners;
-    protected List<AbilityI> abilities;
+    protected List<Ability> abilities;
     protected Map<String, Integer> properties;
     protected double rotation;
     protected int radius;
@@ -40,12 +40,18 @@ public abstract class Asset {
         this.radius = radius;
         this.location = location;
         this.listeners = new ArrayList<AssetListener>();
-        this.abilities = new ArrayList<AbilityI>();
+        this.abilities = new ArrayList<Ability>();
         this.properties = new HashMap<String,Integer>();
         this.rotation = 0;
     }
 
     public abstract JComponent getProperties();
+
+    public void microTick(){
+        if(order != null){
+            order.microTick();
+        }
+    }
 
     /**
      * 
@@ -73,7 +79,7 @@ public abstract class Asset {
      *
      * @param e
      */
-    public void setEvent(EventI e){
+    public void setEvent(Event e){
         this.order = e;
     }
 
@@ -81,7 +87,7 @@ public abstract class Asset {
      *
      * @return
      */
-    public EventI getEvent(){
+    public Event getEvent(){
         return this.order;
     }
 
@@ -148,8 +154,8 @@ public abstract class Asset {
         this.listeners.add(listener);
     }
     
-    public AbilityI[] getAbilities(Player p){
-        AbilityI[] aa = new AbilityI[abilities.size()];
+    public Ability[] getAbilities(Player p){
+        Ability[] aa = new Ability[abilities.size()];
         return abilities.toArray(aa);
     }
 

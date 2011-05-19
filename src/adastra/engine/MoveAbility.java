@@ -11,7 +11,7 @@ import java.awt.Point;
  * 
  * @author webpigeon
  */
-public class MoveAbility implements AbilityI {
+public class MoveAbility implements Ability {
     
     public String getName(){
         return "Move";
@@ -21,7 +21,7 @@ public class MoveAbility implements AbilityI {
         return "command.core.move";
     }
     
-    public EventI fireEvent(Asset source, Point target){
+    public Event fireEvent(Asset source, Point target){
         return new MoveEvent(source, target); 
     }
 }

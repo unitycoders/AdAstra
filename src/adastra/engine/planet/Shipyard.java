@@ -4,13 +4,13 @@
  */
 package adastra.engine.planet;
 
-import adastra.engine.BlueprintManager;
 import adastra.engine.vessel.Vessel;
 import adastra.engine.vessel.VesselBlueprint;
 import javax.swing.BoundedRangeModel;
 import javax.swing.JComponent;
 import javax.swing.event.ChangeListener;
 import java.util.Vector;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 
@@ -19,67 +19,24 @@ import javax.swing.event.ChangeEvent;
  * 
  * @author webpigeon
  */
-public class Shipyard extends Building implements BoundedRangeModel {
+public class Shipyard extends Factory<VesselBlueprint> {
 
-    private Planet planet;
-    private VesselBlueprint current;
-    private int progress; //current progress
-    private int completion; //progress needed for completion
     private int extent;
     private Vector<ChangeListener> listeners;
     private boolean ajusting;
-    private ShipyardSettings settings;
+    private FactorySettings settings;
 
     public Shipyard(Planet planet) {
-        super("Shipyard");
-        this.planet = planet;
-        this.current = null;
+        super("Shipyard", planet, null, planet.getOwner().getVessels());
         this.progress = 0;
-        this.completion = 0;
         this.extent = 0;
         this.ajusting = false;
         this.listeners = new Vector<ChangeListener>();
-        this.settings = new ShipyardSettings(this);
-    }
 
-    public void build(VesselBlueprint v) {
-        if (current != null) {
-            //throw new RuntimeException("already building something!");
-            //TODO add to queue
-            return;
-        }
+        ShipyardStatsPanel current = new ShipyardStatsPanel();
+        current.setBorder(BorderFactory.createTitledBorder("Currently Building"));
 
-        //set the new build up
-        current = v;
-        progress = 0;
-        completion = v.getBuildTime();
-        settings.setBuilding(v);
-        fireChanged();
-    }
-
-    public void clearBuild(){
-        current = null;
-        progress = 0;
-        completion = 0;
-        settings.clearBuild();
-    }
-
-    @Override
-    public void gameTick() {
-        //if we're building something, increment the build counter
-        if (current != null) {
-            progress += 100;
-            fireChanged();
-
-            if (progress >= completion) {
-                //todo write ship launch routine
-                Vessel v = current.buildVessel();
-                planet.orbitPlanet(v);
-                //not building anything
-                //todo implement build q
-                clearBuild();
-            }
-        }
+        this.settings = new FactorySettings(this, current);
     }
 
     @Override
@@ -111,7 +68,10 @@ public class Shipyard extends Building implements BoundedRangeModel {
 
     @Override
     public int getMaximum() {
-        return completion;
+        if(blueprint == null){
+            return 0;
+        }
+        return blueprint.getBuildTime();
     }
 
     @Override
@@ -144,13 +104,6 @@ public class Shipyard extends Building implements BoundedRangeModel {
         return extent;
     }
 
-    public BlueprintManager getBlueprints(){
-        if(planet != null && planet.getOwner() != null){
-            return this.planet.getOwner().getVessels();
-        }
-        return null;
-    }
-
     @Override
     public void setExtent(int i) {
         //throw new UnsupportedOperationException("Not supported yet.");
@@ -169,6 +122,18 @@ public class Shipyard extends Building implements BoundedRangeModel {
     @Override
     public void removeChangeListener(ChangeListener cl) {
         listeners.remove(cl);
+    }
+
+    @Override
+    public void onComplete() {
+        Vessel v = blueprint.buildVessel();
+        planet.orbitPlanet(v);
+        settings.repaint();
+    }
+
+    @Override
+    public void microTick() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

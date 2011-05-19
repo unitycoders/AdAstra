@@ -6,9 +6,9 @@ package adastra.client;
 
 import adastra.engine.Asset;
 import adastra.engine.Sector;
-import adastra.engine.AbilityI;
+import adastra.engine.Ability;
 import adastra.engine.CompositeEvent;
-import adastra.engine.EventI;
+import adastra.engine.Event;
 import adastra.engine.SectorListener;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -24,8 +24,8 @@ import java.util.Map;
 public class SectorModel implements SectorListener {
     private Sector selectedSector;
     private Asset selectedAsset;
-    private AbilityI selectedAbility;
-    private Map<String, AbilityI> abilies;
+    private Ability selectedAbility;
+    private Map<String, Ability> abilies;
     private List<SectorModelListener> listeners;
     private CompositeEvent events;
     private boolean compostite;
@@ -34,7 +34,7 @@ public class SectorModel implements SectorListener {
         this.selectedSector = null;
         this.selectedAsset = null;
         this.selectedAbility = null;
-        this.abilies = new HashMap<String, AbilityI>();
+        this.abilies = new HashMap<String, Ability>();
         this.listeners = new ArrayList<SectorModelListener>();
         this.compostite = false;
     }
@@ -64,7 +64,7 @@ public class SectorModel implements SectorListener {
         abilies.clear();
         
         //TODO add player support
-        for(AbilityI ab : a.getAbilities(null)){
+        for(Ability ab : a.getAbilities(null)){
             abilies.put(ab.getCommand(), ab);
         }
         fireAssetChanged();
@@ -74,7 +74,7 @@ public class SectorModel implements SectorListener {
         return this.selectedAsset;
     }
     
-    public Collection<AbilityI> getAbilities(){
+    public Collection<Ability> getAbilities(){
         return abilies.values();
     }
     
@@ -104,7 +104,7 @@ public class SectorModel implements SectorListener {
 
     public void giveOrder(Point p){
         if(selectedAbility != null){
-            EventI event = selectedAbility.fireEvent(selectedAsset, p);
+            Event event = selectedAbility.fireEvent(selectedAsset, p);
             if(compostite){
                 events.addEvent(event);
                 selectedAsset.setEvent(events);

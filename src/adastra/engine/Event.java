@@ -11,11 +11,13 @@ package adastra.engine;
  * 
  * @author jwalto
  */
-public interface EventI {
+public interface Event {
 
     public String getDescription();
 
     public void run();
+
+    public void microTick();
 
     public boolean isComplete();
 

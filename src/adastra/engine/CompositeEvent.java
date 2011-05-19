@@ -19,15 +19,15 @@ import java.util.Queue;
  * 
  * @author jwalto
  */
-public class CompositeEvent implements EventI {
-    private Queue<EventI> events;
-    private EventI current;
+public class CompositeEvent implements Event {
+    private Queue<Event> events;
+    private Event current;
     private Asset asset;
     private SectorModel model;
 
     public CompositeEvent(Asset a, SectorModel model){
         this.asset = a;
-        this.events = new LinkedList<EventI>();
+        this.events = new LinkedList<Event>();
         this.model = model;
     }
 
@@ -66,7 +66,7 @@ public class CompositeEvent implements EventI {
     @Override
     public Location[] getTargetLocation() {
         List<Location> locs = new ArrayList<Location>();
-        Iterator<EventI> itr = events.iterator();
+        Iterator<Event> itr = events.iterator();
         while(itr.hasNext()){
             locs.addAll(Arrays.asList(itr.next().getTargetLocation()));
         }
@@ -75,8 +75,15 @@ public class CompositeEvent implements EventI {
         return locs.toArray(loca);
     }
 
-    public void addEvent(EventI e){
+    public void addEvent(Event e){
         events.add(e);
+    }
+
+    @Override
+    public void microTick() {
+        if(current != null){
+            current.microTick();
+        }
     }
 
 }

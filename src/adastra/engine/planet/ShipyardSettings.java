@@ -42,7 +42,7 @@ public class ShipyardSettings extends JPanel{
         add(topPanel, BorderLayout.NORTH);     
 
         JPanel leftPane = new JPanel(new BorderLayout());
-        final JList buildList = new JList(shipyard.getBlueprints());
+        final JList buildList = new JList();
         buildList.setBorder(BorderFactory.createTitledBorder("Template List"));
         buildList.addListSelectionListener(new ListSelectionListener(){
 
@@ -63,7 +63,7 @@ public class ShipyardSettings extends JPanel{
             public void actionPerformed(ActionEvent e) {
 
                 VesselBlueprint bp = (VesselBlueprint)buildList.getSelectedValue();
-                shipyard.build(bp);
+                //shipyard.build(bp);
             }
 
         });

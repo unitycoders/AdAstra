@@ -11,9 +11,14 @@ import java.awt.Point;
  * 
  * @author webpigeon
  */
-public class MoveEvent implements EventI {
+public class MoveEvent implements Event {
     private Asset what;
     private Location where;
+    private int count = 0;
+
+    //microticks
+    private Location nextTick;
+    private int distance;
     
     public MoveEvent(Asset what, Point where){
         this.what = what;
@@ -27,6 +32,10 @@ public class MoveEvent implements EventI {
     
     @Override
     public void run(){
+        if(nextTick != null){
+            what.setLocation(nextTick);
+        }
+
         int maxDist = what.getProperty("core.engine.power");
         Location l = what.getLocation();
 
@@ -44,7 +53,8 @@ public class MoveEvent implements EventI {
             y = where.getY();
         }
 
-        what.setLocation(x, y);
+        nextTick = new Location(null, x, y);
+        distance = l.getDist(nextTick)/10;
     }
 
     @Override
@@ -55,6 +65,26 @@ public class MoveEvent implements EventI {
     @Override
     public Location[] getTargetLocation() {
         return new Location[]{where};
+    }
+
+    @Override
+    public void microTick() {
+        if(nextTick == null || distance == -1){
+            return;
+        }
+        Location l = what.getLocation();
+        double rotation = Math.toRadians(what.rotation);
+
+        int x = l.getX();
+        int y = l.getY();
+
+        x += (Math.sin(Math.PI/2 - rotation)*distance) *-1;
+        y += (Math.cos(Math.PI/2 - rotation)*distance) *-1;
+
+        what.setLocation(x, y);
+        if(what.getLocation().getDist(nextTick) < 10){
+            distance = -1;
+        }
     }
     
 }
