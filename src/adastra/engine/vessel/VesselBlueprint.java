@@ -57,7 +57,7 @@ public class VesselBlueprint {
         for(Hardware h : this.hard){
            sum += h.getBuildTime();
         }
-        sum += this.hull.getMaxHp(); // TODO add getBuildTime function
+        sum += this.hull.getBuildTime();
         return sum;
     }
 

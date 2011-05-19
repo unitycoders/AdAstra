@@ -14,7 +14,9 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- *
+ * An event which is made up of small events
+ * 
+ * 
  * @author jwalto
  */
 public class CompositeEvent implements EventI {

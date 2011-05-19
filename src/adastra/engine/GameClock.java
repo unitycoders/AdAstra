@@ -7,7 +7,8 @@ package adastra.engine;
 import java.util.TimerTask;
 
 /**
- *
+ * Controls the game ticks
+ * 
  * @author webpigeon
  */
 public class GameClock extends TimerTask {
@@ -20,7 +21,6 @@ public class GameClock extends TimerTask {
     @Override
     public void run() {
         galaxy.tick(); //ubertick :P
-        System.out.println("tick!");
     }
     
 }

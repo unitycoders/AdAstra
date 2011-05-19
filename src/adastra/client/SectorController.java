@@ -5,9 +5,8 @@
 
 package adastra.client;
 
-import adastra.MapGenerator;
-import adastra.engine.Asset;
 import adastra.engine.Galaxy;
+import adastra.engine.Game;
 import adastra.engine.GameClock;
 import adastra.engine.Player;
 import adastra.engine.Sector;
@@ -29,28 +28,29 @@ import javax.swing.JFrame;
  */
 public class SectorController extends TimerTask {
     private JFrame window;
-    private Galaxy galaxy;
     private SectorModel model;
     private SectorView sectorView;
     private int count = 0;
     
     public static void main(String[] args){
-        MapGenerator gen = new MapGenerator();
-        Galaxy gal = new Galaxy();
-        Sector sector = gen.nextSector();
+        Game g = new Game();
+        g.addPlayer("Dave");
+        g.generateMap(1);
         
-        SectorController ctrl = new SectorController(gal, sector);
+        Galaxy gal = g.getMap();
+        Sector sector = gal.getSector(0);
+        
+        SectorController ctrl = new SectorController(sector);
         ctrl.resetCounter();
         
         Timer t = new Timer();
         t.scheduleAtFixedRate(new GameClock(gal), 0, 15000);
         t.scheduleAtFixedRate(ctrl, 0, 40);
         
-        buildPlayer(sector);
-        gal.addSector(sector);
+        enableCheats(g.getPlayer(0), sector);
     }
     
-    public SectorController(Galaxy gal, Sector selected){
+    public SectorController(Sector selected){
 
         window = new JFrame("Sector Demo");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,23 +71,25 @@ public class SectorController extends TimerTask {
         window.setVisible(true);
     }
 
-    public static Player buildPlayer(Sector s){
-        Player p = new Player();
+    /**
+     * Builds some objects for a given player
+     * 
+     * @param p
+     * @param s 
+     */
+    public static void enableCheats(Player p, Sector s){
         p.registerBuilding(new ShipyardBlueprint());
         p.registerVessel(new VesselBlueprint("Demo Ship", new Hull(), new Hardware[]{new Engine()}));
         p.registerVessel(new VesselBlueprint("Scout Ship", new Hull(), new Hardware[]{new Engine(), new Engine(), new Engine()}));
 
-        Planet planet = new Planet(s, 0, 0, new PlanetType(255,255,255));
-        planet.setOwner(p);
+        Planet planet = new Planet(s, 0, 0, new PlanetType(255,255,255), new int[11][11]);
+        planet.colonise(p);
         s.add(planet);
-
-        return p;
     }
 
     @Override
     public void run() {
         count ++;
-
         sectorView.repaint();
     }
 

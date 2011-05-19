@@ -7,7 +7,8 @@ package adastra.engine;
 import java.awt.Point;
 
 /**
- *
+ * Issues a move order
+ * 
  * @author webpigeon
  */
 public class MoveEvent implements EventI {

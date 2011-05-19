@@ -7,6 +7,7 @@ package adastra.engine.planet;
 import adastra.engine.AssetListener;
 import adastra.engine.Player;
 import java.awt.BorderLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
@@ -24,9 +25,11 @@ public class PlanetSettings extends JPanel implements AssetListener {
 
     private Planet planet;
     private JList buildingList;
+    private Point selected;
 
     public PlanetSettings(Planet planet) {
         this.planet = planet;
+        selected = new Point();
         buildUI();
         this.planet.addAssetListener(this);
     }
@@ -34,9 +37,9 @@ public class PlanetSettings extends JPanel implements AssetListener {
     private void buildUI() {
         setLayout(new BorderLayout());
 
-        JPanel topPanel = new JPanel();
-        topPanel.setBorder(BorderFactory.createTitledBorder("CAKE?!"));
-        add(topPanel, BorderLayout.NORTH);
+       // JPanel topPanel = new JPanel();
+       // topPanel.setBorder(BorderFactory.createTitledBorder("CAKE?!"));
+       // add(topPanel, BorderLayout.NORTH);
 
         JPanel leftPanel = new JPanel();
 
@@ -55,10 +58,9 @@ public class PlanetSettings extends JPanel implements AssetListener {
                 BuildingBlueprint b = (BuildingBlueprint) buildingList.getSelectedValue();
                 if (b != null) {
                     try {
-                        planet.build(planet.getX(), planet.getY(), b.makeBuilding(planet));
+                        planet.build(selected.x, selected.y, b);
                     } catch (RuntimeException e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
-                        throw e;
                     }
                 }
             }
@@ -66,9 +68,10 @@ public class PlanetSettings extends JPanel implements AssetListener {
         buildingPanel.add(dave);
 
         leftPanel.add(buildingPanel);
+        
         add(leftPanel, BorderLayout.WEST);
 
-        add(new PlotMap(planet, 10, 10), BorderLayout.CENTER);
+        add(new PlotMap(planet, planet.getType(), this), BorderLayout.CENTER);
     }
 
     public void updateList(BlueprintManager bp) {
@@ -83,5 +86,14 @@ public class PlanetSettings extends JPanel implements AssetListener {
     @Override
     public void onChangeLocation() {
         //throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    public void setSelected(int x, int y){
+        selected.setLocation(x, y);
+        repaint();
+    }
+    
+    public Point getSelected(){
+        return selected;
     }
 }

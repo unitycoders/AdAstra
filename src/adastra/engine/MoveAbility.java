@@ -7,7 +7,8 @@ package adastra.engine;
 import java.awt.Point;
 
 /**
- *
+ * Provides the ability to move
+ * 
  * @author webpigeon
  */
 public class MoveAbility implements AbilityI {

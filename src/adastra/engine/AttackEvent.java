@@ -6,7 +6,8 @@
 package adastra.engine;
 
 /**
- *
+ * An attack order, not really used
+ * 
  * @author jwalto
  */
 public class AttackEvent implements EventI {

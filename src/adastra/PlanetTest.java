@@ -27,13 +27,13 @@ public class PlanetTest {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800,600));
 
-        Player player = new Player();
+        Player player = new Player("Demo Player");
         player.registerBuilding(new ShipyardBlueprint());
 
         //Planet tools
         PlanetType pClass = new PlanetType(0,0,0);
-        Planet planet = new Planet(null, 10,10, pClass);
-        planet.setOwner(player);
+        Planet planet = new Planet(null, 10,10, pClass, new int[10][10]);
+        planet.colonise(player);
 
         frame.add(planet.getProperties());
         

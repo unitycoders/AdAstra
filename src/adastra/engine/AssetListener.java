@@ -6,7 +6,8 @@
 package adastra.engine;
 
 /**
- *
+ * Listeners for assets, provides a way to monitor assets for changes
+ * 
  * @author jwalto
  */
 public interface AssetListener {

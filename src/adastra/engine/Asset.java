@@ -17,7 +17,8 @@ import java.util.Map;
 import java.util.HashMap;
 
 /**
- *
+ * The base class for all game objects
+ * 
  * @author webpigeon
  */
 public abstract class Asset {
@@ -42,15 +43,6 @@ public abstract class Asset {
         this.abilities = new ArrayList<AbilityI>();
         this.properties = new HashMap<String,Integer>();
         this.rotation = 0;
-    }
-    
-    /**
-     * Get the component representing the asset's apperance
-     * 
-     * @return 
-     */
-    public JComponent getForm(){
-        return new JLabel("<Insert form here>");
     }
 
     public abstract JComponent getProperties();

@@ -4,16 +4,15 @@
  */
 package adastra;
 
+import adastra.engine.MapGenerator;
 import adastra.client.SectorModel;
 import adastra.client.SectorPanel;
 import adastra.client.SectorView;
 import adastra.engine.Galaxy;
 import adastra.engine.GameClock;
 import adastra.engine.vessel.Hull;
-import adastra.engine.Location;
 import adastra.engine.Player;
 import adastra.engine.Sector;
-import adastra.engine.vessel.Vessel;
 import adastra.engine.planet.Planet;
 import adastra.engine.planet.PlanetType;
 import adastra.engine.planet.ShipyardBlueprint;
@@ -21,7 +20,6 @@ import adastra.engine.vessel.Engine;
 import adastra.engine.vessel.Hardware;
 import adastra.engine.vessel.VesselBlueprint;
 import java.awt.BorderLayout;
-import java.util.Random;
 import java.util.Timer;
 
 import javax.swing.JFrame;
@@ -65,13 +63,13 @@ public class SectorTest {
     }
     
     public static Player buildPlayer(Sector s){
-        Player p = new Player();
+        Player p = new Player("demo player");
         p.registerBuilding(new ShipyardBlueprint());
         p.registerVessel(new VesselBlueprint("Demo Ship", new Hull(), new Hardware[]{new Engine()}));
         p.registerVessel(new VesselBlueprint("Scout Ship", new Hull(), new Hardware[]{new Engine(), new Engine(), new Engine()}));
 
-        Planet planet = new Planet(s, 0, 0, new PlanetType(255,255,255));
-        planet.setOwner(p);
+        Planet planet = new Planet(s, 0, 0, new PlanetType(255,255,255), new int[10][10]);
+        planet.colonise(p);
         s.add(planet);
             
         return p;

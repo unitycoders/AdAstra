@@ -20,25 +20,41 @@ import javax.swing.JComponent;
  */
 public class Planet extends Asset {
     private PlanetType type;
-    private Building[][] buildings;
+    private int[][] surface;
     private PlanetWindow settings;
-    @Deprecated
-    private int x,y;
-
-    public Planet(Sector s, int x, int y, PlanetType clss){
+    private Colony colony;
+    
+    public Planet(Sector s, int x, int y, PlanetType type, int[][] tileMap){
         super(new Location(s, x,y), 50);
-        type = clss;
+        this.type = type;
+        this.surface = tileMap;
         owner = null;
-        buildings = new Building[type.getRows()][type.getCols()];
         settings = new PlanetWindow(this);
         settings.addContent("Overview", new PlanetSettings(this));
     }
-
-    public void setOwner(Player p){
+    
+    /**
+     * Take ownership of planet and build a colony on it
+     * @param p 
+     */
+    public void colonise(Player p){
+        if(owner != null){
+            throw new RuntimeException("already colonised!");
+        }
+        
         this.owner = p;
+        this.colony = new Colony(this);
         this.fireChangeOwner();
     }
-
+    
+    public Colony getColony(){
+        return colony;
+    }
+    
+    public Tile getTile(int x, int y){
+        return type.getTile(surface[x][y]);
+    }
+    
     public Player getOwner(){
         return this.owner;
     }
@@ -62,29 +78,19 @@ public class Planet extends Asset {
      * @param plot
      * @param b 
      */
-    public void build(int row, int col, Building b){
-        if(!type.canBuild(row, col) || buildings[row][col] != null){
-            throw new RuntimeException("Can't build here!");
-        }
-
-        buildings[row][col] = b;
-        settings.addContent(b.getName(), b.getSettings());
-    }
-
     @Deprecated
-    public void setSelected(int x, int y){
-        this.x = x;
-        this.y = y;
+    public void build(int row, int col, BuildingBlueprint bp){        
+        colony.build(row, col, bp);
     }
 
     @Deprecated
     public int getX(){
-        return this.x;
+        return 5;
     }
 
     @Deprecated
     public int getY(){
-        return this.y;
+        return 5;
     }
 
     public PlanetType getType(){
@@ -95,8 +101,9 @@ public class Planet extends Asset {
         return settings;
     }
 
+    @Deprecated
     public Building getBuildingAt(int row, int col){
-        return buildings[row][col]; //TODO code guard for out of bounds
+        return colony.buildingAt(row, col);
     }
     
     /**
@@ -105,12 +112,10 @@ public class Planet extends Asset {
     @Override
     public void tick(){
        super.tick();
-        for(Building[] ba : buildings){
-            for(Building b : ba){
-                if(b != null)
-                    b.gameTick();
-            }
-        }
+       
+       if(colony != null){
+           colony.tick();
+       }
     }
     
     public void paintAt(Graphics g, int x, int y){

@@ -15,16 +15,17 @@ public class Hull {
     private String name;
     private int hp = 0;
     private int maxHp = 0;
+    private int[] hardpoints; //TODO find out what these should be (not ints)
 
     @Deprecated
     public Hull(){
-        this.name = "Cake";
-        this.maxHp = 100;
+        this("demo hull", 100);
     }
 
     public Hull(String name, int hp){
         this.name = name;
         this.maxHp = hp;
+        this.hardpoints = new int[5];
     }
 
     public String getName(){
@@ -37,10 +38,14 @@ public class Hull {
     }
 
     public int getHardpointCount(){
-        return 5; //TODO code hardpoints into hulls
+        return hardpoints.length;
     }
     
     public int getMaxHp(){
+        return maxHp;
+    }
+    
+    public int getBuildTime(){
         return maxHp;
     }
 }

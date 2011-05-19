@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * The galaxy is the game map
+ * 
  * @author webpigeon
  */
 public class Galaxy {
@@ -30,6 +31,10 @@ public class Galaxy {
     
     public void addSector(Sector s1){
         sectors.add(s1);
+    }
+    
+    public Sector getSector(int id){
+        return sectors.get(id);
     }
     
     public void addLink(Sector s1, Sector s2){

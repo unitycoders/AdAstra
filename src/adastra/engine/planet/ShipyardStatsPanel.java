@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  *
  * @author webpigeon
  */
-public class ShipyardStatsPanel extends JPanel {
+public final class ShipyardStatsPanel extends JPanel {
     private VesselBlueprint blueprint;
     private JPanel preview;
     private JLabel hpLabel;
@@ -32,7 +32,8 @@ public class ShipyardStatsPanel extends JPanel {
         setLayout(new GridLayout(1, 2, 5, 5));
 
         preview = new JPanel();
-        preview.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        preview.setBackground(new Color(127, 141, 229));
+        preview.setBorder(BorderFactory.createLineBorder(new Color(51, 58, 102)));
 
         add(preview, BorderLayout.WEST);
         

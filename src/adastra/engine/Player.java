@@ -11,16 +11,19 @@ import adastra.engine.vessel.VesselBlueprint;
 import java.util.ArrayList;
 
 /**
- *
+ * A player of the game
+ * 
  * @author jwalto
  */
 public class Player {
+    private String name;
     private BlueprintManager<BuildingBlueprint> buildingBps;
     private BlueprintManager<VesselBlueprint> vessels;
 
-    public Player(){
-        buildingBps = new BlueprintManager<BuildingBlueprint>();
-        vessels = new BlueprintManager<VesselBlueprint>();
+    public Player(String name){
+        this.name = name;
+        this.buildingBps = new BlueprintManager<BuildingBlueprint>();
+        this.vessels = new BlueprintManager<VesselBlueprint>();
     }
 
     public void registerBuilding(BuildingBlueprint bp){
