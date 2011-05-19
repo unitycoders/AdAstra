@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 
 /**
+ * The centeral management building for a colony
  *
  * @author webpigeon
  */

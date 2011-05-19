@@ -5,17 +5,10 @@
 package adastra.engine.planet;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 /**
@@ -23,22 +16,13 @@ import javax.swing.JComponent;
  * @author jwalto
  */
 public class PlotMap extends JComponent implements MouseListener {
-    private Image background;
     private Planet planet;
-    private PlanetType type;
     private PlanetSettings settings;
 
-    public PlotMap(Planet planet, PlanetType type, PlanetSettings settings){
+    public PlotMap(Planet planet, PlanetSettings settings){
         this.planet = planet;
-        this.type = type;
         this.settings = settings;
         this.addMouseListener(this);
-        
-        try {
-            background = ImageIO.read(new File("earth_planet_bg.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(PlotMap.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     @Override
@@ -99,7 +83,6 @@ public class PlotMap extends JComponent implements MouseListener {
     }
     
     
-
     @Override
     public void mouseClicked(MouseEvent e) {
         Point p = e.getPoint();

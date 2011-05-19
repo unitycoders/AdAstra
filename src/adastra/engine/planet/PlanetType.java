@@ -33,10 +33,6 @@ public class PlanetType {
     public Tile getTile(int id){
         return tiles[id];
     }
-
-    public int getPlots() {
-        return 100;
-    }
     
     public Color getColour(){
         return colour;

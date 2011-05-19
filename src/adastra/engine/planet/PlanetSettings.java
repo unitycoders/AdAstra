@@ -71,7 +71,7 @@ public class PlanetSettings extends JPanel implements AssetListener {
         
         add(leftPanel, BorderLayout.WEST);
 
-        add(new PlotMap(planet, planet.getType(), this), BorderLayout.CENTER);
+        add(new PlotMap(planet, this), BorderLayout.CENTER);
     }
 
     public void updateList(BlueprintManager bp) {

@@ -8,6 +8,7 @@ import java.util.Iterator;
 import utilities.ArrayIterator;
 
 /**
+ * A colony is the man-made hub of the planet
  *
  * @author webpigeon
  */
@@ -18,6 +19,12 @@ public class Colony implements Iterable<Building[]> {
     private int buildX, buildY;
     private int buildProgress;
 
+    /**
+     * Build a new colony
+     *
+     * This also builds the colony building at 5,5
+     * @param p the planet the colony is on
+     */
     public Colony(Planet p) {
         this.planet = p;
         this.buildings = new Building[PlanetType.BUILD_ROWS][PlanetType.BUILD_COLS];
@@ -25,6 +32,13 @@ public class Colony implements Iterable<Building[]> {
         this.buildings[5][5] = new ColonyBuilding();
     }
 
+    /**
+     * Mark a building to be built
+     *
+     * @param x The x co-ordinate to build at
+     * @param y the y co-ordinate to build at
+     * @param bp the blueprint to build from
+     */
     public void build(int x, int y, BuildingBlueprint bp) {
         buildProgress = 0;
         blueprint = bp;
@@ -32,6 +46,10 @@ public class Colony implements Iterable<Building[]> {
         buildY = y;
     }
 
+    /**
+     * Check what we're currently builidng
+     *
+     */
     private void checkBuild() {
         if (blueprint == null) {
             return; //not building
@@ -46,10 +64,21 @@ public class Colony implements Iterable<Building[]> {
         }
     }
 
+    /**
+     * Get the building at a given location
+     *
+     * @param x the buildings x location
+     * @param y the buildings y location
+     * @return the building
+     */
     public Building buildingAt(int x, int y) {
         return buildings[x][y];
     }
 
+    /**
+     * Execute a game tick (should be called by the planet)
+     * 
+     */
     public void tick() {
         checkBuild();
 

@@ -44,15 +44,6 @@ public class Vessel extends Asset {
             setHardware(i, hw[i]);
         }
     }
-    
-    /**
-     * Interface for hardware use
-     */
-    public void use(int id, Point p){
-        for(Hardware hw : hardware){
-            hw.use(id);
-        }
-    }
 
     /**
      * Add a new piece of hardware to a ship

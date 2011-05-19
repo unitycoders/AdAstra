@@ -184,5 +184,9 @@ public abstract class Asset {
         //TODO this is a bad way of doing it, make it better
         g.fillRect(x, y, 35, 35);
     }
+
+    public Player getOwner(){
+        return owner;
+    }
     
 }
