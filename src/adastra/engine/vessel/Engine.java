@@ -18,10 +18,6 @@ import java.util.List;
  */
 public class Engine extends Hardware {
 
-    public void use(int opiton){
-        
-    }
-
     @Override
     public Collection<AbilityI> getAbilities() {
         List<AbilityI> ability = new ArrayList<AbilityI>();

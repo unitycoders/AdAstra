@@ -14,13 +14,6 @@ import java.util.Collection;
  */
 public abstract class Hardware {
     protected Asset attached;
-    
-    /**
-     * Use this hardware
-     * 
-     * @param opiton gives a piece the hardware the chance to do multiple things
-     */
-    public abstract void use(int opiton);
 
     public abstract String getName();
 

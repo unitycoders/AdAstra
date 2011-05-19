@@ -15,11 +15,6 @@ import java.util.Collection;
 public class Weapon extends Hardware {
 
     @Override
-    public void use(int opiton) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
     public Collection<AbilityI> getAbilities() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
