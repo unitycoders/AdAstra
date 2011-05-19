@@ -73,6 +73,10 @@ public abstract class Asset {
         fireChangeLocation();
     }
 
+    public void setLocation(Location l){
+        setLocation(l.getX(),l.getY());
+    }
+
     /**
      *
      * @param e

@@ -6,9 +6,7 @@
 package adastra.engine.vessel;
 
 import adastra.client.SectorController;
-import adastra.engine.Asset;
 import adastra.engine.Location;
-import adastra.engine.Sector;
 import utilities.CrazyMath;
 
 /**
@@ -28,6 +26,6 @@ public class MovementAgent {
     }
 
     public void run(int i, int max){
-        v.setLocation(CrazyMath.positionAlongALine(startLocation,endLocation, 15000/40));
+        vessel.setLocation(CrazyMath.positionAlongALine(startLocation,endLocation, max/i));
     }
 }
