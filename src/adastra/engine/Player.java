@@ -5,10 +5,8 @@
 
 package adastra.engine;
 
-import adastra.engine.planet.BlueprintManager;
 import adastra.engine.planet.BuildingBlueprint;
 import adastra.engine.vessel.VesselBlueprint;
-import java.util.ArrayList;
 
 /**
  * A player of the game

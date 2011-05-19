@@ -30,7 +30,7 @@ public class ColonyBuilding extends Building {
 
     @Override
     public JComponent getSettings() {
-        return new PlanetSettings(planet);
+        return new PlanetSettings(planet, colony);
     }
 
     @Override

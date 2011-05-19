@@ -114,14 +114,16 @@ public class Planet extends Asset {
     /**
      * Get the planet's properties screen
      *
-     * Step 1 of decouping the UI from the engine
+     * Step 1 of decouping the UI from the UI
      * 
      * @return the properties screen for the planet
      */
     public JComponent getProperties(){
-        PlanetWindow settings = new PlanetWindow(this);
-        settings.addContent("colony", colony.getSettings());
-        return settings;
+        if(colony == null){
+            return new PlanetWindow(this);
+        }else{
+            return colony.getSettings();
+        }
     }
 
     @Deprecated

@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package adastra.engine.planet;
+package adastra.engine;
 
 import java.util.ArrayList;
 import java.util.List;

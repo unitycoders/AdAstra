@@ -4,6 +4,7 @@
  */
 package adastra.engine.planet;
 
+import adastra.engine.BlueprintManager;
 import adastra.engine.AssetListener;
 import adastra.engine.Player;
 import java.awt.BorderLayout;
@@ -22,12 +23,13 @@ import javax.swing.JPanel;
  * @author jwalto
  */
 public class PlanetSettings extends JPanel implements AssetListener {
-
+    private Colony colony;
     private Planet planet;
     private JList buildingList;
     private Point selected;
 
-    public PlanetSettings(Planet planet) {
+    public PlanetSettings(Planet planet, Colony colony) {
+        this.colony = colony;
         this.planet = planet;
         selected = new Point();
         buildUI();
@@ -46,7 +48,7 @@ public class PlanetSettings extends JPanel implements AssetListener {
         JPanel buildingPanel = new JPanel();
         buildingPanel.setLayout(new BoxLayout(buildingPanel, BoxLayout.Y_AXIS));
         buildingPanel.setBorder(BorderFactory.createTitledBorder("Buildings"));
-        buildingList = new JList();
+        buildingList = new JList(planet.getOwner().getBuildings());
         buildingPanel.add(buildingList);
 
 
@@ -58,7 +60,7 @@ public class PlanetSettings extends JPanel implements AssetListener {
                 BuildingBlueprint b = (BuildingBlueprint) buildingList.getSelectedValue();
                 if (b != null) {
                     try {
-                        planet.build(selected.x, selected.y, b);
+                        colony.build(selected.x, selected.y, b);
                     } catch (RuntimeException e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
                     }

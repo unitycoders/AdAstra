@@ -5,6 +5,7 @@
 package adastra.engine.planet;
 
 import java.util.Iterator;
+import javax.swing.JComponent;
 import utilities.ArrayIterator;
 
 /**
@@ -89,6 +90,23 @@ public class Colony implements Iterable<Building[]> {
                 }
             }
         }
+    }
+
+    /**
+     * Build a new planet settings frame and return it
+     *
+     * @return
+     */
+    public JComponent getSettings(){
+        PlanetWindow window = new PlanetWindow(planet);
+        for(Building[] ba : buildings){
+            for(Building b : ba){
+                if(b != null){
+                    window.addContent(b.getName(), b.getSettings());
+                }
+            }
+        }
+        return window;
     }
 
     @Override
