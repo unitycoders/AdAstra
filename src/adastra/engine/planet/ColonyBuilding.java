@@ -14,9 +14,13 @@ import javax.swing.JComponent;
  * @author webpigeon
  */
 public class ColonyBuilding extends Building {
+    private Colony colony;
+    private Planet planet;
 
-    public ColonyBuilding() {
+    public ColonyBuilding(Colony col, Planet planet) {
         super("Colony Building");
+        this.colony = col;
+        this.planet = planet;
     }
     
     @Override
@@ -26,7 +30,7 @@ public class ColonyBuilding extends Building {
 
     @Override
     public JComponent getSettings() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new PlanetSettings(planet);
     }
 
     @Override

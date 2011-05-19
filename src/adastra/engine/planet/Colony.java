@@ -29,7 +29,7 @@ public class Colony implements Iterable<Building[]> {
         this.planet = p;
         this.buildings = new Building[PlanetType.BUILD_ROWS][PlanetType.BUILD_COLS];
         this.buildProgress = 0;
-        this.buildings[5][5] = new ColonyBuilding();
+        this.buildings[5][5] = new ColonyBuilding(this, p);
     }
 
     /**
