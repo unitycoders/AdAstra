@@ -149,7 +149,6 @@ public class SectorModel implements SectorListener {
 
     @Override
     public void sectorDataChanged() {
-        System.out.println("Got sector changed event!");
         fireSectorDataChanged();
     }
 

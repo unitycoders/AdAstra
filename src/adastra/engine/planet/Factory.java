@@ -80,4 +80,9 @@ public abstract class Factory<T extends Blueprint> extends Building {
         return model;
     }
 
+    @Override
+    public void microTick() {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

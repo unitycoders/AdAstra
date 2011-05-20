@@ -80,7 +80,10 @@ public class SectorController extends TimerTask {
     public static void enableCheats(Player p, Sector s){
         p.registerBuilding(new ShipyardBlueprint());
         p.registerVessel(new VesselBlueprint("Demo Ship", new Hull(), new Hardware[]{new Engine()}));
-        p.registerVessel(new VesselBlueprint("Scout Ship", new Hull(), new Hardware[]{new Engine(), new Engine(), new Engine()}));
+        VesselBlueprint scout = new VesselBlueprint("Scout Ship", new Hull(), new Hardware[]{new Engine(), new Engine(), new Engine()});
+        p.registerVessel(scout);
+
+        s.add(scout.buildVessel());
 
         Planet planet = new Planet(s, 0, 0, new PlanetType(255,255,255), new int[11][11]);
         planet.colonise(p);

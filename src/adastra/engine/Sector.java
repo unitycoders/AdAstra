@@ -7,6 +7,7 @@ package adastra.engine;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import utilities.ArrayIterator;
 
 /**
  * The most common area of the game map
@@ -67,7 +68,11 @@ public class Sector implements Iterable<Asset>, AssetListener {
 
     @Override
     public Iterator<Asset> iterator() {
-        return assets.iterator();
+        Asset[] aa = new Asset[assets.size()];
+        assets.toArray(aa);
+
+        return new ArrayIterator(aa);
+        //return assets.iterator();
     }
     
     public void fireDataChanged(){

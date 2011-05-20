@@ -36,7 +36,7 @@ public class ShipyardSettings extends JPanel{
         currentBuild = new JLabel("<idle>");
         topPanel.add(currentBuild);
         status = new JProgressBar(0,100);
-        status.setModel(shipyard);
+        status.setModel(shipyard.getModel());
         status.setStringPainted(true);
         topPanel.add(status);
         add(topPanel, BorderLayout.NORTH);     

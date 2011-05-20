@@ -61,6 +61,11 @@ public class ColonyBuilding extends Factory<BuildingBlueprint> {
     public void onComplete() {
         colony.placeBuilding(build.x, build.y, blueprint.makeBuilding(planet));
     }
+
+    @Override
+    public void microTick() {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
     
     
     
