@@ -15,7 +15,9 @@ public class KeyPressOptions extends Option{
     */
 
     public int DOWN_KEY;
+    public int LEFT_KEY;
     public int MENU;
+    public int RIGHT_KEY;
     public int TOGGLE;
     public int UP_KEY;
 
