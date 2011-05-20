@@ -59,6 +59,7 @@ public class MoveEvent implements Event {
         if(jumps != null){
             return;
         }
+        //should not be executed past this point, as jumps is never zero
         System.err.println("The FUCK?!");
 
         if(nextTick != null){
