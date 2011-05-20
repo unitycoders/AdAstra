@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package adastra.engine.planet;
+package adastra.engine.planet.old;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
