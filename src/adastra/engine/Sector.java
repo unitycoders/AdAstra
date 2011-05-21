@@ -111,6 +111,11 @@ public class Sector implements Iterable<Asset>, AssetListener {
         //Asset changed location...
         fireDataChanged();
     }
+
+    @Override
+    public void onChange() {
+        fireDataChanged();
+    }
     
     
 }

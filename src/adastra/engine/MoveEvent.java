@@ -28,8 +28,6 @@ public class MoveEvent implements Event {
         this.what = what;
         this.where = new Location(what.getLocation().getSector(),where.x, where.y);
         jumps = new LinkedList<Location>();
-        
-
 
         int maxDist = what.getProperty("core.engine.power");
         System.out.println("Move to: "+where);
