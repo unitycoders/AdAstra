@@ -13,20 +13,21 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 /**
- *
+ * DON'T USE THIS CLASS IT WILL BE REMOVED
+ * 
  * @author webpigeon
  */
 public class ShipyardSettings extends JPanel{
     private JProgressBar status;
-    private Shipyard shipyard;
-    private ShipyardStatsPanel current;
-    private ShipyardStatsPanel selected;
+    //private Shipyard shipyard;
+   // private ShipyardStatsPanel current;
+   // private ShipyardStatsPanel selected;
     private JLabel currentBuild;
 
-    public ShipyardSettings(Shipyard yard){
-        this.shipyard = yard;
-        buildUI();
-    }
+   // public ShipyardSettings(Shipyard yard){
+   //     this.shipyard = yard;
+    //    buildUI();
+   // }
     
     private void buildUI(){
         setLayout(new BorderLayout());
@@ -36,7 +37,7 @@ public class ShipyardSettings extends JPanel{
         currentBuild = new JLabel("<idle>");
         topPanel.add(currentBuild);
         status = new JProgressBar(0,100);
-        status.setModel(shipyard.getModel());
+        //status.setModel(shipyard.getModel());
         status.setStringPainted(true);
         topPanel.add(status);
         add(topPanel, BorderLayout.NORTH);     
@@ -49,8 +50,8 @@ public class ShipyardSettings extends JPanel{
             @Override
             public void valueChanged(ListSelectionEvent lse) {
                 VesselBlueprint bp = (VesselBlueprint)buildList.getSelectedValue();
-                selected.setHull(bp);
-                selected.repaint();
+                //selected.setHull(bp);
+                //selected.repaint();
             }
             
         });
@@ -74,24 +75,24 @@ public class ShipyardSettings extends JPanel{
         JPanel centrePanel = new JPanel();
         centrePanel.setLayout(new BoxLayout(centrePanel,BoxLayout.Y_AXIS));
         
-        current = new ShipyardStatsPanel();
-        current.setBorder(BorderFactory.createTitledBorder("Currently Building"));
-        centrePanel.add(current);
+        //current = new ShipyardStatsPanel();
+        //current.setBorder(BorderFactory.createTitledBorder("Currently Building"));
+        //centrePanel.add(current);
         
-        selected = new ShipyardStatsPanel();
-        selected.setBorder(BorderFactory.createTitledBorder("Selected Template"));
-        centrePanel.add(selected);
+        //selected = new ShipyardStatsPanel();
+       // selected.setBorder(BorderFactory.createTitledBorder("Selected Template"));
+       // centrePanel.add(selected);
         
         add(centrePanel, BorderLayout.CENTER);
     }
 
     public void setBuilding(VesselBlueprint v){
-        current.setHull(v);
+        //current.setHull(v);
         currentBuild.setText(v.getName());
     }
 
     public void clearBuild(){
-        current.setHull(null);
+        //current.setHull(null);
         currentBuild.setText("<idle>");
     }
 }
