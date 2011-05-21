@@ -16,7 +16,7 @@ import java.util.Queue;
 public class MoveEvent implements Event {
     private Asset what;
     private Location where;
-    private int turn = 0;
+    private int turn;
     private Queue<Location> jumps;
 
     //microticks
@@ -24,27 +24,39 @@ public class MoveEvent implements Event {
     private double distance;
     
     public MoveEvent(Asset what, Point where){
+        this.turn = 1;
         this.what = what;
         this.where = new Location(what.getLocation().getSector(),where.x, where.y);
         jumps = new LinkedList<Location>();
+        
+
 
         int maxDist = what.getProperty("core.engine.power");
+        System.out.println("Move to: "+where);
+        System.out.println("Maxium distance: "+maxDist);
+        
         Location l = what.getLocation();
         double rotation = Math.atan2(l.getY()-where.getY(), l.getX()-where.getX());
         int x = l.getX();
         int y = l.getY();
-        Location prev = new Location(null,600,600);
-        while(prev.getDist(l) >= maxDist){
+        
+        Location prev;
+        do{
             x += (Math.sin(Math.PI/2 - rotation)*maxDist) *-1;
             y += (Math.cos(Math.PI/2 - rotation)*maxDist) *-1;
             prev = new Location(null, x, y);
             jumps.add(prev);
-        }
+        }while(prev.getDist(l) >= maxDist && prev.getDist(this.where) > maxDist);
     }
     
     @Override
     public String getDescription(){
-        return "move to "+where;
+        String jstr = "";
+        if(jumps.size() != 1){
+            jstr = " ("+jumps.size()+" Jumps)";
+        }
+        
+        return "move to "+where+jstr;
     }
     
     @Override
@@ -52,45 +64,17 @@ public class MoveEvent implements Event {
         if(jumps.isEmpty()){
             return;
         }
-
+        
+        turn = 1;
         nextTick = jumps.poll();
+        System.out.println("next tick"+nextTick);
+        double rotation = Math.atan2(what.getLocation().getY()-nextTick.getY(), what.getLocation().getX()-nextTick.getX());
+        what.rotateTo(Math.toDegrees(rotation));
         what.setLocation(nextTick);
 
         if(jumps != null){
             return;
         }
-        //should not be executed past this point, as jumps is never zero
-        System.err.println("The FUCK?!");
-
-        if(nextTick != null){
-            what.setLocation(nextTick);
-        }
-
-        int maxDist = what.getProperty("core.engine.power");
-        Location l = what.getLocation();
-
-        double rotation = Math.atan2(l.getY()-where.getY(), l.getX()-where.getX());
-        System.out.print("Ship rotation: "+rotation);
-        what.rotateTo(Math.toDegrees(rotation));
-        
-        int x = l.getX();
-        int y = l.getY();
-
-//        System.out.println("Dist: "+l.getDist(where));
-//        System.out.println("Point: "+where);
-//        System.out.println("MaxDist:"+maxDist);
-
-        if(l.getDist(where) > maxDist){
-            x += (Math.sin(Math.PI/2 - rotation)*maxDist) *-1;
-            y += (Math.cos(Math.PI/2 - rotation)*maxDist) *-1;
-        } else {
-            System.out.println("less than");
-            x = where.getX();
-            y = where.getY();
-        }
-
-        nextTick = new Location(null, x, y);
-        distance = l.getDist(nextTick)/10.0;
     }
 
     @Override
@@ -106,27 +90,22 @@ public class MoveEvent implements Event {
 
     @Override
     public void microTick() {
-
-        if(nextTick == null || distance == -1){
+        if(nextTick == null || turn > 10){
+            System.out.println("nextTick not set!");
             return;
         }
-        Location l = what.getLocation();
-        double rotation = Math.atan2(l.getY()-nextTick.getY(), l.getX()-nextTick.getX());
-        //distance = l.getDist(nextTick)/10;
 
-        int x = l.getX();
-        int y = l.getY();
-
-
-        //System.out.println(rotation);
-        x += (Math.sin(Math.PI/2 - rotation)*distance) *-1;
-        y += (Math.cos(Math.PI/2 - rotation)*distance) *-1;
-
+        int x = what.getLocation().getX();
+        int y = what.getLocation().getY();
+        Location loc = new Location(null, nextTick.getX(), nextTick.getY());
+        
+        double rotation = Math.atan2(loc.getY()-nextTick.getY(), loc.getX()-nextTick.getX());
+        distance = loc.getDist(what.getLocation())/10*turn;
+        
+        x += ((Math.sin(Math.PI/2 - rotation)*distance)/10) *-1;
+        y += ((Math.cos(Math.PI/2 - rotation)*distance)/10) *-1;
         what.setLocation(x, y);
-        if(what.getLocation().getDist(nextTick) < what.radius){
-            //System.out.println("the ship has reached the final destination");
-            distance = -1;
-        }
+        turn++;
     }
     
 }
