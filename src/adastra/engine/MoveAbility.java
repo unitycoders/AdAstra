@@ -33,4 +33,9 @@ public class MoveAbility implements Ability {
     public Event fireEvent(Asset source, Location location) {
         return new MoveEvent(source, location);
     }
+
+    @Override
+    public Event fireEvent(Asset source, Location start, Location target) {
+        return new MoveEvent(source, start, target);
+    }
 }

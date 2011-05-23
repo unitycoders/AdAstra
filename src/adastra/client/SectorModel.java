@@ -106,11 +106,20 @@ public class SectorModel implements SectorListener {
     public void giveOrder(Point p){
         if(selectedAbility != null){
             Location point = new Location(selectedSector, p.x, p.y);
-            Event event = selectedAbility.fireEvent(selectedAsset, point);
+            //Event event = selectedAbility.fireEvent(selectedAsset, point);
             if(compostite){
+                Location[] start = events.getTargetLocation();
+                Event event;
+                if(start.length == 0){
+                    event = selectedAbility.fireEvent(selectedAsset, point);
+                }else{
+                    event = selectedAbility.fireEvent(selectedAsset, start[start.length-1], point);
+                }
+
                 events.addEvent(event);
                 selectedAsset.setEvent(events);
             }else{
+                Event event = selectedAbility.fireEvent(selectedAsset, point);
                 selectedAsset.setEvent(event);
             }
             fireOrdersChanged();

@@ -20,6 +20,8 @@ public interface Ability {
     public String getCommand();
 
     public Event fireEvent(Asset source, Location location);
+
+    public Event fireEvent(Asset source, Location start, Location target);
     
     public Event fireEvent(Asset source, Sector sector, Point target);
 
