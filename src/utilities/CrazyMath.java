@@ -24,4 +24,8 @@ public class CrazyMath {
 
         return null;
     }
+    
+    public static double getRotation(Location start, Location finish){
+        return Math.atan2(start.getY()-finish.getY(), start.getX()-finish.getX());
+    }
 }

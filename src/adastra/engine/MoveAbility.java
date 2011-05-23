@@ -13,15 +13,24 @@ import java.awt.Point;
  */
 public class MoveAbility implements Ability {
     
+    @Override
     public String getName(){
         return "Move";
     }
         
+    @Override
     public String getCommand(){
         return "command.core.move";
     }
     
-    public Event fireEvent(Asset source, Point target){
-        return new MoveEvent(source, target); 
+    @Override
+    public Event fireEvent(Asset source, Sector sector, Point pTarget){
+        Location target = new Location(sector, pTarget.x, pTarget.y);
+        return fireEvent(source, target);
+    }
+
+    @Override
+    public Event fireEvent(Asset source, Location location) {
+        return new MoveEvent(source, location);
     }
 }

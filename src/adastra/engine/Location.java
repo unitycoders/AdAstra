@@ -20,6 +20,12 @@ public class Location {
         this.y = y;
     }
     
+    public Location(Location l){
+        this.sector = l.getSector();
+        this.x = l.getX();
+        this.y = l.getY();
+    }
+    
     public void setLocation(int x, int y){
         this.x = x;
         this.y = y;
@@ -27,6 +33,22 @@ public class Location {
 
     public Sector getSector(){
         return sector;
+    }
+    
+    public void setX(int x){
+        this.x = x;
+    }
+    
+    public void setY(int y){
+        this.y = y;
+    }
+    
+    public void appendX(int x){
+        this.x += x;
+    }
+    
+    public void appendY(int y){
+        this.y += y;
     }
     
     public int getX(){
@@ -37,6 +59,7 @@ public class Location {
         return y;
     }
 
+    @Override
     public String toString(){
         return "("+x+","+y+")";
     }
@@ -44,7 +67,6 @@ public class Location {
     public int getDist(Location l){
         return getDist(l.getX(), l.getY());
     }
-
 
     public int getDist(int x, int y){
         int dx = this.x-x;

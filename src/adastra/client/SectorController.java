@@ -16,6 +16,7 @@ import adastra.engine.planet.ShipyardBlueprint;
 import adastra.engine.vessel.Engine;
 import adastra.engine.vessel.Hardware;
 import adastra.engine.vessel.Hull;
+import adastra.engine.vessel.Vessel;
 import adastra.engine.vessel.VesselBlueprint;
 import java.awt.BorderLayout;
 import java.util.Timer;
@@ -83,7 +84,9 @@ public class SectorController extends TimerTask {
         VesselBlueprint scout = new VesselBlueprint("Scout Ship", new Hull(), new Hardware[]{new Engine(), new Engine(), new Engine()});
         p.registerVessel(scout);
 
-        s.add(scout.buildVessel());
+        Vessel scoutShip = scout.buildVessel();
+        scoutShip.setLocation(-50, -50);
+        s.add(scoutShip);
 
         Planet planet = new Planet(s, 0, 0, new PlanetType(255,255,255), new int[11][11]);
         planet.colonise(p);

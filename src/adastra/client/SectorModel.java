@@ -9,6 +9,7 @@ import adastra.engine.Sector;
 import adastra.engine.Ability;
 import adastra.engine.CompositeEvent;
 import adastra.engine.Event;
+import adastra.engine.Location;
 import adastra.engine.SectorListener;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -104,7 +105,8 @@ public class SectorModel implements SectorListener {
 
     public void giveOrder(Point p){
         if(selectedAbility != null){
-            Event event = selectedAbility.fireEvent(selectedAsset, p);
+            Location point = new Location(selectedSector, p.x, p.y);
+            Event event = selectedAbility.fireEvent(selectedAsset, point);
             if(compostite){
                 events.addEvent(event);
                 selectedAsset.setEvent(events);
