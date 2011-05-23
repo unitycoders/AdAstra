@@ -1,6 +1,9 @@
 
 package adastra.engine.loader;
 
+import adastra.engine.Technology;
+import adastra.engine.planet.PlanetType;
+
 public interface Loader{
 
 	public PlanetType[] getPlanetTypes();
