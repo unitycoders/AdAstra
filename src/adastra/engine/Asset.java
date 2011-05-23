@@ -8,8 +8,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
-
 
 import java.util.List;
 import java.util.ArrayList;
@@ -81,6 +79,7 @@ public abstract class Asset {
      */
     public void setEvent(Event e){
         this.order = e;
+        this.fireAssetChanged();
     }
 
     /**
@@ -173,6 +172,12 @@ public abstract class Asset {
     protected void fireChangeOwner(){
         for(AssetListener al : listeners){
             al.onChangeOwner(owner);
+        }
+    }
+    
+    protected void fireAssetChanged(){
+        for(AssetListener al : listeners){
+            al.onChange();
         }
     }
 

@@ -28,9 +28,11 @@ public class SectorView extends JComponent implements SectorModelListener {
     private Image starfield;
     private SectorModel model;
     private Rectangle viewpoint;
+    private boolean changed;
 
     public SectorView(SectorModel mdl) {
         this.model = mdl;
+        this.changed = false;
         this.model.addSectorListener(this);
         try {
             this.starfield = ImageIO.read(new File("starfield.png"));
@@ -102,22 +104,22 @@ public class SectorView extends JComponent implements SectorModelListener {
 
     @Override
     public void sectorChanged() {
-        repaint();
+        changed = true;
     }
 
     @Override
     public void ordersChanged() {
-        repaint();
+        changed = true;
     }
 
     @Override
     public void assetChanged() {
-        repaint();
+        changed = true;
     }
 
     @Override
     public void sectorDataChanged() {
-        repaint();
+        changed = true;
     }
 
     void moveView(int x, int y) {

@@ -43,7 +43,10 @@ public class Sector implements Iterable<Asset>, AssetListener {
         assets.toArray(aa);
 
         for(Asset a :aa){
-            a.microTick();
+            //god knows why i need this but i null pointer sometimes
+            if(a != null){
+                a.microTick();
+            }
         }
     }
     
@@ -109,6 +112,11 @@ public class Sector implements Iterable<Asset>, AssetListener {
     @Override
     public void onChangeLocation() {
         //Asset changed location...
+        fireDataChanged();
+    }
+
+    @Override
+    public void onChange() {
         fireDataChanged();
     }
     

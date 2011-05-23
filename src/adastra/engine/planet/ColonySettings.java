@@ -91,6 +91,7 @@ public class ColonySettings extends JPanel implements AssetListener {
     @Override
     public void onChangeLocation() {
         //throw new UnsupportedOperationException("Not supported yet.");
+        //WTF?
     }
     
     public void setSelected(int x, int y){
@@ -100,5 +101,10 @@ public class ColonySettings extends JPanel implements AssetListener {
     
     public Point getSelected(){
         return selected;
+    }
+
+    @Override
+    public void onChange() {
+        repaint();
     }
 }

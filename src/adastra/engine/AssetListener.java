@@ -14,5 +14,6 @@ public interface AssetListener {
 
     public void onChangeOwner(Player newOwner);
     public void onChangeLocation();
+    public void onChange();
 
 }

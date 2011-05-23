@@ -7,6 +7,7 @@ package adastra.engine;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.Queue;
+import utilities.CrazyMath;
 
 /**
  * Issues a move order
@@ -16,35 +17,54 @@ import java.util.Queue;
 public class MoveEvent implements Event {
     private Asset what;
     private Location where;
-    private int turn = 0;
+    private int turn;
     private Queue<Location> jumps;
 
     //microticks
     private Location nextTick;
     private double distance;
     
-    public MoveEvent(Asset what, Point where){
+    @Deprecated
+    public MoveEvent(Asset what, Point to){
+        this(what, new Location(what.getLocation().getSector(),to.x, to.y));
+    }
+    
+    public MoveEvent(Asset what, Location where){
+        this.turn = 1;
         this.what = what;
-        this.where = new Location(what.getLocation().getSector(),where.x, where.y);
+        this.where = where;
         jumps = new LinkedList<Location>();
 
         int maxDist = what.getProperty("core.engine.power");
-        Location l = what.getLocation();
-        double rotation = Math.atan2(l.getY()-where.getY(), l.getX()-where.getX());
-        int x = l.getX();
-        int y = l.getY();
-        Location prev = new Location(null,600,600);
-        while(prev.getDist(l) >= maxDist){
-            x += (Math.sin(Math.PI/2 - rotation)*maxDist) *-1;
-            y += (Math.cos(Math.PI/2 - rotation)*maxDist) *-1;
-            prev = new Location(null, x, y);
+        System.out.println("Move to: "+where);
+        System.out.println("Maxium distance: "+maxDist);
+        
+        calcPoints(what.getLocation(), where, maxDist);
+    }
+    
+    private void calcPoints(Location curr, Location dest, int maxDist){
+        double rotation = CrazyMath.getRotation(curr, dest);
+        
+        //TODO make it work with partial jumps
+        Location prev = curr;
+        while(prev.getDist(dest) >= maxDist){
+            prev = new Location(prev);
+            prev.appendX((int)(Math.sin(Math.PI/2 - rotation)*maxDist) * -1);
+            prev.appendY((int)(Math.cos(Math.PI/2 - rotation)*maxDist) * -1);
             jumps.add(prev);
         }
+        
+        System.out.println(jumps);
     }
     
     @Override
     public String getDescription(){
-        return "move to "+where;
+        String jstr = "";
+        if(jumps.size() != 1){
+            jstr = " ("+jumps.size()+" Jumps)";
+        }
+        
+        return "move to "+where+jstr;
     }
     
     @Override
@@ -52,51 +72,17 @@ public class MoveEvent implements Event {
         if(jumps.isEmpty()){
             return;
         }
-
-        nextTick = jumps.poll();
-        what.setLocation(nextTick);
-
-        if(jumps != null){
-            return;
-        }
-        //should not be executed past this point, as jumps is never zero
-        System.err.println("The FUCK?!");
-
-        if(nextTick != null){
-            what.setLocation(nextTick);
-        }
-
-        int maxDist = what.getProperty("core.engine.power");
-        Location l = what.getLocation();
-
-        double rotation = Math.atan2(l.getY()-where.getY(), l.getX()-where.getX());
-        System.out.print("Ship rotation: "+rotation);
-        what.rotateTo(Math.toDegrees(rotation));
         
-        int x = l.getX();
-        int y = l.getY();
-
-//        System.out.println("Dist: "+l.getDist(where));
-//        System.out.println("Point: "+where);
-//        System.out.println("MaxDist:"+maxDist);
-
-        if(l.getDist(where) > maxDist){
-            x += (Math.sin(Math.PI/2 - rotation)*maxDist) *-1;
-            y += (Math.cos(Math.PI/2 - rotation)*maxDist) *-1;
-        } else {
-            System.out.println("less than");
-            x = where.getX();
-            y = where.getY();
-        }
-
-        nextTick = new Location(null, x, y);
-        distance = l.getDist(nextTick)/10.0;
+        turn = 1;
+        nextTick = jumps.poll();
+        double rotation = CrazyMath.getRotation(what.getLocation(), nextTick);
+        //what.rotateTo(Math.toDegrees(rotation));
+        //what.setLocation(nextTick);
     }
 
     @Override
     public boolean isComplete(){
         return jumps.isEmpty();
-        //return what.getLocation().getDist(where.getX(), where.getY()) < what.radius;
     }
 
     @Override
@@ -106,26 +92,35 @@ public class MoveEvent implements Event {
 
     @Override
     public void microTick() {
-
-        if(nextTick == null || distance == -1){
+        if(turn <= 10){         
+            //Smooth rotation
+            double rotation = Math.toDegrees(CrazyMath.getRotation(what.getLocation(), where));
+            
+            if(rotation != what.rotation){
+                double step = (what.rotation - rotation - 180)/10;
+                what.rotate(step);
+            }
+            turn++;
+            
             return;
         }
-        Location l = what.getLocation();
-        double rotation = Math.atan2(l.getY()-nextTick.getY(), l.getX()-nextTick.getX());
-        //distance = l.getDist(nextTick)/10;
-
-        int x = l.getX();
-        int y = l.getY();
-
-
-        //System.out.println(rotation);
-        x += (Math.sin(Math.PI/2 - rotation)*distance) *-1;
-        y += (Math.cos(Math.PI/2 - rotation)*distance) *-1;
-
-        what.setLocation(x, y);
-        if(what.getLocation().getDist(nextTick) < what.radius){
-            //System.out.println("the ship has reached the final destination");
-            distance = -1;
+        
+        if(turn > 10){
+            //Smooth rotation
+            //double rotation = CrazyMath.getRotation(what.getLocation(), nextTick);
+            //double step = (rotation/10)*turn;
+            //what.rotate(step);
+            turn++;
+        } else {
+            //TODO smmoth movement
+        //int distance = 150; //TODO work this out dynmaiclly
+        //Location miniPoint = new Location(what.getLocation());
+        //double rotation = CrazyMath.getRotation(what.getLocation(), nextTick);
+        //miniPoint.appendX((int)(Math.sin(Math.PI/2 - rotation)*distance) * -1);
+        //miniPoint.appendY((int)(Math.cos(Math.PI/2 - rotation)*distance) * -1);
+        //what.setLocation(miniPoint);
+        
+            turn++;
         }
     }
     
