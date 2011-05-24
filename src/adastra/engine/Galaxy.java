@@ -6,6 +6,7 @@ package adastra.engine;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ import java.util.Map;
  * 
  * @author webpigeon
  */
-public class Galaxy {
+public class Galaxy implements Iterable<Sector> {
     private List<Sector> sectors;
     private Map<Sector, List<Sector>> links;
     
@@ -59,6 +60,15 @@ public class Galaxy {
     
     public List<Sector> getLinks(Sector s1){
         return links.get(s1);
+    }
+    
+    public int sectorCount(){
+        return sectors.size();
+    }
+
+    @Override
+    public Iterator<Sector> iterator(){
+        return sectors.iterator();
     }
     
 }

@@ -23,11 +23,6 @@ public class MoveEvent implements Event {
     //microticks
     private Location nextTick;
     private double distance;
-    
-    @Deprecated
-    public MoveEvent(Asset what, Point to){
-        this(what, new Location(what.getLocation().getSector(),to.x, to.y));
-    }
 
     public MoveEvent(Asset what, Location start, Location where){
         this.turn = 1;

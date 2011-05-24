@@ -22,12 +22,6 @@ public class MoveAbility implements Ability {
     public String getCommand(){
         return "command.core.move";
     }
-    
-    @Override
-    public Event fireEvent(Asset source, Sector sector, Point pTarget){
-        Location target = new Location(sector, pTarget.x, pTarget.y);
-        return fireEvent(source, target);
-    }
 
     @Override
     public Event fireEvent(Asset source, Location location) {

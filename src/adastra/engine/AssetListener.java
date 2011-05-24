@@ -1,6 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This file is part of the AdAstra engine
+ * 
+ * GNU GPL v3
  */
 
 package adastra.engine;

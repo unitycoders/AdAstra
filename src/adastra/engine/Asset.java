@@ -1,7 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This file is part of the AdAstra engine
+ * 
+ * GNU GPL v3
  */
+
 package adastra.engine;
 
 import java.awt.Color;
@@ -15,21 +17,53 @@ import java.util.Map;
 import java.util.HashMap;
 
 /**
- * The base class for all game objects
+ * The base class for all game objects (talk about messy)
  * 
  * @author webpigeon
  */
 public abstract class Asset {
+    /**
+     * The owner of the asset (can be null if unowned)
+     */
     protected Player owner;
+    
+    /**
+     * The current location of the asset
+     */
     protected Location location;
+    
+    /**
+     * The currently assigned order
+     */
     protected Event order;
+    
+    /**
+     * The asset listeners for this asset
+     */
     protected List<AssetListener> listeners;
+    
+    /**
+     * The abilties this asset is capable of preforming
+     */
     protected List<Ability> abilities;
+    
+    /**
+     * This asset's properties
+     */
     protected Map<String, Integer> properties;
+    
+    /**
+     * The current rotation (in degrees)
+     */
     protected double rotation;
+    
+    /**
+     * The radius of the asset
+     */
     protected int radius;
 
     /**
+     * Create a new asset
      * 
      * @param location
      */
@@ -43,8 +77,12 @@ public abstract class Asset {
         this.rotation = 0;
     }
 
+    @Deprecated
     public abstract JComponent getProperties();
 
+    /**
+     * little tick
+     */
     public void microTick(){
         if(order != null){
             order.microTick();
@@ -52,8 +90,7 @@ public abstract class Asset {
     }
 
     /**
-     * 
-     *
+     * big tick
      */
     public void tick(){
         if(order != null){
@@ -64,17 +101,28 @@ public abstract class Asset {
         }
     }
     
+    /**
+     * Set the location of this asset to be a diffrent location
+     * @param x
+     * @param y 
+     */
     public void setLocation(int x, int y){
         location.setLocation(x, y);
         fireChangeLocation();
     }
 
+    /**
+     * set the location of this asset to be a diffrent location
+     * 
+     * @param l 
+     */
     public void setLocation(Location l){
         setLocation(l.getX(),l.getY());
     }
 
     /**
-     *
+     * Give this asset an order
+     * 
      * @param e
      */
     public void setEvent(Event e){
@@ -83,7 +131,8 @@ public abstract class Asset {
     }
 
     /**
-     *
+     * Get the assets current order
+     * 
      * @return
      */
     public Event getEvent(){
@@ -91,7 +140,8 @@ public abstract class Asset {
     }
 
     /**
-     *
+     * Add a value to a property
+     * 
      * @param name
      * @param change
      */
@@ -102,7 +152,8 @@ public abstract class Asset {
 
 
     /**
-     *
+     * Get the current value of a property
+     * 
      * @param name
      * @return
      */
@@ -115,7 +166,8 @@ public abstract class Asset {
     }
 
     /**
-     *
+     * Set the value of a property
+     * 
      * @param name
      * @param value
      */
@@ -123,24 +175,51 @@ public abstract class Asset {
         properties.put(name, value);
     }
     
+    /**
+     * used for basic collision detection
+     * 
+     * @param x
+     * @param y
+     * @return 
+     */
     public boolean contains(int x, int y){
         //TODO get better collition detection
         Point p = new Point(x, y);
         return p.distance(location.getX(), location.getY()) < radius;
     }
 
+    /**
+     * Get the radius of the asset
+     * 
+     * @return 
+     */
     public int getRadius(){
         return radius;
     }
 
+    /**
+     * Rotate the asset relative to it's current position
+     * 
+     * @param theta 
+     */
     public void rotate(double theta){
         this.rotation = (rotation+theta)%360;
     }
     
+    /**
+     * Rotate the asset absolutely from the top
+     * 
+     * @param angle 
+     */
     public void rotateTo(double angle){
         this.rotation = angle%360;
     }
     
+    /**
+     * Get the current location of the asset
+     * 
+     * @return 
+     */
     public Location getLocation(){
         return location;
     }
@@ -153,7 +232,13 @@ public abstract class Asset {
         this.listeners.add(listener);
     }
     
+    /**
+     * Get the abilities a player is capable of preforming
+     * @param p
+     * @return 
+     */
     public Ability[] getAbilities(Player p){
+        //TODO add support for multiple players
         Ability[] aa = new Ability[abilities.size()];
         return abilities.toArray(aa);
     }
