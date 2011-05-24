@@ -10,32 +10,29 @@
  */
 package adastra.client;
 
-import adastra.client.ClientNetwork.PlayerData;
+import adastra.client.Network.PlayerData;
 import java.awt.Color;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
  * @author jwalto
  */
-public class Launcher extends javax.swing.JPanel {
+public class Lobby extends AdAstraPanel {
+
     private DefaultTableModel model;
-    private ClientNetwork network;
-    private MainWindow window;
+    private GameController ctrl;
 
     /** Creates new form Launcher */
-    public Launcher(MainWindow window, ClientNetwork network) {
-        this.window = window;
+    public Lobby(GameController ctrl) {
+        this.ctrl = ctrl;
         model = new DefaultTableModel();
         model.addColumn("Username");
         model.addColumn("Color");
         model.addColumn("Team");
 
         initComponents();
-        this.network = network;
     }
 
     /** This method is called from within the constructor to
@@ -222,16 +219,16 @@ public class Launcher extends javax.swing.JPanel {
             Color[] colours;
             String name;
             boolean flag;
-            if (this.jButton1.getText().equals("Disconnect")) {
+            if (ctrl.isConnected()) {
                 this.jButton1.setText("Connect");
                 name = "Disconnected";
                 colours = new Color[0];
                 flag = false;
                 model.setRowCount(0);
-                network.disconnect();
+                ctrl.disconnect();
             } else {
                 int portNo = Integer.parseInt(port.getText());
-                network.connect(hostname.getText(), portNo);
+                Network network = ctrl.connect(hostname.getText(), portNo);
                 this.jButton1.setText("Disconnect");
                 name = network.getName();
                 colours = network.getColours();
@@ -250,23 +247,24 @@ public class Launcher extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void updateFields(boolean flag, String name){
-            hostname.setEnabled(!flag);
-            port.setEnabled(!flag);
-            gameName.setText(name);
+    private void updateFields(boolean flag, String name) {
+        hostname.setEnabled(!flag);
+        port.setEnabled(!flag);
+        gameName.setText(name);
 
-            username.setEnabled(flag);
-            password.setEnabled(flag);
-            colour.setEnabled(flag);
-            joinBtn.setEnabled(flag);
-            playerList.setEnabled(flag);
+        username.setEnabled(flag);
+        password.setEnabled(flag);
+        colour.setEnabled(flag);
+        joinBtn.setEnabled(flag);
+        playerList.setEnabled(flag);
     }
 
     private void joinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinBtnActionPerformed
         //TODO game team box
         try {
-            network.joinGame(username.getText(), colour.getBackground(), "Team 2");
-            window.showCard("game");
+            String pass = new String(password.getPassword());
+            ctrl.joinGame(username.getText(), pass, (short) colour.getSelectedIndex(), "Team 2");
+            ctrl.showWindow(2, false);
         } catch (RuntimeException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Connection Error", JOptionPane.ERROR_MESSAGE);
 
@@ -293,4 +291,26 @@ public class Launcher extends javax.swing.JPanel {
     private javax.swing.JTextField port;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getName() {
+        return "Server Connection";
+    }
+
+    @Override
+    public void notifySelected() {
+        Color[] colours;
+        String name = "disconnected";
+        boolean flag = false;
+        if (!ctrl.isConnected()) {
+            this.jButton1.setText("Connect");
+            name = "Disconnected";
+            colours = new Color[0];
+            flag = false;
+            model.setRowCount(0);
+        }
+
+
+        updateFields(flag, name);
+    }
 }

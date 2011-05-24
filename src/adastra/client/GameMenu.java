@@ -15,13 +15,13 @@ package adastra.client;
  *
  * @author jwalto
  */
-public class GameMenu extends javax.swing.JPanel {
-    private MainWindow window;
+public class GameMenu extends AdAstraPanel {
+    private GameController ctrl;
 
 
     /** Creates new form GameMenu */
-    public GameMenu(MainWindow window) {
-        this.window = window;
+    public GameMenu(GameController ctrl) {
+        this.ctrl = ctrl;
         initComponents();
     }
 
@@ -83,12 +83,12 @@ public class GameMenu extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        window.showCard("game");
+        ctrl.showWindow(2, false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        window.showCard("launcher");
+        ctrl.showWindow(0, true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
@@ -97,5 +97,15 @@ public class GameMenu extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getName() {
+        return "Game Menu";
+    }
+
+    @Override
+    public void notifySelected() {
+        
+    }
 
 }

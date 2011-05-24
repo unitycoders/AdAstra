@@ -8,10 +8,11 @@ package adastra.client;
 import java.awt.Color;
 
 /**
+ * Mock network driver
  *
  * @author jwalto
  */
-public class ClientNetwork {
+public class Network {
     private boolean connected;
 
 
@@ -29,6 +30,10 @@ public class ClientNetwork {
         }
 
         connected = false;
+    }
+
+    public boolean isConnected(){
+        return connected;
     }
 
     public PlayerData[] getPlayerList(){
@@ -67,7 +72,7 @@ public class ClientNetwork {
             throw new RuntimeException("Your not connected!");
         }
 
-        return false; //allow game joining
+        return true; //allow game joining
     }
 
     public class PlayerData{

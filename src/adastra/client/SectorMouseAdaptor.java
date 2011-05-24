@@ -65,6 +65,7 @@ public class SectorMouseAdaptor implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        sectorView.requestFocus();
         if(startPoint != null){
             Point p = e.getPoint();
             sectorView.moveView(startPoint,p.x, p.y);

@@ -24,14 +24,14 @@ import javax.swing.JComponent;
  *
  * @author webpigeon
  */
-public class SectorView extends JComponent implements SectorModelListener {
+public class SectorView extends AdAstraPanel implements SectorModelListener {
     private Image starfield;
     private SectorModel model;
     private Rectangle viewpoint;
     private boolean changed;
-    private MainWindow window;
+    private GameController window;
 
-    public SectorView(MainWindow window, SectorModel mdl) {
+    public SectorView(GameController window, SectorModel mdl) {
         this.window = window;
         this.model = mdl;
         this.changed = false;
@@ -65,8 +65,7 @@ public class SectorView extends JComponent implements SectorModelListener {
     }
 
     public void showMenu(){
-        System.out.println("showing menu");
-        window.showCard("menu");
+        window.showWindow(3, false);
     }
 
     @Override
@@ -167,6 +166,16 @@ public class SectorView extends JComponent implements SectorModelListener {
 
     Point getStart(Point p){
         return new Point(p.x-viewpoint.x,p.y-viewpoint.y);
+    }
+
+    @Override
+    public String getName() {
+        return "Sector View";
+    }
+
+    @Override
+    public void notifySelected() {
+        this.requestFocus();
     }
 
 

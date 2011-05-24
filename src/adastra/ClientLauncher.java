@@ -5,7 +5,7 @@
 
 package adastra;
 
-import adastra.client.ClientNetwork;
+import adastra.client.Network;
 import adastra.client.MainWindow;
 import adastra.client.SectorController;
 import adastra.engine.Galaxy;
@@ -29,7 +29,7 @@ import java.util.Timer;
  */
 public class ClientLauncher {
     private MainWindow window;
-    private ClientNetwork network;
+    private Network network;
 
     public static void main(String[] args) {
         ClientLauncher client = new ClientLauncher();
@@ -39,7 +39,7 @@ public class ClientLauncher {
     }
 
     public ClientLauncher(){
-        network = new ClientNetwork();
+        network = new Network();
         window = new MainWindow(network);
         window.showWindow();
     }

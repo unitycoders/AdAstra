@@ -8,6 +8,7 @@ package adastra.client;
 import adastra.engine.Sector;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -16,27 +17,42 @@ import javax.swing.JPanel;
  * @author jwalto
  */
 public class MainWindow{
-    private JFrame frame;;
+    private JFrame frame;
+    private GameController controller;
+    private AdAstraPanel[] panels;
     
-    public MainWindow(ClientNetwork network){
+    public MainWindow(Network network){
         frame = new JFrame("AdAstra :: Alpha");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800,640));
         frame.setResizable(false);
 
+        controller = new GameController(this, network);
+
         SectorModel model = new SectorModel();
         model.setSector(new Sector());
 
+        panels = new AdAstraPanel[]{
+            new MainMenu(controller),
+            new Lobby(controller),
+            new SectorView(controller, model),
+            new GameMenu(controller)
+        };
+
         //build frame
         frame.setLayout(new CardLayout());
-        frame.add(new Launcher(this, network), "launcher");
-        frame.add(new SectorView(this, model), "game");
-        frame.add(new GameMenu(this), "menu");
+
+        for(AdAstraPanel panel : Arrays.asList(panels)){
+            frame.add(panel, panel.getName());
+        }
     }
 
-    public void showCard(String launcher){
+    public void showCard(int id){
+        AdAstraPanel panel = panels[id];
+        panel.notifySelected();
+
         CardLayout cl = (CardLayout)(frame.getContentPane().getLayout());
-        cl.show(frame.getContentPane(), launcher);
+        cl.show(frame.getContentPane(), panel.getName());
     }
 
     public void showWindow(){
