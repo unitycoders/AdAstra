@@ -258,6 +258,28 @@ public class Lobby extends AdAstraPanel {
         playerList.setEnabled(flag);
     }
 
+    @Override
+    public String getName() {
+        return "Lobby";
+    }
+
+    @Override
+    public void notifySelected() {
+        Color[] colours;
+        String name = "disconnected";
+        boolean flag = false;
+        if (!ctrl.isConnected()) {
+            this.jButton1.setText("Connect");
+            name = "Disconnected";
+            colours = new Color[0];
+            flag = false;
+            model.setRowCount(0);
+        }
+
+
+        updateFields(flag, name);
+    }
+
     private void joinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinBtnActionPerformed
         //TODO game team box
         try {
@@ -290,26 +312,4 @@ public class Lobby extends AdAstraPanel {
     private javax.swing.JTextField port;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public String getName() {
-        return "Server Connection";
-    }
-
-    @Override
-    public void notifySelected() {
-        Color[] colours;
-        String name = "disconnected";
-        boolean flag = false;
-        if (!ctrl.isConnected()) {
-            this.jButton1.setText("Connect");
-            name = "Disconnected";
-            colours = new Color[0];
-            flag = false;
-            model.setRowCount(0);
-        }
-
-
-        updateFields(flag, name);
-    }
 }

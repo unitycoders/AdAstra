@@ -28,13 +28,11 @@ public class MainWindow{
 
         controller = new GameController(this, network);
 
-        SectorModel model = new SectorModel();
-        model.setSector(new Sector());
-
         panels = new AdAstraPanel[]{
             new MainMenu(controller),
             new Lobby(controller),
-            new GameView(controller),
+            new SectorView(controller),
+            //new GameView(controller),
             new GameMenu(controller)
         };
 

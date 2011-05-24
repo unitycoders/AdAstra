@@ -4,6 +4,7 @@
  */
 
 package adastra.client;
+import adastra.engine.Game;
 import java.awt.Color;
 
 /**
@@ -13,10 +14,15 @@ import java.awt.Color;
 public class GameController {
     private MainWindow window;
     private Network network;
+    private Game game;
 
     public GameController(MainWindow window, Network network){
         this.window = window;
         this.network = network;
+        
+        //TODO remove duct tape
+        this.game = new Game();
+        game.generateMap(15);
     }
 
     public void showWindow(int id, boolean disconnect){
@@ -24,6 +30,10 @@ public class GameController {
             disconnect();
         }
         this.window.showCard(id);
+    }
+
+    public Game getCurrentGame(){
+        return game;
     }
 
     public boolean isConnected(){

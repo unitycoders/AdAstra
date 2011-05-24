@@ -11,9 +11,11 @@ package adastra.client;
  */
 public class GameView extends AdAstraPanel {
     private GameController ctrl;
+    private AssetProperties assetProps;
 
     public GameView(GameController ctrl){
         this.ctrl = ctrl;
+        this.assetProps = new AssetProperties();
     }
 
     @Override

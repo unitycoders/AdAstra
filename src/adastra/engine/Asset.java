@@ -43,6 +43,11 @@ public abstract class Asset {
         this.rotation = 0;
     }
 
+    public String getName(){
+        //TODO add code to do this properly
+        return "Example Asset";
+    }
+
     @Deprecated
     public abstract JComponent getProperties();
 
