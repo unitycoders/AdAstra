@@ -132,6 +132,7 @@ public class Planet extends Asset {
      * @param y the y location of the planet
      */
     @Override
+    @Deprecated
     public void paintAt(Graphics g, int x, int y){
         g.setColor(type.getColour());
         Location l = getLocation();
