@@ -22,7 +22,8 @@ public interface Ability {
     public Event fireEvent(Asset source, Location location);
 
     public Event fireEvent(Asset source, Location start, Location target);
-    
+
+    @Deprecated
     public Event fireEvent(Asset source, Sector sector, Point target);
 
  //         =,    (\_/)    ,=

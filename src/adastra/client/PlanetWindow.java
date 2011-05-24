@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package adastra.engine.planet;
+package adastra.client;
 
+import adastra.engine.planet.Planet;
 import adastra.engine.planet.Planet;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

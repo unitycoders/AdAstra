@@ -2,11 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package adastra.engine.planet;
+package adastra.client;
 
 import adastra.engine.BlueprintManager;
 import adastra.engine.AssetListener;
 import adastra.engine.Player;
+import adastra.engine.planet.BuildingBlueprint;
+import adastra.engine.planet.Colony;
+import adastra.engine.planet.ColonyBuilding;
+import adastra.engine.planet.Planet;
 import java.awt.BorderLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;

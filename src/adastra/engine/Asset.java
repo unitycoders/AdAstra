@@ -43,6 +43,7 @@ public abstract class Asset {
         this.rotation = 0;
     }
 
+    @Deprecated
     public abstract JComponent getProperties();
 
     public void microTick(){
@@ -189,7 +190,8 @@ public abstract class Asset {
             al.onChangeLocation();
         }
     }
-    
+
+    @Deprecated
     public void paintAt(Graphics g, int x, int y){
         g.setColor(Color.WHITE);
         //TODO this is a bad way of doing it, make it better

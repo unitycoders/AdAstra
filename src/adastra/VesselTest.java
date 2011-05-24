@@ -29,8 +29,8 @@ public class VesselTest {
         Vessel target = new Vessel(null, h);
 
         subject.setHardware(0, hw);
-        Event a = new AttackEvent(subject,target);
-        subject.setEvent(a);
+        //Event a = new AttackEvent(subject,target);
+        //subject.setEvent(a);
     }
 
 }

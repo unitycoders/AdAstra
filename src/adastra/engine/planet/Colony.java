@@ -4,6 +4,7 @@
  */
 package adastra.engine.planet;
 
+import adastra.client.PlanetWindow;
 import java.util.Iterator;
 import javax.swing.JComponent;
 import utilities.ArrayIterator;

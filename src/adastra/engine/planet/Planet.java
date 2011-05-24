@@ -4,6 +4,7 @@
  */
 package adastra.engine.planet;
 
+import adastra.client.PlanetWindow;
 import utilities.CrazyMath;
 import adastra.engine.Asset;
 import adastra.engine.Location;

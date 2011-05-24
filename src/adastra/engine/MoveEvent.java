@@ -23,11 +23,7 @@ public class MoveEvent implements Event {
     //microticks
     private Location nextTick;
     private double distance;
-    
-    @Deprecated
-    public MoveEvent(Asset what, Point to){
-        this(what, new Location(what.getLocation().getSector(),to.x, to.y));
-    }
+    private double step;
 
     public MoveEvent(Asset what, Location start, Location where){
         this.turn = 1;
@@ -67,6 +63,10 @@ public class MoveEvent implements Event {
             jumps.add(prev);
         }
         
+        if(prev.getDist(dest) != 0){
+            jumps.add(dest);
+        }
+        
         System.out.println(jumps);
     }
     
@@ -88,9 +88,10 @@ public class MoveEvent implements Event {
         
         turn = 1;
         nextTick = jumps.poll();
-        double rotation = CrazyMath.getRotation(what.getLocation(), nextTick);
+        double rotation = Math.toDegrees(CrazyMath.getRotation(what.getLocation(), nextTick));
         what.rotateTo(Math.toDegrees(rotation));
         what.setLocation(nextTick);
+        step = (rotation-what.rotation)/10;
     }
 
     @Override
@@ -107,12 +108,12 @@ public class MoveEvent implements Event {
     public void microTick() {
         if(turn <= 10){         
             //Smooth rotation
-            double rotation = Math.toDegrees(CrazyMath.getRotation(what.getLocation(), where));
+           // double rotation = Math.toDegrees(CrazyMath.getRotation(what.getLocation(), where));
             
-            if(rotation != what.rotation){
-                double step = (what.rotation - rotation - 180)/10;
-            //    what.rotate(step);
-            }
+           // if(rotation != what.rotation){
+                System.out.println(step  + "-< step, rotation -> " + what.rotation);
+                what.rotate(step);
+           // }
             turn++;
             
             return;

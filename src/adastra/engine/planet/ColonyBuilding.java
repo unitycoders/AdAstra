@@ -4,6 +4,8 @@
  */
 package adastra.engine.planet;
 
+import adastra.client.FactorySettings;
+import adastra.client.PlotMap;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;

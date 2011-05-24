@@ -3,9 +3,10 @@
  * and open the template in the editor.
  */
 
-package adastra.engine.planet;
+package adastra.client;
 
 import adastra.engine.Blueprint;
+import adastra.engine.planet.Factory;
 import java.awt.BorderLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;

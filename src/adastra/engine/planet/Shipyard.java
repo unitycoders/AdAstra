@@ -4,6 +4,8 @@
  */
 package adastra.engine.planet;
 
+import adastra.client.FactorySettings;
+import adastra.client.ShipyardStatsPanel;
 import adastra.engine.vessel.Vessel;
 import adastra.engine.vessel.VesselBlueprint;
 import javax.swing.BoundedRangeModel;

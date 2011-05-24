@@ -2,8 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package adastra.engine.planet;
+package adastra.client;
 
+import adastra.engine.planet.Building;
+import adastra.engine.planet.Colony;
+import adastra.engine.planet.Planet;
+import adastra.engine.planet.PlanetType;
+import adastra.engine.planet.Tile;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
