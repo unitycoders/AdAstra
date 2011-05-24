@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package adastra.engine.planet;
+package adastra.client;
 
 import adastra.engine.vessel.Hull;
 import adastra.engine.vessel.VesselBlueprint;
@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  *
  * @author webpigeon
  */
-public final class ShipyardStatsPanel extends JPanel {
+public final class ShipyardStatsPanel extends MiddlePanel {
     private VesselBlueprint blueprint;
     private JPanel preview;
     private JLabel hpLabel;

@@ -11,6 +11,11 @@ import javax.swing.JComponent;
  *
  * @author jwalto
  */
-public class GameClock extends JComponent {
+public class MiddlePanel extends JComponent {
+    protected FactorySettings settings;
+
+    public void bindSettings(FactorySettings settings){
+        this.settings = settings;
+    }
 
 }

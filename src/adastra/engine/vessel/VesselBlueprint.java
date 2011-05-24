@@ -54,6 +54,7 @@ public class VesselBlueprint extends Blueprint {
         return new Vessel(new Location(null, 0,0), hull, hard);
     }
 
+    @Override
     public int getBuildTime(){
         int sum = 0;
         for(Hardware h : this.hard){

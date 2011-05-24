@@ -116,14 +116,14 @@ public class Vessel extends Asset {
         g2.fillPolygon(poly);
         g2.rotate(Math.toRadians(rotation+90)*-1, x, y);
     }
-
-    @Override
-    public JComponent getProperties(){
-        return null;
-    }
     
     @Override
     public String toString(){
         return "Vessel Hull: "+hull+" Hardware: ("+Arrays.toString(hardware)+")";
+    }
+
+    @Override
+    public GameSettings[] getUITabs() {
+        return new GameSettings[0];
     }
 }

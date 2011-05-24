@@ -35,7 +35,7 @@ public class SectorMouseAdaptor implements MouseListener, MouseMotionListener {
         } else if (me.getButton() == MouseEvent.BUTTON2) {
             Asset selected = model.getAsset();
             if (selected != null) {
-                new AssetManagementScreen(null, selected);
+                sectorView.showProperties(selected);
             }
         } else {
             if(p.x < model.getSector().getWidth()/2)
@@ -65,6 +65,7 @@ public class SectorMouseAdaptor implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        sectorView.requestFocus();
         if(startPoint != null){
             Point p = e.getPoint();
             sectorView.moveView(startPoint,p.x, p.y);

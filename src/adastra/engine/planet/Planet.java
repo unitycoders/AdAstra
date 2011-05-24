@@ -6,12 +6,12 @@ package adastra.engine.planet;
 
 import utilities.CrazyMath;
 import adastra.engine.Asset;
+import adastra.engine.Asset.GameSettings;
 import adastra.engine.Location;
 import adastra.engine.Player;
 import adastra.engine.Sector;
 import java.awt.Graphics;
 import java.util.Random;
-import javax.swing.JComponent;
 
 /**
  * A planet in a given solar system
@@ -92,17 +92,6 @@ public class Planet extends Asset {
     }
 
     /**
-     * Build a building
-     * 
-     * @param plot
-     * @param b 
-     */
-    @Deprecated
-    public void build(int row, int col, BuildingBlueprint bp){        
-        colony.build(row, col, bp);
-    }
-
-    /**
      * Return the type of planet present
      * 
      * @return the type of the planet
@@ -111,27 +100,6 @@ public class Planet extends Asset {
         return type;
     }
 
-    /**
-     * Get the planet's properties screen
-     *
-     * Step 1 of decouping the UI from the UI
-     * 
-     * @return the properties screen for the planet
-     */
-    @Override
-    public JComponent getProperties(){
-        if(colony == null){
-            return new PlanetWindow(this);
-        }else{
-            return colony.getSettings();
-        }
-    }
-
-    @Deprecated
-    public Building getBuildingAt(int row, int col){
-        return colony.buildingAt(row, col);
-    }
-    
     /**
      * Execute planet tick event updates
      *
@@ -164,6 +132,7 @@ public class Planet extends Asset {
      * @param y the y location of the planet
      */
     @Override
+    @Deprecated
     public void paintAt(Graphics g, int x, int y){
         g.setColor(type.getColour());
         Location l = getLocation();
@@ -171,5 +140,14 @@ public class Planet extends Asset {
         int diamater = radius *2;
 
         g.fillOval(l.getX()-radius, l.getY()-radius, diamater, diamater);
+    }
+
+    @Override
+    public GameSettings[] getUITabs() {
+        if(colony == null){
+            return new GameSettings[0];
+        }
+
+        return colony.getTabs();
     }
 }

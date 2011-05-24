@@ -4,6 +4,9 @@
  */
 package adastra.engine.planet;
 
+import adastra.client.FactorySettings;
+import adastra.client.ShipyardStatsPanel;
+import adastra.engine.Asset.GameSettings;
 import adastra.engine.vessel.Vessel;
 import adastra.engine.vessel.VesselBlueprint;
 import javax.swing.BoundedRangeModel;
@@ -40,11 +43,6 @@ public class Shipyard extends Factory<VesselBlueprint> {
     }
 
     @Override
-    public JComponent getSettings() {
-        return settings;
-    }
-
-    @Override
     public JComponent getIcon(){
         return new JLabel("Fail!");
     }
@@ -61,6 +59,11 @@ public class Shipyard extends Factory<VesselBlueprint> {
         Vessel v = blueprint.buildVessel();
         planet.orbitPlanet(v);
         settings.repaint();
+    }
+
+    @Override
+    public GameSettings getSettings() {
+        return new GameSettings("Shipyard","tab.building.factory", this, "tab.middle.vessel");
     }
     
 }

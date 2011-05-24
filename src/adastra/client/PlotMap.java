@@ -2,31 +2,30 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package adastra.engine.planet;
+package adastra.client;
 
+import adastra.engine.planet.Building;
+import adastra.engine.planet.Colony;
+import adastra.engine.planet.Planet;
+import adastra.engine.planet.PlanetType;
+import adastra.engine.planet.Tile;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JComponent;
 
 /**
  *
  * @author jwalto
  */
-public class PlotMap extends JComponent implements MouseListener {
+public class PlotMap extends MiddlePanel implements MouseListener {
     private Planet planet;
-    private FactorySettings settings;
+    private Point selected;
 
-    public PlotMap(Planet planet, FactorySettings settings){
+    public PlotMap(Planet planet){
         this.planet = planet;
-        this.settings = settings;
         this.addMouseListener(this);
-    }
-
-    public void setFactory(FactorySettings factory){
-        this.settings = factory;
     }
 
     @Override
@@ -54,10 +53,14 @@ public class PlotMap extends JComponent implements MouseListener {
             }
         }
 
-        Point selected = settings.getSelection();
+        //Point selected = settings.getSelection();
+        if(settings != null){
+            selected = settings.getSelection();
+        }
+
         if(selected != null){
-            g.setColor(Color.GREEN);
-            g.drawRect((selected.x * width)+padx, (selected.y * height)+pady, (width), (height));
+           g.setColor(Color.GREEN);
+           g.drawRect((selected.x * width)+padx, (selected.y * height)+pady, (width), (height));
         }
     }
 
@@ -95,7 +98,11 @@ public class PlotMap extends JComponent implements MouseListener {
         int height = getHeight() / PlanetType.BUILD_COLS;
         int width = getWidth() / PlanetType.BUILD_ROWS;
 
-        settings.setSelected(p.x/width, p.y/height);
+        if(settings == null){
+            selected = new Point(p.x/width, p.y/height);
+        }else{
+            settings.setSelected(p.x/width, p.y/height);
+        }
         repaint();
     }
 

@@ -52,7 +52,7 @@ public class SectorTest {
         
         SectorPanel sectorPanel = new SectorPanel(model);
         
-        SectorView sectorView = new SectorView(model);
+        SectorView sectorView = new SectorView(null, model);
 
         frame.add(sectorView);
         frame.add(sectorPanel, BorderLayout.SOUTH);

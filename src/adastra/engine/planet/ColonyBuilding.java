@@ -4,9 +4,9 @@
  */
 package adastra.engine.planet;
 
+import adastra.engine.Asset.GameSettings;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import javax.swing.JComponent;
 
 /**
@@ -15,35 +15,10 @@ import javax.swing.JComponent;
  * @author webpigeon
  */
 public class ColonyBuilding extends Factory<BuildingBlueprint> {
-    private Point build;
-
     public ColonyBuilding(Colony col, Planet planet) {
         super("Colony Building", planet, col, planet.getOwner().getBuildings());
         this.colony = col;
         this.planet = planet;
-        build = new Point();
-    }
-
-    /**
-     * Mark a building to be built
-     *
-     * @param x The x co-ordinate to build at
-     * @param y the y co-ordinate to build at
-     * @param bp the blueprint to build from
-     */
-    public void build(int x, int y, BuildingBlueprint bp) {
-        Construct(bp, new Point(x, y));
-        progress = 0;
-        blueprint = bp;
-        build.setLocation(x, y);
-    }
-
-    @Override
-    public JComponent getSettings() {
-        PlotMap map = new PlotMap(planet, null);
-        FactorySettings fs = new FactorySettings(this, map);
-        map.setFactory(fs);
-        return fs;
     }
 
     @Override
@@ -59,12 +34,16 @@ public class ColonyBuilding extends Factory<BuildingBlueprint> {
 
     @Override
     public void onComplete() {
-        colony.placeBuilding(build.x, build.y, blueprint.makeBuilding(planet));
+        colony.placeBuilding(buildPoint.x, buildPoint.y, blueprint.makeBuilding(planet));
     }
 
     @Override
     public void microTick() {
         //throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public GameSettings getSettings() {
+        return new GameSettings("Colony Settings", "tab.building.factory", this, "tab.middle.plot");
     }
     
     

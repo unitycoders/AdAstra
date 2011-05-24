@@ -50,5 +50,4 @@ public interface Ability {
      * @return the newly created event
      */
     public Event fireEvent(Asset source, Location start, Location target);
-
 }

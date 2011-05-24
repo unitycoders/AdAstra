@@ -6,6 +6,8 @@ package adastra.client;
 
 import adastra.engine.Asset;
 import adastra.engine.Event;
+import adastra.engine.Galaxy;
+import adastra.engine.Game;
 import adastra.engine.Location;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -18,19 +20,55 @@ import java.awt.RenderingHints;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 
 /**
  *
  * @author webpigeon
  */
-public class SectorView extends JComponent implements SectorModelListener {
+public class SectorView extends AdAstraPanel implements SectorModelListener {
     private Image starfield;
     private SectorModel model;
     private Rectangle viewpoint;
     private boolean changed;
+    private GameController window;
+    private AssetProperties assetProps;
 
-    public SectorView(SectorModel mdl) {
+    public SectorView(GameController window){
+        Game game = window.getCurrentGame();
+        Galaxy galaxy = game.getMap();
+
+        SectorModel mdl = new SectorModel();
+        mdl.setSector(galaxy.getSector(0));
+
+        this.assetProps = new AssetProperties();
+        this.window = window;
+        this.model = mdl;
+        this.changed = false;
+        this.model.addSectorListener(this);
+        try {
+            this.starfield = ImageIO.read(new File("starfield.png"));
+        } catch (IOException e) {
+            System.err.println("Loading starfield failed: " + e.toString());
+        }
+        this.setBackground(Color.BLACK);
+
+        //listeners
+        SectorMouseAdaptor sml = new SectorMouseAdaptor(this, model);
+        this.addMouseListener(sml);
+        this.addMouseMotionListener(sml);
+        this.addKeyListener(new SectorKeyListener(this, model));
+
+        this.setFocusable(true);
+        this.requestFocus();
+
+        viewpoint = new Rectangle(600,600,800,600);
+        this.setPreferredSize(new Dimension(viewpoint.width, viewpoint.height));
+    }
+
+    public SectorView(GameController window, SectorModel mdl) {
+        this.window = window;
         this.model = mdl;
         this.changed = false;
         this.model.addSectorListener(this);
@@ -60,6 +98,19 @@ public class SectorView extends JComponent implements SectorModelListener {
 
         g.setColor(Color.red);
         g.drawRect(viewpoint.x-600, viewpoint.y-600, 1200, 1200);
+    }
+
+    public void showMenu(){
+        window.showWindow(3, false);
+    }
+
+    public void showProperties(Asset asset){
+        JFrame frame = new JFrame("Asset Properties");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.add(assetProps);
+        assetProps.selectAsset(asset);
+        frame.pack();
+        frame.setVisible(true);
     }
 
     @Override
@@ -160,6 +211,16 @@ public class SectorView extends JComponent implements SectorModelListener {
 
     Point getStart(Point p){
         return new Point(p.x-viewpoint.x,p.y-viewpoint.y);
+    }
+
+    @Override
+    public String getName() {
+        return "Sector View";
+    }
+
+    @Override
+    public void notifySelected() {
+        this.requestFocus();
     }
 
 

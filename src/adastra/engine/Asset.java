@@ -9,7 +9,6 @@ package adastra.engine;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import javax.swing.JComponent;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -77,9 +76,13 @@ public abstract class Asset {
         this.rotation = 0;
     }
 
-    @Deprecated
-    public abstract JComponent getProperties();
+    public abstract GameSettings[] getUITabs();
 
+    public String getName(){
+        //TODO add code to do this properly
+        return "Example Asset";
+    }
+    
     /**
      * little tick
      */
@@ -163,6 +166,11 @@ public abstract class Asset {
             return 0;
         }
         return v;
+    }
+
+    public void setOwner(Player p){
+        this.owner = p;
+        fireChangeOwner();
     }
 
     /**
@@ -274,7 +282,8 @@ public abstract class Asset {
             al.onChangeLocation();
         }
     }
-    
+
+    @Deprecated
     public void paintAt(Graphics g, int x, int y){
         g.setColor(Color.WHITE);
         //TODO this is a bad way of doing it, make it better
@@ -283,6 +292,18 @@ public abstract class Asset {
 
     public Player getOwner(){
         return owner;
+    }
+
+    public static class GameSettings{
+        public String name;
+        public String type;
+        public Object[] args;
+
+        public GameSettings(String name, String type, Object ... args){
+            this.name = name;
+            this.type = type;
+            this.args = args;
+        }
     }
     
 }

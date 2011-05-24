@@ -104,12 +104,16 @@ public class SectorModel implements SectorListener {
     }
 
     public void giveOrder(Point p){
-        if(selectedAbility != null){
-            Location point = new Location(selectedSector, p.x, p.y);
-            //Event event = selectedAbility.fireEvent(selectedAsset, point);
+        if(selectedAbility == null){
+            return;
+        }
+
+        Event event;
+        Location point = new Location(selectedSector, p.x, p.y);
+        
+
             if(compostite){
                 Location[] start = events.getTargetLocation();
-                Event event;
                 if(start.length == 0){
                     event = selectedAbility.fireEvent(selectedAsset, point);
                 }else{
@@ -119,11 +123,10 @@ public class SectorModel implements SectorListener {
                 events.addEvent(event);
                 selectedAsset.setEvent(events);
             }else{
-                Event event = selectedAbility.fireEvent(selectedAsset, point);
+                event = selectedAbility.fireEvent(selectedAsset, point);
                 selectedAsset.setEvent(event);
             }
             fireOrdersChanged();
-        }
     }
     
     public void selectAssetAt(int x, int y){

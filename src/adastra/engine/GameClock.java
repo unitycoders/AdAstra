@@ -24,7 +24,6 @@ public class GameClock extends TimerTask {
     public void run() {
         count = (count +1) % 50;
         if(count == 0){
-            System.out.println("painty goodness?");
             galaxy.tick();
         }
         galaxy.microTick();
