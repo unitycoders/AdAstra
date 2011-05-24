@@ -4,11 +4,9 @@
  */
 package adastra.engine.planet;
 
-import adastra.client.PlanetWindow;
 import adastra.engine.Asset.GameSettings;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.JComponent;
 import utilities.ArrayIterator;
 
 /**
@@ -73,24 +71,6 @@ public class Colony implements Iterable<Building[]> {
                 }
             }
         }
-    }
-
-    /**
-     * Build a new planet settings frame and return it
-     *
-     * @return
-     */
-    @Deprecated
-    public JComponent getSettings(){
-        PlanetWindow window = new PlanetWindow(planet);
-        for(Building[] ba : buildings){
-            for(Building b : ba){
-                if(b != null){
-                    //window.addContent(b.getName(), b.getSettings());
-                }
-            }
-        }
-        return window;
     }
 
     @Override

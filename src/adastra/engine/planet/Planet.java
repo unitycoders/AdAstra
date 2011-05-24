@@ -4,7 +4,6 @@
  */
 package adastra.engine.planet;
 
-import adastra.client.PlanetWindow;
 import utilities.CrazyMath;
 import adastra.engine.Asset;
 import adastra.engine.Asset.GameSettings;
@@ -13,7 +12,6 @@ import adastra.engine.Player;
 import adastra.engine.Sector;
 import java.awt.Graphics;
 import java.util.Random;
-import javax.swing.JComponent;
 
 /**
  * A planet in a given solar system
@@ -102,27 +100,6 @@ public class Planet extends Asset {
         return type;
     }
 
-    /**
-     * Get the planet's properties screen
-     *
-     * Step 1 of decouping the UI from the UI
-     * 
-     * @return the properties screen for the planet
-     */
-    @Override
-    public JComponent getProperties(){
-        if(colony == null){
-            return new PlanetWindow(this);
-        }else{
-            return colony.getSettings();
-        }
-    }
-
-    @Deprecated
-    public Building getBuildingAt(int row, int col){
-        return colony.buildingAt(row, col);
-    }
-    
     /**
      * Execute planet tick event updates
      *

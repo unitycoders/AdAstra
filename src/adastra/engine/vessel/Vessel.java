@@ -116,11 +116,6 @@ public class Vessel extends Asset {
         g2.fillPolygon(poly);
         g2.rotate(Math.toRadians(rotation+90)*-1, x, y);
     }
-
-    @Override
-    public JComponent getProperties(){
-        return null;
-    }
     
     @Override
     public String toString(){

@@ -7,7 +7,6 @@ package adastra.engine;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import javax.swing.JComponent;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -49,9 +48,6 @@ public abstract class Asset {
         //TODO add code to do this properly
         return "Example Asset";
     }
-
-    @Deprecated
-    public abstract JComponent getProperties();
 
     public void microTick(){
         if(order != null){

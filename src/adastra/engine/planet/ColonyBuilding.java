@@ -7,7 +7,6 @@ package adastra.engine.planet;
 import adastra.engine.Asset.GameSettings;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import javax.swing.JComponent;
 
 /**
