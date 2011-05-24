@@ -5,6 +5,7 @@
 
 package adastra;
 
+import adastra.client.GameController;
 import adastra.client.Network;
 import adastra.client.MainWindow;
 import adastra.client.SectorController;
@@ -28,20 +29,21 @@ import java.util.Timer;
  * @author jwalto
  */
 public class ClientLauncher {
+    private GameController controller;
     private MainWindow window;
     private Network network;
 
     public static void main(String[] args) {
         ClientLauncher client = new ClientLauncher();
-        client.demoGame();
-
-
+        client.launch();
     }
 
     public ClientLauncher(){
-        network = new Network();
-        window = new MainWindow(network);
-        window.showWindow();
+        controller = new GameController();
+    }
+    
+    public void launch(){
+        controller.showWindow();
     }
 
     /**
@@ -59,6 +61,7 @@ public class ClientLauncher {
         //SectorController ctrl = new SectorController(sector);
         //ctrl.resetCounter();
 
+        //Servers should be dictating ticks, not random demo methods!
         Timer t = new Timer();
         t.scheduleAtFixedRate(new GameClock(gal), 0, 42);
         //t.scheduleAtFixedRate(ctrl, 0, 40);

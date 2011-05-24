@@ -6,47 +6,60 @@
 package adastra.client;
 
 
+import adastra.engine.Asset;
 import adastra.engine.Sector;
-import java.awt.BorderLayout;
 import java.util.TimerTask;
 import javax.swing.JFrame;
 
 /**
- *
+ * Controls interaction between diffrent parts of the sector view
+ * and the 'outside world'
  * @author jwalto
  */
 public class SectorController extends TimerTask {
-    private JFrame window;
+    private GameController controller;
+    private SectorView view;
     private SectorModel model;
-    private SectorView sectorView;
+    private AssetProperties props;
     private int count = 0;
     
-    public SectorController(Sector selected){
-
-        window = new JFrame("Sector Demo");
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(false);
-
+    public SectorController(GameController controller){
+        this.controller = controller;
         model = new SectorModel();
-        model.setSector(selected);
-        
-        SectorPanel sectorPanel = new SectorPanel(model);
-        
-        sectorView = new SectorView(null, model);
-
-        window.add(sectorView);
-        window.add(sectorPanel, BorderLayout.SOUTH);
-
-        //Frame
-        window.pack();
-        window.setVisible(true);
+        view  = new SectorView(this, model);
+        props = new AssetProperties();
     }
-
+    
+    public void showMenu(){
+        controller.showWindow(3, false);
+    }
+    
+    public void selectSector(Sector sector){
+        model.setSector(sector);
+    }
+    
+    public SectorView getView(){
+        return view;
+    }
+    
+    public void showProperties(){
+        Asset asset = model.getAsset();
+        if(asset == null){
+            return; //no asset selected
+        }
+        
+        JFrame frame = new JFrame("Asset Properties");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.add(props);
+        props.selectAsset(asset);
+        frame.pack();
+        frame.setVisible(true);
+    }
 
     @Override
     public void run() {
         count ++;
-        sectorView.repaint();
+        view.repaint();
     }
 
     public void resetCounter(){

@@ -1,28 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/engine/Ability.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/engine/Asset.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/engine/AssetListener.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/engine/BlueprintManager.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/engine/CompositeEvent.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/engine/Galaxy.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/engine/MoveEvent.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/engine/Player.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/engine/Sector.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/engine/SectorListener.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/engine/TTBuilding.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/VesselTest.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/engine/Blueprint.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/engine/Event.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/engine/Game.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/engine/vessel/Engine.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/cli/CliMain.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/cli/Module.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/cli/CoreTools.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/cli/GameModel.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/cli/AssetTools.java</file>
-        <file>file:/home/webpigeon/Documents/AdAstra/src/adastra/cli/SectorTools.java</file>
-    </open-files>
 </project-private>

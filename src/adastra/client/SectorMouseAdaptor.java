@@ -16,13 +16,15 @@ import java.awt.event.MouseMotionListener;
  */
 public class SectorMouseAdaptor implements MouseListener, MouseMotionListener {
 
-    private SectorView sectorView;
+    private SectorComponent sectorView;
+    private SectorController ctrl;
     private SectorModel model;
     private Point startPoint;
 
-    public SectorMouseAdaptor(SectorView sv, SectorModel model) {
+    public SectorMouseAdaptor(SectorComponent sv, SectorController ctrl, SectorModel model) {
         this.sectorView = sv;
         this.model = model;
+        this.ctrl = ctrl;
     }
 
     @Override
@@ -33,10 +35,7 @@ public class SectorMouseAdaptor implements MouseListener, MouseMotionListener {
         if (me.getButton() == MouseEvent.BUTTON1) {
             model.selectAssetAt(p.x, p.y);
         } else if (me.getButton() == MouseEvent.BUTTON2) {
-            Asset selected = model.getAsset();
-            if (selected != null) {
-                sectorView.showProperties(selected);
-            }
+            ctrl.showProperties();
         } else {
             if(p.x < model.getSector().getWidth()/2)
             model.giveOrder(p);

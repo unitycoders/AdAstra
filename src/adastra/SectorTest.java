@@ -7,7 +7,7 @@ package adastra;
 import adastra.engine.MapGenerator;
 import adastra.client.SectorModel;
 import adastra.client.SectorPanel;
-import adastra.client.SectorView;
+import adastra.client.SectorComponent;
 import adastra.engine.Galaxy;
 import adastra.engine.GameClock;
 import adastra.engine.vessel.Hull;
@@ -52,7 +52,7 @@ public class SectorTest {
         
         SectorPanel sectorPanel = new SectorPanel(model);
         
-        SectorView sectorView = new SectorView(null, model);
+        SectorComponent sectorView = new SectorComponent(null, model);
 
         frame.add(sectorView);
         frame.add(sectorPanel, BorderLayout.SOUTH);

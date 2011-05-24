@@ -17,15 +17,16 @@ public class GameController {
     private Network network;
     private Game game;
 
-    public GameController(MainWindow window, Network network){
-        this.window = window;
-        this.network = network;
-        
-        //TODO remove duct tape
-        this.game = ClientLauncher.demoGame();
-        game.generateMap(15);
+    public GameController(){
+        this.network = new Network();
+        //TODO find out why mainwindow is being passed the networking library :/
+        this.window = new MainWindow(this, network);
     }
 
+    public void showWindow(){
+        window.showWindow();
+    }
+    
     public void showWindow(int id, boolean disconnect){
         if(disconnect && isConnected()){
             disconnect();
@@ -60,6 +61,10 @@ public class GameController {
         if(network.joinGame(username, Color.red, grp) == false){
             throw new RuntimeException("Joining game failed!");
         }
+        
+        //TODO remove duct tape
+        this.game = ClientLauncher.demoGame();
+        game.generateMap(15);
     }
 
     /**

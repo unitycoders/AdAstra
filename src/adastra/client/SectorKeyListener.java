@@ -13,10 +13,12 @@ import java.awt.event.KeyAdapter;
  */
 public class SectorKeyListener extends KeyAdapter {
 
-    private SectorView view;
+    private SectorController ctrl;
+    private SectorComponent view;
     private SectorModel model;
 
-    public SectorKeyListener(SectorView view, SectorModel model) {
+    public SectorKeyListener(SectorController ctrl, SectorComponent view, SectorModel model) {
+        this.ctrl = ctrl;
         this.view = view;
         this.model = model;
     }
@@ -41,6 +43,10 @@ public class SectorKeyListener extends KeyAdapter {
 
         if (ke.getKeyChar() == 'x') {
             model.toggleCompostite();
+        }
+        
+        if(ke.getKeyChar() == 'p'){
+            ctrl.showProperties();
         }
 
         if(ke.getKeyChar() == 'q'){
