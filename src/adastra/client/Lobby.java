@@ -20,12 +20,14 @@ import javax.swing.table.DefaultTableModel;
  * @author jwalto
  */
 public class Lobby extends AdAstraPanel {
-
     private DefaultTableModel model;
+    private ColourModel colourModel;
     private GameController ctrl;
 
     /** Creates new form Launcher */
     public Lobby(GameController ctrl) {
+        colourModel = new ColourModel();
+
         this.ctrl = ctrl;
         model = new DefaultTableModel();
         model.addColumn("Username");
@@ -95,7 +97,7 @@ public class Lobby extends AdAstraPanel {
 
         jLabel7.setText("Colour");
 
-        colour.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Red", "Blue", "Gold", "Green", "Purple" }));
+        colour.setModel(colourModel);
         colour.setEnabled(false);
 
         playerList.setModel(model);
@@ -216,13 +218,11 @@ public class Lobby extends AdAstraPanel {
         // TODO add your handling code here:
 
         try {
-            Color[] colours;
             String name;
             boolean flag;
             if (ctrl.isConnected()) {
                 this.jButton1.setText("Connect");
                 name = "Disconnected";
-                colours = new Color[0];
                 flag = false;
                 model.setRowCount(0);
                 ctrl.disconnect();
@@ -231,12 +231,11 @@ public class Lobby extends AdAstraPanel {
                 Network network = ctrl.connect(hostname.getText(), portNo);
                 this.jButton1.setText("Disconnect");
                 name = network.getName();
-                colours = network.getColours();
                 flag = true;
 
                 model.setRowCount(0);
                 for (PlayerData data : network.getPlayerList()) {
-                    Object[] obj = new Object[]{data.username, data.color, data.team};
+                    Object[] obj = new Object[]{data.username, ColourModel.getName(data.color), data.team};
                     model.addRow(obj);
                 }
             }

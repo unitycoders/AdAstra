@@ -10,7 +10,6 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.util.Arrays;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  *
@@ -35,7 +34,7 @@ public class MainWindow{
         panels = new AdAstraPanel[]{
             new MainMenu(controller),
             new Lobby(controller),
-            new SectorView(controller, model),
+            new GameView(controller),
             new GameMenu(controller)
         };
 

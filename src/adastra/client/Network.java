@@ -42,11 +42,11 @@ public class Network {
         }
 
         PlayerData[] data = new PlayerData[5];
-        data[0] = new PlayerData("WebPigeon", Color.RED, "DuckGame");
-        data[1] = new PlayerData("Solar", Color.BLUE, "DuckGame");
-        data[2] = new PlayerData("Neraik", Color.ORANGE, "DuckGame");
-        data[3] = new PlayerData("Perry", Color.GREEN, "DuckGame");
-        data[4] = new PlayerData("Battwa", Color.WHITE, "DuckGame");
+        data[0] = new PlayerData("WebPigeon", 0, "DuckGame");
+        data[1] = new PlayerData("Solar", 1, "DuckGame");
+        data[2] = new PlayerData("Neraik", 2, "DuckGame");
+        data[3] = new PlayerData("Perry", 3, "DuckGame");
+        data[4] = new PlayerData("Battwa", 4, "DuckGame");
 
         return data;
     }
@@ -77,10 +77,10 @@ public class Network {
 
     public class PlayerData{
         public String username;
-        public Color color;
+        public int color;
         public String team;
 
-        public PlayerData(String username, Color color, String team){
+        public PlayerData(String username, int color, String team){
             this.username = username;
             this.color = color;
             this.team = team;

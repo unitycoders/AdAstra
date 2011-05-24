@@ -212,14 +212,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="colour">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="Red"/>
-                <StringItem index="1" value="Blue"/>
-                <StringItem index="2" value="Gold"/>
-                <StringItem index="3" value="Green"/>
-                <StringItem index="4" value="Purple"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="colourModel" type="code"/>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
