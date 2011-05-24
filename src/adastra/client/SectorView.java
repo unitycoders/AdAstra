@@ -29,8 +29,10 @@ public class SectorView extends JComponent implements SectorModelListener {
     private SectorModel model;
     private Rectangle viewpoint;
     private boolean changed;
+    private MainWindow window;
 
-    public SectorView(SectorModel mdl) {
+    public SectorView(MainWindow window, SectorModel mdl) {
+        this.window = window;
         this.model = mdl;
         this.changed = false;
         this.model.addSectorListener(this);
@@ -60,6 +62,11 @@ public class SectorView extends JComponent implements SectorModelListener {
 
         g.setColor(Color.red);
         g.drawRect(viewpoint.x-600, viewpoint.y-600, 1200, 1200);
+    }
+
+    public void showMenu(){
+        System.out.println("showing menu");
+        window.showCard("menu");
     }
 
     @Override

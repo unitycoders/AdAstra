@@ -1,5 +1,5 @@
 
-package adastra.engine.loader;
+package adastra.engine;
 
 import adastra.engine.Technology;
 import adastra.engine.planet.PlanetType;

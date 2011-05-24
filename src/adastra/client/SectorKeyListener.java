@@ -42,5 +42,9 @@ public class SectorKeyListener extends KeyAdapter {
         if (ke.getKeyChar() == 'x') {
             model.toggleCompostite();
         }
+
+        if(ke.getKeyChar() == 'q'){
+            view.showMenu();
+        }
     }
 }

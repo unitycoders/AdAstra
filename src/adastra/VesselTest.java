@@ -5,7 +5,6 @@
 
 package adastra;
 
-import adastra.engine.AttackEvent;
 import adastra.engine.Event;
 import adastra.engine.vessel.Engine;
 import adastra.engine.vessel.Hull;
@@ -27,10 +26,7 @@ public class VesselTest {
         subject.setHardware(0, new Engine());
 
         Vessel target = new Vessel(null, h);
-
         subject.setHardware(0, hw);
-        //Event a = new AttackEvent(subject,target);
-        //subject.setEvent(a);
     }
 
 }
