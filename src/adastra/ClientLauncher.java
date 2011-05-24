@@ -48,7 +48,7 @@ public class ClientLauncher {
      * Starts a demo game (duct tape)
      * 
      */
-    private void demoGame(){
+    public static Game demoGame(){
         Game g = new Game();
         g.addPlayer("Dave");
         g.generateMap(1);
@@ -63,7 +63,8 @@ public class ClientLauncher {
         t.scheduleAtFixedRate(new GameClock(gal), 0, 42);
         //t.scheduleAtFixedRate(ctrl, 0, 40);
 
-        //enableCheats(g.getPlayer(0), sector);
+        enableCheats(g.getPlayer(0), sector);
+        return g;
     }
 
 
@@ -75,7 +76,7 @@ public class ClientLauncher {
      * @param p
      * @param s
      */
-    public void enableCheats(Player p, Sector s){
+    public static void enableCheats(Player p, Sector s){
         p.registerBuilding(new ShipyardBlueprint());
         p.registerVessel(new VesselBlueprint("Demo Ship", new Hull(), new Hardware[]{new Engine()}));
         VesselBlueprint scout = new VesselBlueprint("Scout Ship", new Hull(), new Hardware[]{new Engine(), new Engine(), new Engine()});
@@ -83,6 +84,7 @@ public class ClientLauncher {
 
         Vessel scoutShip = scout.buildVessel();
         scoutShip.setLocation(-50, -50);
+        scoutShip.setOwner(p);
         s.add(scoutShip);
 
         Planet planet = new Planet(s, 0, 0, new PlanetType(255,255,255), new int[11][11]);

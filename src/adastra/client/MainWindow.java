@@ -5,7 +5,6 @@
 
 package adastra.client;
 
-import adastra.engine.Sector;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.util.Arrays;

@@ -4,6 +4,7 @@
  */
 
 package adastra.client;
+import adastra.ClientLauncher;
 import adastra.engine.Game;
 import java.awt.Color;
 
@@ -21,7 +22,7 @@ public class GameController {
         this.network = network;
         
         //TODO remove duct tape
-        this.game = new Game();
+        this.game = ClientLauncher.demoGame();
         game.generateMap(15);
     }
 

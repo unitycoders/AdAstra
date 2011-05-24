@@ -31,10 +31,11 @@ public class FactorySettings<T extends Blueprint> extends JPanel {
     private Point selected;
     private JProgressBar status;
 
-    public FactorySettings(Factory factory, JComponent middle){
+    public FactorySettings(Factory factory, MiddlePanel middle){
         super();
         this.factory = factory;
         this.middle = middle;
+        middle.bindSettings(this);
         this.selected = new Point();
         this.buildUI();
     }

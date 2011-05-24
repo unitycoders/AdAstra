@@ -43,6 +43,8 @@ public abstract class Asset {
         this.rotation = 0;
     }
 
+    public abstract GameSettings[] getUITabs();
+
     public String getName(){
         //TODO add code to do this properly
         return "Example Asset";
@@ -118,6 +120,11 @@ public abstract class Asset {
             return 0;
         }
         return v;
+    }
+
+    public void setOwner(Player p){
+        this.owner = p;
+        fireChangeOwner();
     }
 
     /**
@@ -205,6 +212,18 @@ public abstract class Asset {
 
     public Player getOwner(){
         return owner;
+    }
+
+    public static class GameSettings{
+        public String name;
+        public String type;
+        public Object[] args;
+
+        public GameSettings(String name, String type, Object ... args){
+            this.name = name;
+            this.type = type;
+            this.args = args;
+        }
     }
     
 }

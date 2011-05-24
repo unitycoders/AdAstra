@@ -5,6 +5,8 @@
 package adastra.engine.planet;
 
 import adastra.client.PlanetWindow;
+import adastra.engine.Asset.GameSettings;
+import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JComponent;
 import utilities.ArrayIterator;
@@ -17,9 +19,6 @@ import utilities.ArrayIterator;
 public class Colony implements Iterable<Building[]> {
     private Planet planet;
     private Building[][] buildings;
-    private BuildingBlueprint blueprint;
-    private int buildX, buildY;
-    private int buildProgress;
 
     /**
      * Build a new colony
@@ -30,22 +29,7 @@ public class Colony implements Iterable<Building[]> {
     public Colony(Planet p) {
         this.planet = p;
         this.buildings = new Building[PlanetType.BUILD_ROWS][PlanetType.BUILD_COLS];
-        this.buildProgress = 0;
         this.buildings[5][5] = new ColonyBuilding(this, p);
-    }
-
-    /**
-     * Mark a building to be built
-     *
-     * @param x The x co-ordinate to build at
-     * @param y the y co-ordinate to build at
-     * @param bp the blueprint to build from
-     */
-    public void build(int x, int y, BuildingBlueprint bp) {
-        buildProgress = 0;
-        blueprint = bp;
-        buildX = x;
-        buildY = y;
     }
 
     /**
@@ -53,7 +37,7 @@ public class Colony implements Iterable<Building[]> {
      *
      */
     public void placeBuilding(int x, int y, Building b) {
-        buildings[buildX][buildY] = b;
+        buildings[x][y] = b;
     }
 
     /**
@@ -96,12 +80,13 @@ public class Colony implements Iterable<Building[]> {
      *
      * @return
      */
+    @Deprecated
     public JComponent getSettings(){
         PlanetWindow window = new PlanetWindow(planet);
         for(Building[] ba : buildings){
             for(Building b : ba){
                 if(b != null){
-                    window.addContent(b.getName(), b.getSettings());
+                    //window.addContent(b.getName(), b.getSettings());
                 }
             }
         }
@@ -111,5 +96,20 @@ public class Colony implements Iterable<Building[]> {
     @Override
     public Iterator<Building[]> iterator() {
         return new ArrayIterator<Building[]>(buildings);
+    }
+
+    public GameSettings[] getTabs(){
+        ArrayList<GameSettings> tabs = new ArrayList<GameSettings>();
+
+        for(Building[] ba : buildings){
+            for(Building b : ba){
+                if(b != null){
+                    tabs.add(b.getSettings());
+                }
+            }
+        }
+
+        GameSettings[] settings = new GameSettings[tabs.size()];
+        return tabs.toArray(settings);
     }
 }

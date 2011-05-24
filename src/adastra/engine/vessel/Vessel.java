@@ -126,4 +126,9 @@ public class Vessel extends Asset {
     public String toString(){
         return "Vessel Hull: "+hull+" Hardware: ("+Arrays.toString(hardware)+")";
     }
+
+    @Override
+    public GameSettings[] getUITabs() {
+        return new GameSettings[0];
+    }
 }

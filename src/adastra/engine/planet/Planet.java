@@ -7,6 +7,7 @@ package adastra.engine.planet;
 import adastra.client.PlanetWindow;
 import utilities.CrazyMath;
 import adastra.engine.Asset;
+import adastra.engine.Asset.GameSettings;
 import adastra.engine.Location;
 import adastra.engine.Player;
 import adastra.engine.Sector;
@@ -93,17 +94,6 @@ public class Planet extends Asset {
     }
 
     /**
-     * Build a building
-     * 
-     * @param plot
-     * @param b 
-     */
-    @Deprecated
-    public void build(int row, int col, BuildingBlueprint bp){        
-        colony.build(row, col, bp);
-    }
-
-    /**
      * Return the type of planet present
      * 
      * @return the type of the planet
@@ -172,5 +162,14 @@ public class Planet extends Asset {
         int diamater = radius *2;
 
         g.fillOval(l.getX()-radius, l.getY()-radius, diamater, diamater);
+    }
+
+    @Override
+    public GameSettings[] getUITabs() {
+        if(colony == null){
+            return new GameSettings[0];
+        }
+
+        return colony.getTabs();
     }
 }

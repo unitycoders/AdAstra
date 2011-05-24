@@ -60,11 +60,6 @@ public abstract class Factory<T extends Blueprint> extends Building {
     }
 
     @Override
-    public JComponent getSettings() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
     public JComponent getIcon() {
         throw new UnsupportedOperationException("Not supported yet.");
     }

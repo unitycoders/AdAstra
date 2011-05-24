@@ -12,7 +12,12 @@
 package adastra.client;
 
 import adastra.engine.Asset;
+import adastra.engine.Asset.GameSettings;
 import adastra.engine.Player;
+import adastra.engine.planet.Factory;
+import adastra.engine.planet.Planet;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 /**
  *
@@ -113,6 +118,8 @@ public class AssetProperties extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void selectAsset(Asset selected){
+        jTabbedPane1.removeAll();
+
         this.selected = selected;
         assetName.setText(selected.getName());
         Player owner = selected.getOwner();
@@ -121,7 +128,38 @@ public class AssetProperties extends javax.swing.JPanel {
         }else{
             assetOwner.setText("Unowned");
         }
-        setVisible(true);
+
+        for(GameSettings tab : selected.getUITabs()){
+            jTabbedPane1.add(buildProperties(tab, selected), tab.name);
+        }
+
+
+        updateUI();
+        repaint();
+    }
+
+    private static JComponent buildProperties(GameSettings tab, Asset asset){
+        if(tab.type.equals("tab.building.factory")){
+            Factory factory = (Factory)tab.args[0];
+            MiddlePanel middle = getMiddle((String)tab.args[1], (Planet)asset);
+            return new FactorySettings(factory, middle);
+        }
+
+        System.err.println("Unknown tab type "+tab.type);
+        return null;
+    }
+
+    private static MiddlePanel getMiddle(String middle, Planet p){
+        if(middle.equals("tab.middle.plot")){
+            return new PlotMap(p);
+        }
+
+        if(middle.equals("tab.middle.vessel")){
+            return new ShipyardStatsPanel();
+        }
+
+        System.err.println("Unknown middle "+middle);
+        return new ShipyardStatsPanel();
     }
 
 
