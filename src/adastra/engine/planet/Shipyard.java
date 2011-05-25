@@ -4,13 +4,10 @@
  */
 package adastra.engine.planet;
 
-
-import adastra.client.ShipyardStatsPanel;
 import adastra.engine.Asset.GameSettings;
 import adastra.engine.vessel.Vessel;
 import adastra.engine.vessel.VesselBlueprint;
 import javax.swing.JComponent;
-import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
 /**
@@ -28,9 +25,6 @@ public class Shipyard extends Factory<VesselBlueprint> {
         this.progress = 0;
         this.extent = 0;
         this.ajusting = false;
-
-        ShipyardStatsPanel current = new ShipyardStatsPanel();
-        current.setBorder(BorderFactory.createTitledBorder("Currently Building"));
     }
 
     @Override
