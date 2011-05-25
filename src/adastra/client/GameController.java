@@ -5,6 +5,7 @@
 
 package adastra.client;
 import adastra.ClientLauncher;
+import adastra.engine.Galaxy;
 import adastra.engine.Game;
 import java.awt.Color;
 
@@ -18,7 +19,7 @@ public class GameController {
     private Game game;
 
     public GameController(){
-        this.network = new Network();
+        this.network = new Network(this);
         //TODO find out why mainwindow is being passed the networking library :/
         this.window = new MainWindow(this, network);
     }
@@ -36,6 +37,18 @@ public class GameController {
 
     public Game getCurrentGame(){
         return game;
+    }
+    
+    public void gameTick(){
+        if(game == null){
+            return;
+        }
+        
+        Galaxy map = game.getMap();
+        if(map != null){
+            map.tick();
+        }
+        window.repaint();
     }
 
     public boolean isConnected(){

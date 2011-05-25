@@ -59,4 +59,8 @@ public class MainWindow {
         frame.pack();
         frame.setVisible(true);
     }
+    
+    public void repaint(){
+        frame.repaint();
+    }
 }

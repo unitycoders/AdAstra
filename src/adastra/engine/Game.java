@@ -53,7 +53,7 @@ public class Game {
      * @param nSectors 
      */
     public void generateMap(int nSectors){
-        MapGenerator gen = new MapGenerator();
+        MapGenerator gen = new MapGenerator(rules);
         for(int i=0; i<nSectors; i++){
             map.addSector(gen.nextSector());
         }

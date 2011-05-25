@@ -6,14 +6,23 @@
 package adastra.client;
 
 import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Mock network driver
  *
  * @author jwalto
  */
-public class Network {
+public class Network extends TimerTask {
+    private GameController controller;
     private boolean connected;
+    
+    public Network(GameController controller){
+        this.controller = controller;
+        Timer mockTimer = new Timer();
+        mockTimer.scheduleAtFixedRate(this, 0, 1200);
+    }
 
 
     public void connect(String host, int port){
@@ -73,6 +82,13 @@ public class Network {
         }
 
         return true; //allow game joining
+    }
+
+    @Override
+    public void run() {
+        if(controller != null){
+            controller.gameTick();
+        }
     }
 
     public class PlayerData{

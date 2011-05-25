@@ -15,11 +15,13 @@ package adastra.client;
  * @author webpigeon
  */
 public class SectorView extends AdAstraPanel {
+    private SectorController controller;
     private SectorComponent sectorComponent;
     private SectorPanel sectorPanel;
 
     /** Creates new form SectorView */
     public SectorView(SectorController controller, SectorModel model) {
+        this.controller = controller;
         sectorComponent = new SectorComponent(controller, model);
         sectorPanel = new SectorPanel(model);
         initComponents();
@@ -65,5 +67,8 @@ public class SectorView extends AdAstraPanel {
     @Override
     public void notifySelected() {
         //so what?
+        //TODO debug line, remove when not needed
+        controller.selectSector(0);
+        repaint();
     }
 }

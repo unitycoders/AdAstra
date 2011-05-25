@@ -14,16 +14,19 @@ import java.util.Random;
  */
 public class MapGenerator {
     private PlanetType starType; //TODO yeah, stars are planets
-    private PlanetType[] types;
     private Random random;
+    private RuleSet rules;
 
-    public MapGenerator(){
+    public MapGenerator(RuleSet rules){
         random = new Random();
-        starType = new PlanetType(253, 202, 0);
-        types = new PlanetType[]{
-            new PlanetType(0, 63, 7),
-            new PlanetType(0,150,0)
-        };
+        this.rules = rules;
+        this.random = new Random();
+        this.starType = new PlanetType(253, 202, 0); //it's a hack x.x
+    }
+    
+    public MapGenerator(RuleSet rules, long seed){
+        this(rules);
+        random.setSeed(seed);
     }
 
     public Sector nextSector(){
@@ -48,7 +51,7 @@ public class MapGenerator {
     public Planet nextPlanet(int starx, int stary, int pos, Sector s){
         int x = starx;
         int y = (150*pos)+stary+250;
-        PlanetType t = types[random.nextInt(types.length)];
+        PlanetType t = rules.getPlanetType(random.nextInt(rules.getPlanetTypesCount()));
         
         //generate a random surface map
         int[][] tileMap = new int[PlanetType.BUILD_COLS][PlanetType.BUILD_ROWS];

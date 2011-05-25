@@ -7,6 +7,7 @@ package adastra.client;
 
 
 import adastra.engine.Asset;
+import adastra.engine.Galaxy;
 import adastra.engine.Sector;
 import java.util.TimerTask;
 import javax.swing.JFrame;
@@ -28,6 +29,11 @@ public class SectorController extends TimerTask {
         model = new SectorModel();
         view  = new SectorView(this, model);
         props = new AssetProperties();
+    }
+    
+    public void selectSector(int id){
+        Galaxy gal = controller.getCurrentGame().getMap();
+        selectSector(gal.getSector(id));
     }
     
     public void showMenu(){
