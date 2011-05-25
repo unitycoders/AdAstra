@@ -119,6 +119,10 @@ public class Sector implements Iterable<Asset>, AssetListener {
     public void onChange() {
         fireDataChanged();
     }
+
+    public int assetCount(){
+        return assets.size();
+    }
     
     
 }

@@ -28,7 +28,7 @@ public class Vessel extends Asset {
     public Vessel(Location l, Hull h){
         super(l, 24);
         this.hull = h;
-        this.rotation = 90;
+        this.rotation = 0;
         this.hardware = new Hardware[h.getHardpointCount()];
     }
 
@@ -88,22 +88,7 @@ public class Vessel extends Asset {
     public int getHardpointCount(){
         return hardware.length;
     }
-    
-    @Override
-    public void paintAt(Graphics g, int x, int y){
-        int radius = getRadius()/4*3;
-
-        int xp[] = new int[]{x-radius,x,x+radius};
-        int yp[] = new int[]{y-radius,y+radius,y-radius};
-        
-        Graphics2D g2 = (Graphics2D)g;
-        
-        Polygon poly = new Polygon(xp, yp, 3);
-        g2.rotate(Math.toRadians(rotation+90), x, y);
-        g2.setColor(Color.WHITE);
-        g2.fillPolygon(poly);
-        g2.rotate(Math.toRadians(rotation+90)*-1, x, y);
-    }
+   
     
     @Override
     public String toString(){

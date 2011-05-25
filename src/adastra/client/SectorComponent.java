@@ -7,6 +7,7 @@ package adastra.client;
 import adastra.engine.Asset;
 import adastra.engine.Event;
 import adastra.engine.Location;
+import adastra.engine.Sector;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -68,30 +69,42 @@ public class SectorComponent extends AdAstraPanel {
 
     @Override
     protected void paintChildren(Graphics g) {
-        if(model.getSector() == null){
+        Sector selected = model.getSector();
+        if(selected == null || selected.assetCount() == 0){
             return; //no sector selected!;
         }
+
+        int count = 0;
+        Sprite[] sprites = new Sprite[selected.assetCount()-1];
+        for(Asset asset : selected){
+            sprites[count] = SpriteFactory.buildSprite(asset);
+            count++;
+        }
+
+        if(sprites.length == 0){
+            return;
+        }
+
         
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.translate(viewpoint.x, viewpoint.y);
 
-        for (Asset a : model.getSector()) {
-            //paint asset
-            Location loc = a.getLocation();
-            //TODO replace with sprite based system
-            a.paintAt(g, loc.getX(), loc.getY());
+        count = 0;
+        for(Sprite sprite : sprites){
+            count++;
+            sprite.paint(g2);
         }
 
         //paint order marker
-        Asset selected = model.getAsset();
-        if (selected != null) {
-            Location loc = selected.getLocation();
+        Asset selectedAsset = model.getAsset();
+        if (selectedAsset != null) {
+            Location loc = selectedAsset.getLocation();
             g.setColor(Color.RED);
-            int radius = selected.getRadius();
+            int radius = selectedAsset.getRadius();
             g.drawOval(loc.getX() - radius, loc.getY() - radius, radius*2, radius*2);
 
-            Event e = selected.getEvent();
+            Event e = selectedAsset.getEvent();
             if (e != null) {
                 Location prev = loc;
                 Location[] la = e.getTargetLocation();

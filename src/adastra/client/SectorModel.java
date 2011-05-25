@@ -57,6 +57,14 @@ public class SectorModel implements SectorListener {
     public Sector getSector(){
         return this.selectedSector;
     }
+
+    public int getAssetCount(){
+        if(this.selectedSector == null){
+            return 0;
+        }
+
+        return this.selectedSector.assetCount();
+    }
     
     public void setAsset(Asset a){
         this.selectedAsset = a;
