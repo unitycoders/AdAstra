@@ -31,11 +31,6 @@ public class Engine extends Hardware {
     }
 
     @Override
-    public int getBuildTime() {
-        return 5;
-    }
-
-    @Override
     public void bindAsset(Asset attached) {
         super.bindAsset(attached);
         attached.addProperty("core.engine.power", 50);

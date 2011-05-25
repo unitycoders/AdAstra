@@ -19,14 +19,14 @@ public class VesselBlueprint extends Blueprint {
     private Hull hull;
     private HardwareBlueprint[] hard;
 
-    public String getName() {
-        return name;
-    }
-
     public VesselBlueprint(String name, Hull hull, HardwareBlueprint[] hard){
         this.name = name;
         this.hull = hull;
         this.hard = hard;
+    }
+    
+   public String getName() {
+        return name;
     }
 
     public HardwareBlueprint[] getHardware() {

@@ -24,9 +24,4 @@ public class Weapon extends Hardware {
         return "weapon";
     }
 
-    @Override
-    public int getBuildTime() {
-        return 1;
-    }
-
 }

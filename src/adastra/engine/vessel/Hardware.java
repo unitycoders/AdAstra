@@ -19,8 +19,6 @@ public abstract class Hardware {
 
     public abstract Collection<Ability> getAbilities();
 
-    public abstract int getBuildTime();
-
     public void bindAsset(Asset attached){
         this.attached = attached;
     }

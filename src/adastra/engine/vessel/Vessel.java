@@ -31,18 +31,6 @@ public class Vessel extends Asset {
         this.rotation = 90;
         this.hardware = new Hardware[h.getHardpointCount()];
     }
-    
-    /**
-     * Rebuilds a ship (don't use for ship construction!)
-     * 
-     * This method is for building ships after a game resume
-     */
-    public Vessel(Location l, Hull h, Hardware[] hw){
-        this(l,h);
-        for(int i=0; i<hw.length; i ++){
-            setHardware(i, hw[i]);
-        }
-    }
 
     /**
      * Add a new piece of hardware to a ship
