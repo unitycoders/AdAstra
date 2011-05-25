@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author jwalto
  */
-public abstract class BuildingBlueprint extends Blueprint {
+public abstract class BuildingBlueprint<T extends Building> extends Blueprint {
 
     public abstract String getName();
     public abstract Building makeBuilding(Planet p);

@@ -18,7 +18,6 @@ import java.awt.RenderingHints;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 
 /**
  *
@@ -29,7 +28,6 @@ public class SectorComponent extends AdAstraPanel {
     private SectorModel model;
     private Rectangle viewpoint;
     private SectorController window;
-    private AssetProperties assetProps;
 
     public SectorComponent(SectorController window, SectorModel mdl){
 
@@ -68,15 +66,6 @@ public class SectorComponent extends AdAstraPanel {
         window.showMenu();
     }
 
-    public void showProperties(Asset asset){
-        JFrame frame = new JFrame("Asset Properties");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.add(assetProps);
-        assetProps.selectAsset(asset);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
     @Override
     protected void paintChildren(Graphics g) {
         if(model.getSector() == null){
@@ -90,6 +79,7 @@ public class SectorComponent extends AdAstraPanel {
         for (Asset a : model.getSector()) {
             //paint asset
             Location loc = a.getLocation();
+            //TODO replace with sprite based system
             a.paintAt(g, loc.getX(), loc.getY());
         }
 
@@ -133,7 +123,6 @@ public class SectorComponent extends AdAstraPanel {
         int nx = p.x - viewpoint.x;
         int ny = p.y - viewpoint.y;
         
-
         viewpoint.x = x-viewpoint.x-nx;
         viewpoint.y = y-viewpoint.y-ny;
         

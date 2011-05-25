@@ -102,6 +102,7 @@ public class Vessel extends Asset {
         return hardware.length;
     }
     
+    @Override
     public void paintAt(Graphics g, int x, int y){
         int radius = getRadius()/4*3;
 

@@ -13,6 +13,7 @@ package adastra.client;
 
 import adastra.engine.Asset;
 import adastra.engine.Asset.GameSettings;
+import adastra.engine.Blueprint;
 import adastra.engine.Player;
 import adastra.engine.planet.Factory;
 import adastra.engine.planet.Planet;
@@ -140,9 +141,9 @@ public class AssetProperties extends javax.swing.JPanel {
 
     private static JComponent buildProperties(GameSettings tab, Asset asset){
         if(tab.type.equals("tab.building.factory")){
-            Factory factory = (Factory)tab.args[0];
+            Factory<Blueprint> factory = (Factory<Blueprint>)tab.args[0];
             MiddlePanel middle = getMiddle((String)tab.args[1], (Planet)asset);
-            return new FactorySettings(factory, middle);
+            return new FactorySettings<Blueprint>(factory, middle);
         }
 
         System.err.println("Unknown tab type "+tab.type);

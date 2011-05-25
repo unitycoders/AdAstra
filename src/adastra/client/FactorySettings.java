@@ -25,13 +25,13 @@ import javax.swing.JProgressBar;
  * @author jwalto
  */
 public class FactorySettings<T extends Blueprint> extends JPanel {
-    private Factory factory;
+    private Factory<T> factory;
     private JComponent middle;
     private JList list;
     private Point selected;
     private JProgressBar status;
 
-    public FactorySettings(Factory factory, MiddlePanel middle){
+    public FactorySettings(Factory<T> factory, MiddlePanel middle){
         super();
         this.factory = factory;
         this.middle = middle;

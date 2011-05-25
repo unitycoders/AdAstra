@@ -16,6 +16,7 @@ public class PlanetType {
     private Color colour;
     private Tile[] tiles;
 
+    //TODO make it so that planetType doesn't make it's tiles x.x
     public PlanetType(int r, int g, int b){
         this.colour = new Color(r,g,b);
         this.tiles = new Tile[]{new Tile(true, colour), new Tile(true, Color.RED)};

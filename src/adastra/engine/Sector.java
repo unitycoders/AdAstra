@@ -74,7 +74,7 @@ public class Sector implements Iterable<Asset>, AssetListener {
         Asset[] aa = new Asset[assets.size()];
         assets.toArray(aa);
 
-        return new ArrayIterator(aa);
+        return new ArrayIterator<Asset>(aa);
         //return assets.iterator();
     }
     
