@@ -5,6 +5,7 @@
 package adastra.cli;
 
 import adastra.engine.Game;
+import adastra.engine.RuleSet;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -31,7 +32,7 @@ public class CliMain implements Runnable, Iterable<Module> {
     
     public CliMain(){
         this.modules = new HashMap<String, Module>();
-        Game theGame = new Game();
+        Game theGame = new Game(new RuleSet());
         theGame.generateMap(10);
         this.model = new GameModel(theGame);
     }

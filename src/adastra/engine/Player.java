@@ -15,11 +15,15 @@ import adastra.engine.vessel.VesselBlueprint;
  */
 public class Player {
     private String name;
+    private int colour;
+    private String team;
     private BlueprintManager<BuildingBlueprint> buildingBps;
     private BlueprintManager<VesselBlueprint> vessels;
 
-    public Player(String name){
+    public Player(String name, int colour, String team){
         this.name = name;
+        this.colour = colour;
+        this.team = team;
         this.buildingBps = new BlueprintManager<BuildingBlueprint>();
         this.vessels = new BlueprintManager<VesselBlueprint>();
     }
@@ -38,6 +42,18 @@ public class Player {
 
     public BlueprintManager getVessels(){
         return vessels;
+    }
+    
+    public String getName(){
+        return name;
+    }
+    
+    public int getColour(){
+        return colour;
+    }
+    
+    public String getTeam(){
+        return team;
     }
 
 }

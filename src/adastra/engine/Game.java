@@ -5,7 +5,9 @@
 package adastra.engine;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A container for all game related things
@@ -13,14 +15,16 @@ import java.util.List;
  * @author webpigeon
  */
 public class Game {
+    private RuleSet rules;
     private List<Player> players;
     private Galaxy map;
-    private Technology rootTech;
+    private Map<Integer, Asset> assetMap;
     
-    public Game(){
+    public Game(RuleSet rules){
+        this.rules = rules;
         this.players = new ArrayList<Player>();
         this.map = new Galaxy();
-        this.rootTech = null; //tech tree disabled!
+        this.assetMap = new HashMap<Integer, Asset>();
     }
     
     /**
@@ -28,9 +32,19 @@ public class Game {
      * 
      * @param name 
      */
-    public void addPlayer(String name){
-        Player player = new Player(name);
+    public void addPlayer(String name, int colour, String team){
+        Player player = new Player(name, colour, team);
         players.add(player);
+    }
+    
+    public Player getPlayer(String name){
+        for(Player p : players){
+            if(p.getName().equals(name)){
+                return p;
+            }
+        }
+        
+        throw new RuntimeException("No Such Player!");
     }
     
     /**
@@ -43,6 +57,10 @@ public class Game {
         for(int i=0; i<nSectors; i++){
             map.addSector(gen.nextSector());
         }
+    }
+    
+    public Asset getAsset(int id){
+        return assetMap.get(id);
     }
     
     public Player getPlayer(int id){

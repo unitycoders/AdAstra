@@ -8,7 +8,6 @@ package adastra;
 import adastra.client.GameController;
 import adastra.client.Network;
 import adastra.client.MainWindow;
-import adastra.client.SectorController;
 import adastra.engine.Galaxy;
 import adastra.engine.Game;
 import adastra.engine.Player;
@@ -22,6 +21,7 @@ import adastra.engine.vessel.Hull;
 import adastra.engine.vessel.Vessel;
 import adastra.engine.vessel.VesselBlueprint;
 import adastra.engine.GameClock;
+import adastra.engine.RuleSet;
 import java.util.Timer;
 
 /**
@@ -30,8 +30,6 @@ import java.util.Timer;
  */
 public class ClientLauncher {
     private GameController controller;
-    private MainWindow window;
-    private Network network;
 
     public static void main(String[] args) {
         ClientLauncher client = new ClientLauncher();
@@ -51,8 +49,8 @@ public class ClientLauncher {
      * 
      */
     public static Game demoGame(){
-        Game g = new Game();
-        g.addPlayer("Dave");
+        Game g = new Game(new RuleSet());
+        g.addPlayer("Dave", 0, "DemoTeam");
         g.generateMap(1);
 
         Galaxy gal = g.getMap();
