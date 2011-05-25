@@ -15,29 +15,29 @@ import java.util.Map;
  */
 public class VesselBlueprint extends Blueprint {
 
-    private Hull hull;
-    private Hardware[] hard;
     private String name;
+    private Hull hull;
+    private HardwareBlueprint[] hard;
 
     public String getName() {
         return name;
     }
 
-    public VesselBlueprint(String name, Hull hull, Hardware[] hard){
+    public VesselBlueprint(String name, Hull hull, HardwareBlueprint[] hard){
         this.name = name;
         this.hull = hull;
         this.hard = hard;
     }
 
-    public Hardware[] getHardware() {
+    public HardwareBlueprint[] getHardware() {
         return hard;
     }
 
-    public void setHardware(Hardware[] hard) {
+    public void setHardware(HardwareBlueprint[] hard) {
         this.hard = hard;
     }
 
-    public void setHardware(int id, Hardware hard){
+    public void setHardware(int id, HardwareBlueprint hard){
         this.hard[id] = hard;
     }
 
@@ -47,18 +47,28 @@ public class VesselBlueprint extends Blueprint {
 
     public void setHull(Hull hull) {
         this.hull = hull;
-        hard = new Hardware[hull.getHardpointCount()];
+        hard = new HardwareBlueprint[hull.getHardpointCount()];
     }
 
     public Vessel buildVessel(){
-        return new Vessel(new Location(null, 0,0), hull, hard);
+        Vessel vessel = new Vessel(new Location(null, 0, 0), hull);
+        
+        for(int i=0; i<hard.length; i++){
+            if(hard[i] != null){
+                vessel.setHardware(i,  hard[i].buildHardware());
+            }
+        }
+        
+        return vessel;
     }
 
     @Override
     public int getBuildTime(){
         int sum = 0;
-        for(Hardware h : this.hard){
-           sum += h.getBuildTime();
+        for(HardwareBlueprint h : this.hard){
+            if(h != null){
+                sum += h.getBuildTime();
+            }
         }
         sum += this.hull.getBuildTime();
         return sum;

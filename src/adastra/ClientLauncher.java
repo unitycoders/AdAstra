@@ -22,6 +22,7 @@ import adastra.engine.vessel.Vessel;
 import adastra.engine.vessel.VesselBlueprint;
 import adastra.engine.GameClock;
 import adastra.engine.RuleSet;
+import adastra.engine.vessel.HardwareBlueprint;
 import java.util.Timer;
 
 /**
@@ -79,8 +80,8 @@ public class ClientLauncher {
      */
     public static void enableCheats(Player p, Sector s){
         p.registerBuilding(new ShipyardBlueprint());
-        p.registerVessel(new VesselBlueprint("Demo Ship", new Hull("Demo Hull", 150), new Hardware[]{new Engine()}));
-        VesselBlueprint scout = new VesselBlueprint("Scout Ship", new Hull("Light Hull", 50), new Hardware[]{new Engine(), new Engine(), new Engine()});
+        p.registerVessel(new VesselBlueprint("Demo Ship", new Hull("Demo Hull", 150), new HardwareBlueprint[]{new HardwareBlueprint()}));
+        VesselBlueprint scout = new VesselBlueprint("Scout Ship", new Hull("Light Hull", 50), new HardwareBlueprint[]{new HardwareBlueprint(), new HardwareBlueprint(), new HardwareBlueprint()});
         p.registerVessel(scout);
 
         Vessel scoutShip = scout.buildVessel();
