@@ -96,7 +96,7 @@ public class Planet extends Asset {
      * 
      * @return the type of the planet
      */
-    public PlanetType getType(){
+    public PlanetType getPlanetType(){
         return type;
     }
 
@@ -149,5 +149,10 @@ public class Planet extends Asset {
         }
 
         return colony.getTabs();
+    }
+
+    @Override
+    public int getType() {
+        return Asset.TYPE_PLANET;
     }
 }

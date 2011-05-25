@@ -126,4 +126,9 @@ public class Vessel extends Asset {
     public GameSettings[] getUITabs() {
         return new GameSettings[0];
     }
+
+    @Override
+    public int getType() {
+        return Asset.TYPE_VESSEL;
+    }
 }

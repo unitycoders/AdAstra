@@ -21,6 +21,12 @@ import java.util.HashMap;
  * @author webpigeon
  */
 public abstract class Asset {
+    public static final int TYPE_ERROR = 0;
+    public static final int TYPE_VESSEL = 1;
+    public static final int TYPE_PLANET = 2;
+    public static final int TYPE_ASTEROID = 3;
+    public static final int TYPE_WORMHOLE = 4;
+    
     /**
      * The owner of the asset (can be null if unowned)
      */
@@ -76,6 +82,8 @@ public abstract class Asset {
         this.rotation = 0;
     }
 
+    public abstract int getType();
+    
     public abstract GameSettings[] getUITabs();
 
     public String getName(){
