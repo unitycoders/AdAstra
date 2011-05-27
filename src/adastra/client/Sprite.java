@@ -6,6 +6,7 @@
 package adastra.client;
 
 import adastra.engine.Asset;
+import adastra.engine.planet.Planet;
 import java.awt.Graphics;
 
 /**
@@ -16,6 +17,20 @@ public abstract class Sprite {
     protected Asset asset;
     protected boolean selected;
 
+    public static Sprite buildSprite(Asset asset){
+        if(asset.getType() == Asset.TYPE_PLANET){
+            Planet p = (Planet)asset;
+            return new PlanetSprite(p);
+        }
+
+       if(asset.getType() == Asset.TYPE_VESSEL){
+           return new AssetSprite(asset);
+       }
+
+        System.err.println("Unknown type ID "+asset.getType());
+        return null;
+    }
+
     public Sprite(Asset asset){
         this.asset = asset;
     }
@@ -25,5 +40,6 @@ public abstract class Sprite {
     }
 
     public abstract void paint(Graphics g);
+
 
 }

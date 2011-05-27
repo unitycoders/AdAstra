@@ -74,25 +74,12 @@ public class SectorComponent extends AdAstraPanel {
             return; //no sector selected!;
         }
 
-        int count = 0;
-        Sprite[] sprites = new Sprite[selected.assetCount()-1];
-        for(Asset asset : selected){
-            sprites[count] = SpriteFactory.buildSprite(asset);
-            count++;
-        }
-
-        if(sprites.length == 0){
-            return;
-        }
-
-        
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.translate(viewpoint.x, viewpoint.y);
 
-        count = 0;
-        for(Sprite sprite : sprites){
-            count++;
+        for(Asset asset : selected){
+            Sprite sprite = Sprite.buildSprite(asset);
             sprite.paint(g2);
         }
 
