@@ -58,8 +58,8 @@ public class MoveEvent implements Event {
         Location prev = curr;
         while(prev.getDist(dest) >= maxDist){
             prev = new Location(prev);
-            prev.appendX((int)(Math.sin(Math.PI/2 - rotation)*maxDist) * -1);
-            prev.appendY((int)(Math.cos(Math.PI/2 - rotation)*maxDist) * -1);
+            prev.appendX((int)(Math.sin(rotation)*maxDist));
+            prev.appendY((int)(Math.cos(rotation)*maxDist) * -1);
             jumps.add(prev);
         }
         
@@ -88,8 +88,9 @@ public class MoveEvent implements Event {
         
         turn = 1;
         nextTick = jumps.poll();
-        double rotation = Math.toDegrees(CrazyMath.getRotation(what.getLocation(), nextTick));
-        what.rotateTo(Math.toDegrees(rotation));
+        double rotation = CrazyMath.getRotation(what.getLocation(), nextTick);
+        System.out.println("Tick Rotation: "+rotation);
+        what.rotateTo(rotation);
         what.setLocation(nextTick);
         step = (rotation-what.rotation)/10;
     }
@@ -111,8 +112,8 @@ public class MoveEvent implements Event {
            // double rotation = Math.toDegrees(CrazyMath.getRotation(what.getLocation(), where));
             
            // if(rotation != what.rotation){
-                System.out.println(step  + "-< step, rotation -> " + what.rotation);
-                what.rotate(step);
+                //System.out.println(step  + "-< step, rotation -> " + what.rotation);
+                //what.rotate(step);
            // }
             turn++;
             

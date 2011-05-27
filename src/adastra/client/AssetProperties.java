@@ -125,7 +125,7 @@ public class AssetProperties extends javax.swing.JPanel {
         assetName.setText(selected.getName());
         Player owner = selected.getOwner();
         if(owner != null){
-            assetOwner.setText(owner.toString());
+            assetOwner.setText(owner.getName());
         }else{
             assetOwner.setText("Unowned");
         }

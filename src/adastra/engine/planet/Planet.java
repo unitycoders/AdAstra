@@ -122,26 +122,6 @@ public class Planet extends Asset {
         }
     }
 
-
-
-    /**
-     * Paint a planet to a given location
-     *
-     * @param g graphics to draw to
-     * @param x the x locaiton of the planet
-     * @param y the y location of the planet
-     */
-    @Override
-    @Deprecated
-    public void paintAt(Graphics g, int x, int y){
-        g.setColor(type.getColour());
-        Location l = getLocation();
-        int radius  = (getRadius()/4)*3;
-        int diamater = radius *2;
-
-        g.fillOval(l.getX()-radius, l.getY()-radius, diamater, diamater);
-    }
-
     @Override
     public GameSettings[] getUITabs() {
         if(colony == null){

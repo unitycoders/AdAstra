@@ -37,8 +37,8 @@ public class MainWindow {
         panels = new AdAstraPanel[]{
             new MainMenu(controller),
             new Lobby(controller),
-            sectrl.getView(),
-            //new GameView(controller),
+            //sectrl.getView(),
+            new GameView(controller),
             new GameMenu(controller)
         };
 

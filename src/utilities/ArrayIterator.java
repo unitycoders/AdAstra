@@ -21,13 +21,12 @@ public class ArrayIterator<T> implements Iterator<T> {
     
     @Override
     public boolean hasNext() {
-        return values.length > cursor + 1;
+        return values.length > cursor;
     }
 
     @Override
     public T next() {
-        cursor++;
-        return values[cursor];
+        return values[cursor++];
     }
 
     @Override

@@ -5,6 +5,8 @@
 
 package adastra.client;
 
+import java.awt.BorderLayout;
+
 /**
  *
  * @author jwalto
@@ -16,6 +18,9 @@ public class GameView extends AdAstraPanel {
     public GameView(GameController ctrl){
         this.ctrl = ctrl;
         this.assetProps = new AssetProperties();
+
+        this.setLayout(new BorderLayout());
+        this.add(new GalaxyComponent(), BorderLayout.CENTER);
     }
 
     @Override

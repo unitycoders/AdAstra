@@ -219,7 +219,7 @@ public abstract class Asset {
      * @param theta 
      */
     public void rotate(double theta){
-        this.rotation = (rotation+theta)%360;
+        this.rotation = (rotation+theta);
     }
     
     /**
@@ -228,7 +228,7 @@ public abstract class Asset {
      * @param angle 
      */
     public void rotateTo(double angle){
-        this.rotation = angle%360;
+        this.rotation = angle;
     }
     
     /**
@@ -290,16 +290,13 @@ public abstract class Asset {
             al.onChangeLocation();
         }
     }
-
-    @Deprecated
-    public void paintAt(Graphics g, int x, int y){
-        g.setColor(Color.WHITE);
-        //TODO this is a bad way of doing it, make it better
-        g.fillRect(x, y, 35, 35);
-    }
-
+    
     public Player getOwner(){
         return owner;
+    }
+
+    public double getRotation() {
+        return rotation;
     }
 
     public static class GameSettings{
