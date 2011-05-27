@@ -4,7 +4,6 @@
  */
 package adastra.engine;
 
-import java.awt.Point;
 import java.util.LinkedList;
 import java.util.Queue;
 import utilities.CrazyMath;

@@ -11,7 +11,7 @@ package adastra.engine.planet;
  * 
  * @author jwalto
  */
-public class ShipyardBlueprint extends BuildingBlueprint {
+public class ShipyardBlueprint extends BuildingBlueprint<Shipyard> {
 
     @Override
     public String getName() {
