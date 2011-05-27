@@ -1,4 +1,4 @@
-package RandomPlaceForAdastra;
+package adastra.client;
 
 /**
  * Created by IntelliJ IDEA.

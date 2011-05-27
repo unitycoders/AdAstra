@@ -1,4 +1,4 @@
-package RandomPlaceForAdastra;
+package adastra.client;
 
 import javax.swing.*;
 import java.awt.event.KeyListener;
