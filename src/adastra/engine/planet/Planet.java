@@ -10,7 +10,6 @@ import adastra.engine.Asset.GameSettings;
 import adastra.engine.Location;
 import adastra.engine.Player;
 import adastra.engine.Sector;
-import java.awt.Graphics;
 import java.util.Random;
 
 /**

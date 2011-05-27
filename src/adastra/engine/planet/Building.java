@@ -26,7 +26,6 @@ public abstract class Building {
     
     public abstract void gameTick();
     public abstract void microTick();
-    public abstract JComponent getIcon();
     public abstract GameSettings getSettings();
     
     public void drawAt(int x, int y, int width, int height, Graphics g){

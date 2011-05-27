@@ -21,11 +21,6 @@ public class PlanetType {
         this.colour = new Color(r,g,b);
         this.tiles = new Tile[]{new Tile(true, colour), new Tile(true, Color.RED)};
     }
-
-    public PlanetType(boolean[][] slots, int r, int g, int b){
-        this.colour = new Color(r,g,b);
-        this.tiles = new Tile[]{new Tile(true, colour), new Tile(true, Color.RED)};
-    }
     
     public int getTileCount(){
         return tiles.length;

@@ -6,7 +6,9 @@
 package adastra.engine.planet;
 
 /**
- *
+ * This just seems wasteful but I can't come up with a better
+ * way to do it.
+ * 
  * @author jwalto
  */
 public class ShipyardBlueprint extends BuildingBlueprint {

@@ -10,10 +10,10 @@ import adastra.engine.BlueprintManager;
 import java.awt.Point;
 import javax.swing.BoundedRangeModel;
 import javax.swing.DefaultBoundedRangeModel;
-import javax.swing.JComponent;
 
 /**
- *
+ * A Factory is something that builds things
+ * 
  * @author jwalto
  */
 public abstract class Factory<T extends Blueprint> extends Building {
@@ -59,17 +59,11 @@ public abstract class Factory<T extends Blueprint> extends Building {
         }
     }
 
-    @Override
-    public JComponent getIcon() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
     public abstract void onComplete();
 
     public BlueprintManager getManager(){
         return manager;
     }
-
 
     public BoundedRangeModel getModel() {
         return model;

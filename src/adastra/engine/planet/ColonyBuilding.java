@@ -22,11 +22,6 @@ public class ColonyBuilding extends Factory<BuildingBlueprint> {
     }
 
     @Override
-    public JComponent getIcon() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
     public void drawAt(int x, int y, int width, int height, Graphics g) {
         g.setColor(Color.BLUE);
         g.fillOval(x, y, width, height);
@@ -42,6 +37,7 @@ public class ColonyBuilding extends Factory<BuildingBlueprint> {
         //throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
     public GameSettings getSettings() {
         return new GameSettings("Colony Settings", "tab.building.factory", this, "tab.middle.plot");
     }

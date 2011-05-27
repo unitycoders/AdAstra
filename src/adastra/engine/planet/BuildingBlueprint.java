@@ -17,10 +17,12 @@ public abstract class BuildingBlueprint<T extends Building> extends Blueprint {
     public abstract String getName();
     public abstract Building makeBuilding(Planet p);
 
+    @Override
     public int getBuildTime(){
         return 3;
     }
     
+    @Override
     public Map<String,Integer> getBuildCost(){
         return null;
     }

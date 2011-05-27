@@ -7,8 +7,6 @@ package adastra.engine.planet;
 import adastra.engine.Asset.GameSettings;
 import adastra.engine.vessel.Vessel;
 import adastra.engine.vessel.VesselBlueprint;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
 
 /**
  * A shipyard builds new ships
@@ -17,19 +15,8 @@ import javax.swing.JLabel;
  */
 public class Shipyard extends Factory<VesselBlueprint> {
 
-    private int extent;
-    private boolean ajusting;
-
     public Shipyard(Planet planet) {
         super("Shipyard", planet, null, planet.getOwner().getVessels());
-        this.progress = 0;
-        this.extent = 0;
-        this.ajusting = false;
-    }
-
-    @Override
-    public JComponent getIcon(){
-        return new JLabel("Fail!");
     }
 
     @Override
