@@ -1,6 +1,5 @@
 package adastra.client;
 
-import javax.swing.*;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
@@ -23,10 +22,17 @@ public class KeyboardListener implements KeyListener {
     private Action action = UsefulObjects.action;
     private KeyPressOptions option;
     private TestWindow myframe;
+    private SectorController controller;
 
+    @Deprecated
     public KeyboardListener(KeyPressOptions key, TestWindow myframe){
         this.option = key;
         this.myframe = myframe;
+    }
+
+    public KeyboardListener(KeyPressOptions key, SectorController controller){
+        this.controller = controller;
+        this.option = key;
     }
 
     public void keyTyped(KeyEvent e) {
@@ -39,18 +45,24 @@ public class KeyboardListener implements KeyListener {
             myframe.print("You have started toggling");
             action.toggle = true;
             }
+            return;
         }
-        else if(key == option.UP_KEY){
+
+
+        if(key == option.UP_KEY){
             if(action.verticleKeyMove <=0){
             action.verticleKeyMove += 1;
             myframe.print("what is the value of up " + action.verticleKeyMove );
             }
+            return;
         }
-        else if(key == option.DOWN_KEY){
+
+        if(key == option.DOWN_KEY){
             if(action.verticleKeyMove >=0){
             action.verticleKeyMove -= 1;
             myframe.print("what is the value of up " + action.verticleKeyMove );
             }
+            return;
         }
     }
 

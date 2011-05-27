@@ -11,6 +11,7 @@ import java.awt.event.KeyAdapter;
  *
  * @author webpigeon
  */
+@Deprecated
 public class SectorKeyListener extends KeyAdapter {
 
     private SectorController ctrl;
