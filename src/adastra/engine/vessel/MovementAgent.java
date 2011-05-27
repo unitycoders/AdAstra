@@ -10,6 +10,8 @@ import adastra.engine.Location;
 import utilities.CrazyMath;
 
 /**
+ * TODO okay, this looks like matt's handywork, it's not very useful for movement
+ * sitting here BUT it could be useful for client side smooth movement.
  *
  * @author jwalto
  */

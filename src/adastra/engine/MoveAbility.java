@@ -4,8 +4,6 @@
  */
 package adastra.engine;
 
-import java.awt.Point;
-
 /**
  * Provides the ability to move
  * 

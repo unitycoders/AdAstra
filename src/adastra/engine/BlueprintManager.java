@@ -15,7 +15,7 @@ import javax.swing.event.ListDataListener;
  *
  * @author jwalto
  */
-public class BlueprintManager<T> implements ListModel {
+public class BlueprintManager<T extends Blueprint> implements ListModel {
     private List<T> blueprints;
 
     private List<ListDataListener> listeners;
