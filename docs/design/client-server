@@ -1,0 +1,27 @@
+# AdAstra Game Management
+All requests to the AdAstra game engine goes via some well defined communcation channels. This is so that the game engine can be a remote location such as a server or locally for single player. The interfaces defined in adastra.core.frontend are the only legal (as in game rules) way to edit game infomation (you can edit the game objects directly, but all you'll end up with is a mess and an angry engine).
+
+## Client to server
+Commuications initiated by the client come in two forms:
+1. a request for infomation
+2. a request to proform an action
+
+### Infomation Requests
+TODO
+
+### Action Requests
+TODO
+
+
+## Server to client
+Communcations from the server come in two forms:
+1. responses to client-to-server requests
+2. game status updates and infomation
+
+### Responses to client-server requests
+The server will respond to client requests in a number of ways. For the most part these can be handled automaticlly (and if your using
+the provided network libraries then you'll probably not even know/care about them).
+
+### Game status updates and infomation
+Any game infomation the server wishes to convay will be sent (probably without warning) to the client. The client networking code should be
+prepared for this and should deal with it accordingly.
