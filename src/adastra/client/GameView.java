@@ -36,8 +36,8 @@ public class GameView {
         tabs = new JTabbedPane();
 
         tabs.addTab("Overview", new JPanel());
-        tabs.addTab("Galaxy", new JPanel());
-        tabs.addTab("Sector", new JPanel());
+        tabs.addTab("Galaxy", new GalaxyView(controller, controller.getModel()));
+        tabs.addTab("Sector", new SectorView(controller));
         tabs.addTab("Details", new JPanel());
 
         frame.add(tabs, BorderLayout.CENTER);

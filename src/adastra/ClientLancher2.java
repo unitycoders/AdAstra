@@ -8,6 +8,8 @@ package adastra;
 import adastra.client.GameController;
 import adastra.engine.Game;
 import adastra.engine.RuleSet;
+import adastra.engine.frontend.MockDataProvider;
+import adastra.engine.frontend.MockDataSender;
 
 /**
  *
@@ -26,7 +28,7 @@ public class ClientLancher2 {
         Game game = new Game(rules);
         game.generateMap(10);
 
-        this.controller = new GameController();
+        controller = new GameController(new MockDataProvider(), new MockDataSender());
         controller.setGame(game);
         controller.selectSectorAt(0, 0);
     }

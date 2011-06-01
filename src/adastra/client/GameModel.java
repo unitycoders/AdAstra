@@ -8,6 +8,9 @@ package adastra.client;
 import adastra.engine.Asset;
 import adastra.engine.Game;
 import adastra.engine.Sector;
+import adastra.engine.frontend.DataProvider;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,11 +20,23 @@ public class GameModel {
     private Game theGame;
     private Sector sector;
     private Asset asset;
+    private DataProvider provider;
+    private List<SelectionListener> listeners;
 
-    public GameModel(){
+    public GameModel(DataProvider provider){
+        this.provider = provider;
         this.theGame = null;
         this.sector = null;
         this.asset = null;
+        this.listeners = new ArrayList<SelectionListener>();
+    }
+
+    public void addSelectionListener(SelectionListener listener){
+        listeners.add(listener);
+    }
+
+    public void removeSelectionListener(SelectionListener listener){
+        listeners.remove(listener);
     }
 
     /**
@@ -34,6 +49,11 @@ public class GameModel {
         this.setSector(null);
     }
 
+    //TODO this is a bit hacky, the galaxy view needs better integration
+    public Game getGame(){
+        return theGame;
+    }
+
     /**
      * Set the currently selected sector
      *
@@ -43,6 +63,7 @@ public class GameModel {
      */
     public void setSector(Sector s){
         this.sector = s;
+        fireSectorSelected();
         setAsset(null);
     }
 
@@ -67,7 +88,7 @@ public class GameModel {
         }
 
         //TODO add support to the map to allow getting of a sector by x and y
-        sector = theGame.getMap().getSector(0);
+        setSector(theGame.getMap().getSector(0));
         return sector != null;
     }
 
@@ -83,7 +104,7 @@ public class GameModel {
             throw new RuntimeException("no sector selected!");
         }
 
-        asset = sector.getAssetAt(x, y);
+        setAsset(sector.getAssetAt(x, y));
         return asset != null;
     }
 
@@ -94,6 +115,7 @@ public class GameModel {
      */
     public void setAsset(Asset a){
         this.asset = a;
+        fireAssetSelected();
     }
 
     /**
@@ -103,5 +125,17 @@ public class GameModel {
      */
     public Asset getAsset(){
         return asset;
+    }
+
+    private void fireSectorSelected(){
+        for(SelectionListener listener : listeners){
+            listener.sectorSelected(sector);
+        }
+    }
+
+    private void fireAssetSelected(){
+        for(SelectionListener listener : listeners){
+            listener.assetSelected(asset);
+        }
     }
 }
