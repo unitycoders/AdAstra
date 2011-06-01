@@ -5,7 +5,7 @@
 
 package adastra.engine.vessel;
 
-import adastra.client.SectorController;
+import adastra.oldclient.SectorController;
 import adastra.engine.Location;
 import utilities.CrazyMath;
 

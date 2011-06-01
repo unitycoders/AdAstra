@@ -5,9 +5,9 @@
 
 package adastra;
 
-import adastra.client.GameController;
-import adastra.client.Network;
-import adastra.client.MainWindow;
+import adastra.oldclient.GameController;
+import adastra.oldclient.Network;
+import adastra.oldclient.MainWindow;
 import adastra.engine.Galaxy;
 import adastra.engine.Game;
 import adastra.engine.Player;
