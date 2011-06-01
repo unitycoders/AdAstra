@@ -15,6 +15,8 @@ import adastra.engine.Sector;
  */
 public interface SelectionListener {
 
+    //TODO add support for gameSelection (should only occour once per connection)
+
     public void sectorSelected(Sector sector);
     public void assetSelected(Asset asset);
     public void abilitySelected(Ability ability);

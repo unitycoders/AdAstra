@@ -11,7 +11,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 /**
- *
+ * This will probably fail in future, as the apperance of each type of asset
+ * becomes more distinct, but for now it'll do.
+ * 
  * @author jwalto
  */
 public class AssetSprite {
