@@ -6,7 +6,6 @@
 
 package adastra.engine;
 
-import java.awt.Point;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
