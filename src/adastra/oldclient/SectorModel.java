@@ -107,7 +107,7 @@ public class SectorModel implements SectorListener {
             events = null;
         }else{
             compostite = true;
-            events = new CompositeEvent(selectedAsset, this);
+            events = new CompositeEvent(selectedAsset);
             selectedAsset.setEvent(events);
         }
         fireOrdersChanged();

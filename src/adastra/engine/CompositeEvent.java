@@ -5,7 +5,6 @@
 
 package adastra.engine;
 
-import adastra.oldclient.SectorModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -23,12 +22,11 @@ public class CompositeEvent implements Event {
     private Queue<Event> events;
     private Event current;
     private Asset asset;
-    private SectorModel model;
+    //private SectorModel model;
 
-    public CompositeEvent(Asset a, SectorModel model){
+    public CompositeEvent(Asset a){
         this.asset = a;
         this.events = new LinkedList<Event>();
-        this.model = model;
     }
 
     @Override
@@ -45,7 +43,6 @@ public class CompositeEvent implements Event {
         if(current == null){
             if(events.isEmpty() == false){
                 current = events.peek();
-                model.fireOrdersChanged();
             }else{
                 return;
             }

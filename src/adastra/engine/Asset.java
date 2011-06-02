@@ -196,9 +196,7 @@ public abstract class Asset {
      * @return 
      */
     public boolean contains(int x, int y){
-        //TODO get better collition detection
-        Point p = new Point(x, y);
-        return p.distance(location.getX(), location.getY()) < radius;
+        return location.getDist(x, y) < radius;
     }
 
     /**
