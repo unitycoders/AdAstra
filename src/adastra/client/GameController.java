@@ -4,90 +4,85 @@
  */
 
 package adastra.client;
-import adastra.ClientLauncher;
-import adastra.engine.Galaxy;
+
+import adastra.engine.Ability;
+import adastra.engine.Event;
 import adastra.engine.Game;
-import java.awt.Color;
+import adastra.engine.Location;
+import adastra.engine.Sector;
+import adastra.engine.frontend.DataProvider;
+import adastra.engine.frontend.DataSender;
+import adastra.engine.frontend.GameException;
 
 /**
+ * The controller for a game
  *
  * @author jwalto
  */
 public class GameController {
-    private MainWindow window;
-    private Network network;
-    private Game game;
+    private DataSender sender;
+    private DataProvider provider;
+    private GameView view;
+    private GameModel model;
 
-    public GameController(){
-        this.network = new Network(this);
-        //TODO find out why mainwindow is being passed the networking library :/
-        this.window = new MainWindow(this, network);
+    public GameController(DataProvider provider, DataSender sender){
+        this.sender = sender;
+        this.provider = provider;
+        this.model = new GameModel(provider);
+        this.view = new GameView(this);
     }
 
-    public void showWindow(){
-        window.showWindow();
+    public void setGame(Game game){
+        this.model.setGame(game);
+        deselectSector();
     }
-    
-    public void showWindow(int id, boolean disconnect){
-        if(disconnect && isConnected()){
-            disconnect();
+
+    public void selectSectorAt(int x, int y){
+        boolean status = model.selectSectorAt(x, y);
+        view.enableTab(2);
+        if(!status){
+            deselectSector();
         }
-        this.window.showCard(id);
     }
 
-    public Game getCurrentGame(){
-        return game;
+    public GameModel getModel(){
+        return model;
     }
-    
-    public void gameTick(){
-        if(game == null){
-            return;
+
+    public Sector getSector(){
+        return model.getSector();
+    }
+
+    public void deselectSector(){
+        model.setSector(null);
+        view.disableTab(2);
+        deselectAsset();
+    }
+
+    public void selectAssetAt(int x, int y){
+        boolean status = model.selectAssetAt(x, y);
+        view.enableTab(3);
+        if(!status){
+            deselectAsset();
         }
-        
-        Galaxy map = game.getMap();
-        if(map != null){
-            map.tick();
-        }
-        window.repaint();
     }
 
-    public boolean isConnected(){
-        //TODO write method
-        return network.isConnected();
+    public void deselectAsset(){
+        model.setAsset(null);
+        view.disableTab(3);
     }
 
-    /**
-     * Connect to a server
-     *
-     * @param host
-     * @param port
-     */
-    public Network connect(String host, int port){
-        network.connect(host, port);
-        return network;
-    }
-
-    /**
-     * Joins the currently running game on the connected server
-     */
-    public void joinGame(String username, String password, short col, String grp){
-        if(network.joinGame(username, Color.red, grp) == false){
-            throw new RuntimeException("Joining game failed!");
-        }
-        
-        //TODO remove duct tape
-        this.game = ClientLauncher.demoGame();
-        game.generateMap(15);
-    }
-
-    /**
-     * Disconnect from server
-     */
-    public void disconnect(){
-        System.out.println("Disconnecting!");
-        network.disconnect();
+    public void issueOrder(Ability ability, Location location) throws GameException{
+         Event order = ability.fireEvent(model.getAsset(), location);
+         sender.sendOrder(model.getAsset(), order);
     }
 
 
+    public void addListener(SelectionListener listener){
+        model.addSelectionListener(listener);
+    }
 
+    public void removeListener(SelectionListener listener){
+        model.removeSelectionListener(listener);
+    }
 }

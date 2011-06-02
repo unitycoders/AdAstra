@@ -1,0 +1,18 @@
+Simplistic order list (i came up with in about 20 mins)
+
+NULL_ORDER	This is a place holder meaning no order
+MOVE	Move to a given target position
+MINE	Mine an asteroid for resources
+TRADE	Request a trade with another asset
+BUILD_HARDWARE	Build a given piece of hardware from a blueprint
+BUILD_BUILDING	Build a building at a given location a planet
+BUILD_VESSEL	Build a vessel on a planet
+BUILD_STATION	Build a space station at the given location
+ATTACK	Attack another player's asset
+RAID	Raid another player's asset for resources
+CAPTURE	Capture another players asset
+RESEARCH	Start to research an item in the tech tree
+LAUNCH	Launch a vessel into space from a planet, station, carrier
+DOCK	Move a vessel from space into the targeted planet, station or carrier
+REFIT	Remove or Add hardware to a vessel
+

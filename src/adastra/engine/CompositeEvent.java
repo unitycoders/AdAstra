@@ -5,7 +5,7 @@
 
 package adastra.engine;
 
-import adastra.client.SectorModel;
+import adastra.oldclient.SectorModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;

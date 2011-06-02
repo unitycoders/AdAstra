@@ -1,0 +1,5 @@
+None		The placeholder meaning no resource
+Ore		Raw metal ore, can be refined to make metal
+Metal		Basic metal recourse used to build vessels, refined from ore
+Supplies	Basic supplies consumed by planets
+

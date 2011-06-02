@@ -5,8 +5,8 @@
 
 package adastra;
 
-import adastra.client.SectorController;
-import adastra.server.ServerController;
+//import adastra.oldclient.SectorController;
+//import adastra.server.ServerController;
 
 /**
  * Main running class for the server program
@@ -14,15 +14,15 @@ import adastra.server.ServerController;
  * @author jwalto
  */
 public class ServerLauncher {
-    private ServerController controller;
+   // private ServerController controller;
 
     public static void main(String[] args) {
         ServerLauncher launcher = new ServerLauncher();
     }
 
     public ServerLauncher(){
-        controller = new ServerController();
-        controller.run();
+        //controller = new ServerController();
+        //controller.run();
     }
 
 }

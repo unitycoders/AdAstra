@@ -6,31 +6,48 @@
 package adastra.client;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 /**
  *
  * @author jwalto
  */
-public class GameView extends AdAstraPanel {
-    private GameController ctrl;
-    private AssetProperties assetProps;
+public class GameView {
+    private GameController controller;
+    private JFrame frame;
+    private JTabbedPane tabs;
 
-    public GameView(GameController ctrl){
-        this.ctrl = ctrl;
-        this.assetProps = new AssetProperties();
+    public GameView(GameController controller){
+        this.controller = controller;
 
-        this.setLayout(new BorderLayout());
-        this.add(new GalaxyComponent(), BorderLayout.CENTER);
+        frame = new JFrame("AdAstra - Client");
+        buildUI();
+        frame.pack();
+        frame.setVisible(true);
     }
 
-    @Override
-    public String getName() {
-        return "Game screen";
+    private void buildUI(){
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setPreferredSize(new Dimension(800,640));
+
+        tabs = new JTabbedPane();
+
+        tabs.addTab("Overview", new JPanel());
+        tabs.addTab("Galaxy", new GalaxyView(controller, controller.getModel()));
+        tabs.addTab("Sector", new SectorView(controller));
+        tabs.addTab("Details", new JPanel());
+
+        frame.add(tabs, BorderLayout.CENTER);
     }
 
-    @Override
-    public void notifySelected() {
-        
+    public void enableTab(int id){
+        tabs.setEnabledAt(id, true);
     }
 
+    public void disableTab(int id){
+        tabs.setEnabledAt(id, false);
+    }
 }

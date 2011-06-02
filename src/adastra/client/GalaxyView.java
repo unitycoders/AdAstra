@@ -7,6 +7,7 @@ package adastra.client;
 
 import adastra.engine.Ability;
 import adastra.engine.Asset;
+import adastra.engine.Galaxy;
 import adastra.engine.Sector;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -17,10 +18,11 @@ import java.awt.RenderingHints;
  *
  * @author jwalto
  */
-public class SectorView extends ScrollableComponent implements SelectionListener {
+public class GalaxyView extends ScrollableComponent implements SelectionListener {
     private GameController controller;
-    private Sector sector;
-    private AssetSprite[] sprites;
+    private SectorSprite[] sprites;
+    private Galaxy galaxy;
+    private GameModel model;
 
     /**
      * Build a new sector view
@@ -28,32 +30,46 @@ public class SectorView extends ScrollableComponent implements SelectionListener
      * TODO write some kind of listener to dynamiclly update the sprite list
      * @param controller the game controller to monitor
      */
-    public SectorView(GameController controller){
+    public GalaxyView(GameController controller, GameModel model){
         super(600,600,800,600);
-        sprites = new AssetSprite[0];
+        sprites = new SectorSprite[0];
         controller.addListener(this);
         this.controller = controller;
 
-        this.addMouseListener(new SectorMouseAdaptor(this, controller));
+        this.model = model;
+        if(model.getGame() != null){
+            this.galaxy = model.getGame().getMap();
+        }
+        addMouseListener(new GalaxyMouseAdaptor(this, controller));
     }
 
-    public void setSector(Sector sector){
-        if(sector == null){
-            sprites = new AssetSprite[0];
+    public void updateGalaxy(){
+        if(model.getGame() == null){
             return;
         }
 
-        sprites = new AssetSprite[sector.assetCount()];
+        if(galaxy == model.getGame().getMap()){
+            return;
+        }
+        galaxy = model.getGame().getMap();
+
+        if(galaxy == null){
+            sprites = new SectorSprite[0];
+            return;
+        }
+
+        sprites = new SectorSprite[galaxy.sectorCount()];
         int count=0;
 
-        for(Asset asset : sector){
-           sprites[count] = AssetSprite.build(asset);
+        for(Sector sector : galaxy){
+           sprites[count] = SectorSprite.build(sector);
            count++;
         }
     }
 
     @Override
     protected void paintComponent(Graphics g){
+        updateGalaxy();
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, getWidth(), getHeight());
     }
@@ -68,7 +84,7 @@ public class SectorView extends ScrollableComponent implements SelectionListener
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.translate(getXOffset(), getYOffset());
 
-        for(AssetSprite sprite : sprites){
+        for(SectorSprite sprite : sprites){
             sprite.paint(g);
         }
 
@@ -83,10 +99,10 @@ public class SectorView extends ScrollableComponent implements SelectionListener
         g.drawRect(getXOffset()-600, getYOffset()-600, 1200, 1200);
     }
 
+
+
     @Override
     public void sectorSelected(Sector sector) {
-        this.setSector(sector);
-        repaint();
     }
 
     @Override

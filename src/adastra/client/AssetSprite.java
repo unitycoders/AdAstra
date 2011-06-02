@@ -9,39 +9,42 @@ import adastra.engine.Asset;
 import adastra.engine.Location;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Polygon;
 
 /**
- *
+ * This will probably fail in future, as the apperance of each type of asset
+ * becomes more distinct, but for now it'll do.
+ * 
  * @author jwalto
  */
-class AssetSprite extends Sprite {
+public class AssetSprite {
+    private Asset asset;
 
-    public AssetSprite(Asset asset) {
-        super(asset);
+    public static AssetSprite build(Asset asset){
+        return new AssetSprite(asset);
     }
 
-    @Override
-    public void paint(Graphics g) {
-        int radius = asset.getRadius()/4*3;
+    private AssetSprite(Asset asset){
+        this.asset = asset;
+    }
 
+    public void paint(Graphics g){
         Location loc = asset.getLocation();
-        int x = loc.getX();
-        int y = loc.getY();
+        g.setColor(Color.red);
 
-        int xp[] = new int[]{x-radius,x,x+radius};
-        int yp[] = new int[]{y+radius,y-radius,y+radius};
+        int d = (int)(asset.getRadius()*0.75);
+        int x = loc.getX() - d;
+        int y = loc.getY() - d;
+        d *= 2;
 
-        Graphics2D g2 = (Graphics2D)g;
-
-        double rotation = asset.getRotation();
-
-        Polygon poly = new Polygon(xp, yp, 3);
-        g2.rotate(rotation, x, y);
-        g2.setColor(Color.WHITE);
-        g2.fillPolygon(poly);
-        g2.rotate((rotation)*-1, x, y);
+        switch(asset.getType()){
+            case Asset.TYPE_PLANET:
+                g.fillOval(x, y, d, d);
+                break;
+                
+            default:
+            case Asset.TYPE_VESSEL:
+                g.fillRect(x, y, d, d);
+        }
     }
 
 }

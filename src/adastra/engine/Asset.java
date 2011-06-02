@@ -307,5 +307,4 @@ public abstract class Asset {
             this.args = args;
         }
     }
-    
 }

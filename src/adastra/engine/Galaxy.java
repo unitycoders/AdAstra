@@ -43,6 +43,16 @@ public class Galaxy implements Iterable<Sector> {
     public Sector getSector(int id){
         return sectors.get(id);
     }
+
+    public Sector getSectorAt(int x, int y, int threshold){
+        for(Sector sec : sectors){
+            Location loc = sec.getLocation();
+            if(loc.getDist(x, y) < threshold){
+                return sec;
+            }
+        }
+        return null;
+    }
     
     public void addLink(Sector s1, Sector s2){
         List<Sector> sectorLinks = links.get(s1);
