@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import utilities.ArrayIterator;
 
 /**
  * The galaxy is the game map
@@ -17,11 +18,11 @@ import java.util.Map;
  */
 public class Galaxy implements Iterable<Sector> {
     private List<Sector> sectors;
-    private Map<Sector, List<Sector>> links;
+    private Map<Sector, List<Link>> links;
     
     public Galaxy(){
         sectors = new ArrayList<Sector>();
-        links = new HashMap<Sector, List<Sector>>();
+        links = new HashMap<Sector, List<Link>>();
     }
 
     public void microTick(){
@@ -54,21 +55,32 @@ public class Galaxy implements Iterable<Sector> {
         return null;
     }
     
-    public void addLink(Sector s1, Sector s2){
-        List<Sector> sectorLinks = links.get(s1);
+    public void addLink(Sector s1, Sector s2, int cost){
+        List<Link> sectorLinks = links.get(s1);
         if(sectorLinks == null){
-            sectorLinks = new ArrayList<Sector>();
+            sectorLinks = new ArrayList<Link>();
             links.put(s1, sectorLinks);
         }
-        sectorLinks.add(s2);
+        sectorLinks.add(new Link(s1, s2, cost));
     }
     
     public boolean linkExists(Sector s1, Sector s2){
-        List<Sector> sectorLinks = links.get(s1);
-        return sectorLinks != null && sectorLinks.contains(s2);
+        List<Link> sectorLinks = links.get(s1);
+
+        if(sectorLinks == null){
+            return false;
+        }
+
+        for(Link l : sectorLinks){
+            if(l.links(s1, s2)){
+                return true;
+            }
+        }
+
+        return false;
     }
     
-    public List<Sector> getLinks(Sector s1){
+    public List<Link> getLinks(Sector s1){
         return links.get(s1);
     }
     
@@ -76,9 +88,44 @@ public class Galaxy implements Iterable<Sector> {
         return sectors.size();
     }
 
+    public Iterator<Link> linkIterator(Sector s1){
+        List<Link> linkList = links.get(s1);
+        if(linkList == null){
+            return new ArrayIterator<Link>(new Link[0]);
+        }
+        return linkList.iterator();
+    }
+
     @Override
     public Iterator<Sector> iterator(){
         return sectors.iterator();
     }
-    
+
+    public static class Link{
+        private Sector s1;
+        private Sector s2;
+        private int cost;
+
+        public Link(Sector s1, Sector s2, int cost){
+            this.s1 = s1;
+            this.s2 = s2;
+            this.cost = cost;
+        }
+
+        public Sector getS1(){
+            return s1;
+        }
+
+        public Sector getS2(){
+            return s2;
+        }
+
+        public int getCost(){
+            return cost;
+        }
+
+        public boolean links(Sector s1, Sector s2){
+            return this.s1 == s1 && this.s2 == s2;
+        }
+    }
 }

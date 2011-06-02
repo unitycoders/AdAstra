@@ -19,14 +19,16 @@ public class Sector implements Iterable<Asset>, AssetListener {
 
     private List<Asset> assets;
     private List<SectorListener> listeners;
+    private Location location;
 
-    public Sector() {
+    public Sector(int x, int y) {
         this.assets = new ArrayList<Asset>();
         this.listeners = new ArrayList<SectorListener>();
+        this.location = new Location(null, x,y);
     }
 
     public Location getLocation(){
-        return new Location(null, 0,0);
+        return location;
     }
     
     public void addListener(SectorListener s){

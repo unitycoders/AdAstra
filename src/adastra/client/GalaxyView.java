@@ -8,11 +8,14 @@ package adastra.client;
 import adastra.engine.Ability;
 import adastra.engine.Asset;
 import adastra.engine.Galaxy;
+import adastra.engine.Galaxy.Link;
+import adastra.engine.Location;
 import adastra.engine.Sector;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.Iterator;
 
 /**
  *
@@ -83,6 +86,17 @@ public class GalaxyView extends ScrollableComponent implements SelectionListener
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.translate(getXOffset(), getYOffset());
+
+        for(Sector sec : galaxy){
+            Iterator<Link> itr = galaxy.linkIterator(sec);
+            while(itr.hasNext()){
+                Link link = itr.next();
+                Location loc1 = link.getS1().getLocation();
+                Location loc2 = link.getS2().getLocation();
+
+                g2.drawLine(loc1.getX(), loc1.getY(), loc2.getX(), loc2.getY());
+            }
+        }
 
         for(SectorSprite sprite : sprites){
             sprite.paint(g);

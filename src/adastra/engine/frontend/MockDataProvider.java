@@ -36,7 +36,7 @@ public class MockDataProvider implements DataProvider {
         new Hull("Demo Hull", 100)
     };
     private Sector[] sectors = new Sector[]{
-        new Sector()
+        new Sector(0,0)
     };
     private Technology[] technology = new Technology[0]; //No tech tree
 

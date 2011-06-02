@@ -29,8 +29,11 @@ public class MapGenerator {
         random.setSeed(seed);
     }
 
-    public Sector nextSector(){
-        Sector s = new Sector();
+    public Sector nextSector(int maxX, int maxY){
+        int halfX = maxX/2;
+        int halfY = maxY/2;
+        Sector s = new Sector(random.nextInt(maxX)-halfX, random.nextInt(maxY)-halfY);
+
         //Star star = nextStar();
         Location star = new Location(s, 0, 0);
 

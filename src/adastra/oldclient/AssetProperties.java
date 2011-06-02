@@ -48,10 +48,10 @@ public class AssetProperties extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
 
-        assetName.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        assetName.setFont(new java.awt.Font("DejaVu Sans", 1, 14));
         assetName.setText("Asset Name");
 
-        assetOwner.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        assetOwner.setFont(new java.awt.Font("DejaVu Sans", 0, 12));
         assetOwner.setText("Asset Owner");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

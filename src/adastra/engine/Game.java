@@ -55,7 +55,7 @@ public class Game {
     public void generateMap(int nSectors){
         MapGenerator gen = new MapGenerator(rules);
         for(int i=0; i<nSectors; i++){
-            map.addSector(gen.nextSector());
+            map.addSector(gen.nextSector(600,600));
         }
     }
     
