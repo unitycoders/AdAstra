@@ -88,7 +88,7 @@ public class GameModel {
         }
 
         //TODO add support to the map to allow getting of a sector by x and y
-        setSector(theGame.getMap().getSector(0));
+        setSector(theGame.getMap().getSectorAt(x, y, 10));
         return sector != null;
     }
 
