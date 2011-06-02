@@ -4,21 +4,18 @@
  */
 package adastra.client;
 
-import adastra.engine.Asset;
 import java.awt.Point;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
 /**
  *
  * @author jwalto
  */
-public class SectorMouseAdaptor implements MouseListener, MouseMotionListener {
+public class SectorMouseAdaptor extends MouseAdapter {
 
     private SectorView sectorView;
     private GameController ctrl;
-    private Point startPoint;
 
     public SectorMouseAdaptor(SectorView sv, GameController ctrl) {
         this.sectorView = sv;
@@ -40,40 +37,5 @@ public class SectorMouseAdaptor implements MouseListener, MouseMotionListener {
             //if(p.x < model.getSector().getWidth()/2)
             //model.giveOrder(p);
         }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        startPoint = sectorView.getStart(e.getPoint());
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        startPoint = null;
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        sectorView.requestFocus();
-        if(startPoint != null){
-            Point p = e.getPoint();
-            sectorView.moveView(startPoint,p.x, p.y);
-            //System.out.println("Point = "+startPoint);
-        }
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet.");
     }
 }

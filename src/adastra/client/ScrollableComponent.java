@@ -19,6 +19,9 @@ public class ScrollableComponent extends JComponent {
     public ScrollableComponent(int x, int y, int width, int height){
         super();
         viewpoint = new Rectangle(x,y,width,height);
+        ScrollableMouseAdaptor sma = new ScrollableMouseAdaptor(this);
+        addMouseListener(sma);
+        addMouseMotionListener(sma);
     }
 
     public int getXOffset(){

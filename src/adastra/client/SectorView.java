@@ -12,7 +12,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import javax.swing.JComponent;
 
 /**
  *
@@ -35,9 +34,7 @@ public class SectorView extends ScrollableComponent implements SelectionListener
         controller.addListener(this);
         this.controller = controller;
 
-        SectorMouseAdaptor sml = new SectorMouseAdaptor(this, controller);
-        this.addMouseListener(sml);
-        this.addMouseMotionListener(sml);
+        this.addMouseListener(new SectorMouseAdaptor(this, controller));
     }
 
     public void setSector(Sector sector){
@@ -85,8 +82,6 @@ public class SectorView extends ScrollableComponent implements SelectionListener
         g.setColor(Color.red);
         g.drawRect(getXOffset()-600, getYOffset()-600, 1200, 1200);
     }
-
-
 
     @Override
     public void sectorSelected(Sector sector) {
