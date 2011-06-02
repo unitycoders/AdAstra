@@ -85,7 +85,9 @@ public class PlotMap extends MiddlePanel implements MouseListener {
                 
                 Building b = colony.buildingAt(row, col);
                 if(b != null){
-                    b.drawAt(x, y, width, height, g);
+                    //TODO this has been removed from engine, you want it
+                    //replace it with sprites
+                    //b.drawAt(x, y, width, height, g);
                 }
             }
         }
