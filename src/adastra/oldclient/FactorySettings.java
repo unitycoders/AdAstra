@@ -6,7 +6,7 @@
 package adastra.oldclient;
 
 import adastra.engine.Blueprint;
-import adastra.engine.planet.Factory;
+import adastra.engine.Factory;
 import java.awt.BorderLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;

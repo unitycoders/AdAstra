@@ -4,8 +4,6 @@
  */
 package adastra.engine;
 
-import adastra.engine.planet.Planet;
-import adastra.engine.planet.PlanetType;
 import java.util.Random;
 
 /**

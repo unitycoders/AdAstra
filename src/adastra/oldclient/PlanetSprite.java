@@ -6,8 +6,8 @@
 package adastra.oldclient;
 
 import adastra.engine.Location;
-import adastra.engine.planet.Planet;
-import adastra.engine.planet.PlanetType;
+import adastra.engine.Planet;
+import adastra.engine.PlanetType;
 import java.awt.Color;
 import java.awt.Graphics;
 

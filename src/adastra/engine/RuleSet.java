@@ -4,9 +4,6 @@
  */
 package adastra.engine;
 
-import adastra.engine.planet.PlanetType;
-import adastra.engine.vessel.Hull;
-
 /**
  * Important infomation about a game which doesn't change over the lifetime
  * of that game. 

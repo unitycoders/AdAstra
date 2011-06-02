@@ -10,7 +10,7 @@ import adastra.engine.Asset;
 import adastra.engine.Player;
 import adastra.engine.Sector;
 import adastra.engine.Technology;
-import adastra.engine.vessel.Hull;
+import adastra.engine.Hull;
 
 /**
  * Request data from a server

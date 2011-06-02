@@ -11,7 +11,7 @@ import adastra.engine.MoveAbility;
 import adastra.engine.Player;
 import adastra.engine.Sector;
 import adastra.engine.Technology;
-import adastra.engine.vessel.Hull;
+import adastra.engine.Hull;
 
 /**
  * This is a mock data provider

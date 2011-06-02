@@ -4,11 +4,11 @@
  */
 package adastra.oldclient;
 
-import adastra.engine.planet.Building;
-import adastra.engine.planet.Colony;
-import adastra.engine.planet.Planet;
-import adastra.engine.planet.PlanetType;
-import adastra.engine.planet.Tile;
+import adastra.engine.Building;
+import adastra.engine.Colony;
+import adastra.engine.Planet;
+import adastra.engine.PlanetType;
+import adastra.engine.Tile;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;

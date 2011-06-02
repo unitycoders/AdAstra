@@ -6,7 +6,7 @@
 package adastra.oldclient;
 
 import adastra.engine.Asset;
-import adastra.engine.planet.Planet;
+import adastra.engine.Planet;
 import java.awt.Graphics;
 
 /**

@@ -5,9 +5,6 @@
 
 package adastra.engine;
 
-import adastra.engine.planet.BuildingBlueprint;
-import adastra.engine.vessel.VesselBlueprint;
-
 /**
  * A player of the game
  * 

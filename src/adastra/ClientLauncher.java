@@ -12,17 +12,17 @@ import adastra.engine.Galaxy;
 import adastra.engine.Game;
 import adastra.engine.Player;
 import adastra.engine.Sector;
-import adastra.engine.planet.Planet;
-import adastra.engine.planet.PlanetType;
-import adastra.engine.planet.ShipyardBlueprint;
-import adastra.engine.vessel.Engine;
-import adastra.engine.vessel.Hardware;
-import adastra.engine.vessel.Hull;
-import adastra.engine.vessel.Vessel;
-import adastra.engine.vessel.VesselBlueprint;
+import adastra.engine.Planet;
+import adastra.engine.PlanetType;
+import adastra.engine.ShipyardBlueprint;
+import adastra.engine.Engine;
+import adastra.engine.Hardware;
+import adastra.engine.Hull;
+import adastra.engine.Vessel;
+import adastra.engine.VesselBlueprint;
 import adastra.engine.GameClock;
 import adastra.engine.RuleSet;
-import adastra.engine.vessel.HardwareBlueprint;
+import adastra.engine.HardwareBlueprint;
 import java.util.Timer;
 
 /**

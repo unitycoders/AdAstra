@@ -15,8 +15,8 @@ import adastra.engine.Asset;
 import adastra.engine.Asset.GameSettings;
 import adastra.engine.Blueprint;
 import adastra.engine.Player;
-import adastra.engine.planet.Factory;
-import adastra.engine.planet.Planet;
+import adastra.engine.Factory;
+import adastra.engine.Planet;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 

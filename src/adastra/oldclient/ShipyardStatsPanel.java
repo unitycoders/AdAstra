@@ -4,8 +4,8 @@
  */
 package adastra.oldclient;
 
-import adastra.engine.vessel.Hull;
-import adastra.engine.vessel.VesselBlueprint;
+import adastra.engine.Hull;
+import adastra.engine.VesselBlueprint;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
