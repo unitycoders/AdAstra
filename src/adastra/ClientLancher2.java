@@ -30,7 +30,6 @@ public class ClientLancher2 {
 
         controller = new GameController(new MockDataProvider(), new MockDataSender());
         controller.setGame(game);
-        controller.selectSectorAt(0, 0);
     }
 
 }

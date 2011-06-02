@@ -40,6 +40,7 @@ public class GalaxyView extends ScrollableComponent implements SelectionListener
         if(model.getGame() != null){
             this.galaxy = model.getGame().getMap();
         }
+        addMouseListener(new GalaxyMouseAdaptor(this, controller));
     }
 
     public void updateGalaxy(){
