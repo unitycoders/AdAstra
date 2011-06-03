@@ -24,18 +24,18 @@ public class Sector implements Iterable<Asset>, AssetListener {
     public Sector(int x, int y) {
         this.assets = new ArrayList<Asset>();
         this.listeners = new ArrayList<SectorListener>();
-        this.location = new Location(null, x,y);
+        this.location = new Location(null, x, y);
     }
 
-    public Location getLocation(){
+    public Location getLocation() {
         return location;
     }
-    
-    public void addListener(SectorListener s){
+
+    public void addListener(SectorListener s) {
         listeners.add(s);
     }
-    
-    public void removeListener(SectorListener s){
+
+    public void removeListener(SectorListener s) {
         listeners.remove(s);
     }
 
@@ -44,23 +44,23 @@ public class Sector implements Iterable<Asset>, AssetListener {
         a.addAssetListener(this);
     }
 
-    public void microTick(){
+    public void microTick() {
         Asset[] aa = new Asset[assets.size()];
         assets.toArray(aa);
 
-        for(Asset a :aa){
+        for (Asset a : aa) {
             //god knows why i need this but i null pointer sometimes
-            if(a != null){
+            if (a != null) {
                 a.microTick();
             }
         }
     }
-    
-    public void tick(){
+
+    public void tick() {
         Asset[] aa = new Asset[assets.size()];
         assets.toArray(aa);
 
-        for(Asset a :aa){
+        for (Asset a : aa) {
             a.tick();
         }
     }
@@ -81,38 +81,37 @@ public class Sector implements Iterable<Asset>, AssetListener {
         assets.toArray(aa);
 
         return new ArrayIterator<Asset>(aa);
-        //return assets.iterator();
     }
-    
-    public void fireDataChanged(){
-        for(SectorListener s : listeners){
+
+    protected void fireDataChanged() {
+        for (SectorListener s : listeners) {
             s.sectorDataChanged();
         }
     }
-    
-        public void fireAssetAdded(Asset a){
-        for(SectorListener s : listeners){
+
+    protected void fireAssetAdded(Asset a) {
+        for (SectorListener s : listeners) {
             s.assetAdded(a);
         }
     }
-        
-            public void fireAssetRemoved(Asset a){
-        for(SectorListener s : listeners){
+
+    protected void fireAssetRemoved(Asset a) {
+        for (SectorListener s : listeners) {
             s.assetRemoved(a);
         }
     }
 
-    public int getWidth(){
+    public int getWidth() {
         return 1200;
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return 1200;
     }
 
     @Override
     public void onChangeOwner(Player newOwner) {
-       //I'm not really fussed.
+        //I'm not really fussed.
     }
 
     @Override
@@ -126,9 +125,7 @@ public class Sector implements Iterable<Asset>, AssetListener {
         fireDataChanged();
     }
 
-    public int assetCount(){
+    public int assetCount() {
         return assets.size();
     }
-    
-    
 }
