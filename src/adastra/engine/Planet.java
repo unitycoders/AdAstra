@@ -31,7 +31,6 @@ public class Planet extends Asset {
         super(new Location(s, x,y), 50);
         this.type = type;
         this.surface = tileMap;
-        owner = null;
     }
     
     /**
@@ -40,11 +39,11 @@ public class Planet extends Asset {
      * @param p 
      */
     public void colonise(Player p){
-        if(owner != null){
+        if(getOwner() != null){
             throw new RuntimeException("already colonised!");
         }
         
-        this.owner = p;
+        setOwner(p);
         this.colony = new Colony(this);
         this.fireChangeOwner();
     }

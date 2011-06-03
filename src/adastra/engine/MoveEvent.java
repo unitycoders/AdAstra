@@ -91,7 +91,7 @@ public class MoveEvent implements Event {
         System.out.println("Tick Rotation: "+rotation);
         what.rotateTo(rotation);
         what.setLocation(nextTick);
-        step = (rotation-what.rotation)/10;
+        step = (rotation-what.getRotation())/10;
     }
 
     @Override

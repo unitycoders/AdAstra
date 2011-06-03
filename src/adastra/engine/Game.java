@@ -30,7 +30,9 @@ public class Game {
     /**
      * Build a new player for the game
      * 
-     * @param name 
+     * @param name
+     * @param colour
+     * @param team
      */
     public void addPlayer(String name, int colour, String team){
         Player player = new Player(name, colour, team);

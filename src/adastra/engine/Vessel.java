@@ -5,8 +5,7 @@ package adastra.engine;
  * and open the template in the editor.
  */
 
-import adastra.engine.Asset;
-import adastra.engine.Location;
+import adastra.engine.frontend.GameException;
 import java.awt.Point;
 import java.util.Arrays;
 
@@ -21,12 +20,12 @@ public class Vessel extends Asset {
     /**
      * Builds a brand new (empty) ship
      * 
+     * @param l the location of the vessel
      * @param h The base hull of the vessel
      */
     public Vessel(Location l, Hull h){
         super(l, 24);
         this.hull = h;
-        this.rotation = 0;
         this.hardware = new Hardware[h.getHardpointCount()];
     }
 
@@ -40,27 +39,31 @@ public class Vessel extends Asset {
      * @param id The id of the hardpoint
      * @param hw The hardware item to add
      * @return the peace of hardware prevously attached
+     * @throws GameException if the hardware could not be attached
      */
-    public Hardware setHardware(int id, Hardware hw){
-        Hardware old = null;
-        
+    public Hardware setHardware(int id, Hardware hw) throws GameException{        
         //check for invalid ID
         if(hardware.length < id || id < 0){
-            throw new RuntimeException("hardpoint ID invalid");
+            throw new IllegalArgumentException("hardpoint ID invalid");
         }
         
-        //if ID occupied, 
+        //if ID occupied,
+        Hardware old = null;
         if(hardware[id] != null){
             old = hardware[id];
             old.unbindAsset();
             addProperty("hardware."+old.getName()+".count", -1);
             if(getProperty("hardware."+old.getName()+".count") <= 0){
-                abilities.removeAll(hardware[id].getAbilities());
+                for(Ability ablilty : hardware[id].getAbilities()){
+                    removeAbility(ablilty);
+                }
             }
         }
 
         addProperty("hardware."+hw.getName()+".count", 1);
-        abilities.addAll(hw.getAbilities());
+        for(Ability ability: hw.getAbilities()){
+            addAbility(ability);
+        }
         hardware[id] = hw;
         hw.bindAsset(this);
         return old;

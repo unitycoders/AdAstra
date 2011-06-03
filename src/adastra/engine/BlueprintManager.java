@@ -13,11 +13,11 @@ import javax.swing.event.ListDataListener;
 
 /**
  *
+ * @param <T> The type of blueprint being managed
  * @author jwalto
  */
 public class BlueprintManager<T extends Blueprint> implements ListModel {
     private List<T> blueprints;
-
     private List<ListDataListener> listeners;
 
     public BlueprintManager(){

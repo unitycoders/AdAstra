@@ -12,16 +12,17 @@ import javax.swing.DefaultBoundedRangeModel;
 /**
  * A Factory is something that builds things
  * 
+ * @param <T>
  * @author jwalto
  */
 public abstract class Factory<T extends Blueprint> extends Building {
     private T blueprint;
     private int progress;
-    private BlueprintManager manager;
+    private BlueprintManager<T> manager;
     private Point buildPoint;
     private BoundedRangeModel model;
 
-    public Factory(String name, BlueprintManager manager){
+    public Factory(String name, BlueprintManager<T> manager){
         super(name);
         this.manager = manager;
         this.blueprint = null;

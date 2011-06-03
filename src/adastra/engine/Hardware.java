@@ -6,8 +6,7 @@ package adastra.engine;
  */
 
 
-import adastra.engine.Ability;
-import adastra.engine.Asset;
+import adastra.engine.frontend.GameException;
 import java.util.Collection;
 
 /**
@@ -15,18 +14,30 @@ import java.util.Collection;
  * @author webpigeon
  */
 public abstract class Hardware {
-    protected Asset attached;
+    private boolean attached;
+    private Asset asset;
 
     public abstract String getName();
 
     public abstract Collection<Ability> getAbilities();
 
-    public void bindAsset(Asset attached){
-        this.attached = attached;
+    public void bindAsset(Asset asset) throws GameException{
+        if(attached){
+            throw new GameException("Hardware already attached!");
+        }
+        this.asset = asset;
     }
     
     public void unbindAsset(){
-        this.attached = null;
+        this.asset = null;
+        this.attached = false;
+    }
+
+    /**
+     * @return the attached asset
+     */
+    public Asset getAsset() {
+        return this.asset;
     }
     
 }

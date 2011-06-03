@@ -26,37 +26,37 @@ public abstract class Asset {
     /**
      * The owner of the asset (can be null if unowned)
      */
-    protected Player owner;
+    private Player owner;
     
     /**
      * The current location of the asset
      */
-    protected Location location;
+    private Location location;
     
     /**
      * The currently assigned order
      */
-    protected Event order;
+    private Event order;
     
     /**
      * The asset listeners for this asset
      */
-    protected List<AssetListener> listeners;
+    private List<AssetListener> listeners;
     
     /**
      * The abilties this asset is capable of preforming
      */
-    protected List<Ability> abilities;
+    private List<Ability> abilities;
     
     /**
      * This asset's properties
      */
-    protected Map<String, Integer> properties;
+    private Map<String, Integer> properties;
     
     /**
      * The current rotation (in degrees)
      */
-    protected double rotation;
+    private double rotation;
     
     /**
      * The radius of the asset
@@ -274,6 +274,14 @@ public abstract class Asset {
         for(AssetListener al : listeners){
             al.onChange();
         }
+    }
+
+    protected void addAbility(Ability ability){
+        this.abilities.add(ability);
+    }
+
+    protected void removeAbility(Ability ability){
+        this.abilities.remove(ability);
     }
 
     /**

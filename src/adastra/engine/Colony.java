@@ -32,7 +32,11 @@ public class Colony implements Iterable<Building[]> {
 
     /**
      * Check what we're currently builidng DONT CALL THIS I WILL EAT YOU.
+     * TODO find out why this have such an agressive docblock?
      *
+     * @param x the x co-ordinate of the building
+     * @param y the y co-ordinate of the building
+     * @param b the building to be placed
      */
     public void placeBuilding(int x, int y, Building b) {
         buildings[x][y] = b;

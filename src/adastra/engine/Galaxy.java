@@ -101,6 +101,7 @@ public class Galaxy implements Iterable<Sector> {
         return sectors.iterator();
     }
 
+    //TODO public inner classes are bad
     public static class Link{
         private Sector s1;
         private Sector s2;

@@ -5,11 +5,11 @@
 
 package adastra.engine;
 
-import adastra.engine.Blueprint;
 import java.util.Map;
 
 /**
  *
+ * @param <T> The building described by this blueprint
  * @author jwalto
  */
 public abstract class BuildingBlueprint<T extends Building> extends Blueprint {

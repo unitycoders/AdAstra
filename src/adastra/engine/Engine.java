@@ -5,11 +5,7 @@ package adastra.engine;
  * and open the template in the editor.
  */
 
-
-
-import adastra.engine.Ability;
-import adastra.engine.Asset;
-import adastra.engine.MoveAbility;
+import adastra.engine.frontend.GameException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -33,14 +29,14 @@ public class Engine extends Hardware {
     }
 
     @Override
-    public void bindAsset(Asset attached) {
+    public void bindAsset(Asset attached) throws GameException {
         super.bindAsset(attached);
         attached.addProperty("core.engine.power", 50);
     }
 
     @Override
-    public void unbindAsset() {
-        attached.addProperty("core.engine.power", -50);
+    public void unbindAsset(){
+        getAsset().addProperty("core.engine.power", -50);
         super.unbindAsset();
     }
 

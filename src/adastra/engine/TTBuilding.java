@@ -10,9 +10,9 @@ package adastra.engine;
  * @author webpigeon
  */
 public class TTBuilding extends Technology {
-    private BuildingBlueprint blueprint;
+    private BuildingBlueprint<Building> blueprint;
     
-    public TTBuilding(BuildingBlueprint blueprint, Technology left, Technology right){
+    public TTBuilding(BuildingBlueprint<Building> blueprint, Technology left, Technology right){
         super(left, right);
         this.blueprint = blueprint;
     }

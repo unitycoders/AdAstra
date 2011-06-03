@@ -5,10 +5,7 @@ package adastra.engine;
  * and open the template in the editor.
  */
 
-
-
-import adastra.engine.Blueprint;
-import adastra.engine.Location;
+import adastra.engine.frontend.GameException;
 import java.util.Map;
 
 /**
@@ -40,6 +37,10 @@ public class VesselBlueprint extends Blueprint {
     }
 
     public void setHardware(int id, HardwareBlueprint hard){
+        if(id < 0 || id >= this.hard.length){
+            throw new IllegalArgumentException("Invalid id!");
+        }
+
         this.hard[id] = hard;
     }
 
@@ -57,7 +58,11 @@ public class VesselBlueprint extends Blueprint {
         
         for(int i=0; i<hard.length; i++){
             if(hard[i] != null){
-                vessel.setHardware(i,  hard[i].buildHardware());
+                try {
+                    vessel.setHardware(i, hard[i].buildHardware());
+                } catch (GameException ex) {
+                    System.err.println("[error] "+ex.getMessage());
+                }
             }
         }
         
