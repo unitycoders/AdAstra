@@ -12,7 +12,7 @@ import java.util.Map;
  * @param <T> The building described by this blueprint
  * @author jwalto
  */
-public abstract class BuildingBlueprint<T extends Building> extends Blueprint {
+public abstract class BuildingBlueprint<T extends Building> extends Blueprint<Building> {
 
     public abstract String getName();
     public abstract Building makeBuilding(Planet p);

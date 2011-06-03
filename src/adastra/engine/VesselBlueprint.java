@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author jwalto
  */
-public class VesselBlueprint extends Blueprint {
+public class VesselBlueprint extends Blueprint<Vessel> {
 
     private String name;
     private Hull hull;
@@ -53,20 +53,9 @@ public class VesselBlueprint extends Blueprint {
         hard = new HardwareBlueprint[hull.getHardpointCount()];
     }
 
+    @Deprecated
     public Vessel buildVessel(){
-        Vessel vessel = new Vessel(new Location(null, 0, 0), hull);
-        
-        for(int i=0; i<hard.length; i++){
-            if(hard[i] != null){
-                try {
-                    vessel.setHardware(i, hard[i].buildHardware());
-                } catch (GameException ex) {
-                    System.err.println("[error] "+ex.getMessage());
-                }
-            }
-        }
-        
-        return vessel;
+        return build();
     }
 
     @Override
@@ -89,6 +78,23 @@ public class VesselBlueprint extends Blueprint {
     @Override
     public Map<String, Integer> getBuildCost() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Vessel build() {
+        Vessel vessel = new Vessel(new Location(null, 0, 0), hull);
+
+        for(int i=0; i<hard.length; i++){
+            if(hard[i] != null){
+                try {
+                    vessel.setHardware(i, hard[i].build());
+                } catch (GameException ex) {
+                    System.err.println("[error] "+ex.getMessage());
+                }
+            }
+        }
+
+        return vessel;
     }
 
 }
