@@ -21,7 +21,7 @@ public class Shipyard extends Factory<VesselBlueprint> {
 
     @Override
     public void onComplete(VesselBlueprint blueprint) {
-        Vessel v = blueprint.buildVessel();
+        Vessel v = blueprint.build();
         planet.orbitPlanet(v);
     }
 

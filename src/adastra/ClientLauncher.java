@@ -84,7 +84,7 @@ public class ClientLauncher {
         VesselBlueprint scout = new VesselBlueprint("Scout Ship", new Hull("Light Hull", 50), new HardwareBlueprint[]{new HardwareBlueprint(), new HardwareBlueprint(), new HardwareBlueprint()});
         p.registerVessel(scout);
 
-        Vessel scoutShip = scout.buildVessel();
+        Vessel scoutShip = scout.build();
         scoutShip.setLocation(-50, -50);
         scoutShip.setOwner(p);
         s.add(scoutShip);

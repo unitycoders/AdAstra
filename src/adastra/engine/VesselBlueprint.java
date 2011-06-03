@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author jwalto
  */
-public class VesselBlueprint extends Blueprint<Vessel> {
+public class VesselBlueprint extends Blueprint {
 
     private String name;
     private Hull hull;
@@ -80,7 +80,6 @@ public class VesselBlueprint extends Blueprint<Vessel> {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
     public Vessel build() {
         Vessel vessel = new Vessel(new Location(null, 0, 0), hull);
 

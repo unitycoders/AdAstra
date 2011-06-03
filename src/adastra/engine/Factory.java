@@ -60,7 +60,7 @@ public abstract class Factory<T extends Blueprint> extends Building {
 
     public abstract void onComplete(T blueprint);
 
-    public BlueprintManager getManager(){
+    public BlueprintManager<T> getManager(){
         return manager;
     }
 

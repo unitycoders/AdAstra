@@ -23,7 +23,6 @@ public class ShipyardBlueprint extends BuildingBlueprint<Shipyard> {
         return new Shipyard(p);
     }
 
-    @Override
     public Building build() {
         //TODO this is an exception which breaks the rule, it needs re-thinking
         return new Shipyard(null);

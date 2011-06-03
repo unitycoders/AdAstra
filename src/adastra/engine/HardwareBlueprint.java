@@ -11,7 +11,7 @@ import java.util.Map;
  * TODO write class
  * @author webpigeon
  */
-public class HardwareBlueprint extends Blueprint<Hardware> {
+public class HardwareBlueprint extends Blueprint {
     
     @Override
     public int getBuildTime() {
@@ -23,7 +23,6 @@ public class HardwareBlueprint extends Blueprint<Hardware> {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
     public Hardware build() {
         return new Engine();
     }

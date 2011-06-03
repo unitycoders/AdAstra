@@ -29,7 +29,7 @@ public class Player {
         buildingBps.registerBlueprint(bp);
     }
 
-    public BlueprintManager getBuildings(){
+    public BlueprintManager<BuildingBlueprint> getBuildings(){
         return buildingBps;
     }
 
@@ -37,7 +37,7 @@ public class Player {
         vessels.registerBlueprint(bp);
     }
 
-    public BlueprintManager getVessels(){
+    public BlueprintManager<VesselBlueprint> getVessels(){
         return vessels;
     }
     
